@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>【完全無料・完全自動】Claude 3.5 Sonnet × Google Apps Scriptで構築する「未読Gmail & SlackからNotionへの自律型タスク抽出パイプライン」｜BizHack AI</title>
-  <meta name="description" content="サーバー不要・維持費実質ゼロ。Googleの無料枠内でClaudeのTool Useを走らせ、メールやSlackのタスクをNotionへ自動集約する完全スクリプト（指数バックオフ・6分制限回避付き）をオープン公開。">
+  <title>【関数・マクロ不要】エクセルが苦手でも大丈夫！ChatGPTに「やりたいこと」を日本語で丸投げする超簡単データ集計術｜BizHack AI</title>
+  <meta name="description" content="VLOOKUPや関数が苦手な事務職必見！ChatGPTにエクセルやCSVデータを渡して日本語でお願いするだけで、データのクレンジングから集計、グラフ化まで3分で完了する超簡単テクニック。">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/jpeg" href="images/bizhack-icon-main.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,16 +41,16 @@
         <!-- ステマ規制対応 PR表記 -->
         <div class="pr-disclosure-bar">
           <span class="pr-badge">PR</span>
-          <span>本記事はアフィリエイト広告を含みますが、客観的な技術検証・API動作ログに基づき中立に執筆されています。</span>
+          <span>本記事は客観的な実務検証データに基づき中立に執筆されています。一部に提携ツールの紹介リンクを含みます。</span>
         </div>
 
         <header class="article-header">
-          <span class="category-tag cat-tech">技術検証・GAS</span>
-          <h1 class="article-title">【完全無料・完全自動】Claude 3.5 Sonnet × Google Apps Scriptで構築する「未読Gmail & SlackからNotionへの自律型タスク抽出パイプライン」（全コード・例外処理付き）</h1>
+          <span class="category-tag cat-tech">事務職・エクセル時短</span>
+          <h1 class="article-title">【関数・マクロ不要】エクセルが苦手でも大丈夫！ChatGPTに「やりたいこと」を日本語で丸投げする超簡単データ集計術</h1>
           <div class="article-meta-bar">
-            <span>💻 執筆：エンジニア・高度自動化担当ライター</span>
-            <span>📅 更新日：2026年10月14日</span>
-            <span>⏱️ 読了目安：約12分</span>
+            <span>執筆：データ実務・オフィス担当</span>
+            <span>更新日：2026年10月14日</span>
+            <span>読了目安：約8分</span>
           </div>
         </header>
 
@@ -58,373 +58,196 @@
         <nav class="toc-box">
           <div class="toc-title">目次</div>
           <ul class="toc-list">
-            <li><a href="#sec-1">1. なぜ「GAS × Claude 3.5 Sonnet」なのか？アーキテクチャ比較</a></li>
-            <li><a href="#sec-2">2. システム全体像と処理シーケンス</a></li>
-            <li><a href="#sec-3">3. 前提条件とAPIキーの取得手順</a></li>
-            <li><a href="#sec-4">4. 【完全掲載】Google Apps Scriptの実装コード（Code.gs）</a></li>
-            <li><a href="#sec-5">5. Notionデータベースのプロパティ定義と設定</a></li>
-            <li><a href="#sec-6">6. 実際の動作検証とトークンコスト（月額約990円の試算）</a></li>
-            <li><a href="#sec-7">7. まとめ ＆ さらなる高度化への道</a></li>
+            <li><a href="#sec-1">1. 「VLOOKUPや関数が難しくて頭が痛い…」エクセル作業の悩み</a></li>
+            <li><a href="#sec-2">2. 【衝撃】関数を書かずに日本語で指示するだけで集計が終わる仕組み</a></li>
+            <li><a href="#sec-3">3. 【実例①】バラバラな表記ゆれ（株、全角半角、日付）を一発で揃える</a></li>
+            <li><a href="#sec-4">4. 【実例②】「月別×商品別の売上合計を出して」とチャットで頼むだけ</a></li>
+            <li><a href="#sec-5">5. 【実例③】チャット上で売上グラフを自動生成してダウンロード</a></li>
+            <li><a href="#sec-6">6. 会社の数字や個人情報を守る「マスキング（伏せ字）の鉄則」</a></li>
+            <li><a href="#sec-7">7. まとめ ＆ 次のおすすめステップ</a></li>
           </ul>
         </nav>
 
         <div class="article-content">
           <p>
-            こんにちは。「仕事効率化・生成AIツール特化メディア」エンジニア・高度自動化担当ライターです。
+            「月末の売上データを集計しなきゃいけないけれど、エクセルの関数がエラーになって進まない……」<br>
+            「バラバラに入力された顧客リストを手作業で1行ずつ直していて目が痛い」
           </p>
           <p>
-            エンジニアや社内SE、テック系ビジネスパーソンにとって、日々の最大の生産性キラーは<strong>「コミュニケーションツール間のコンテキストスイッチ」</strong>と<strong>「散らばったタスクの手動転記」</strong>ではないでしょうか。
+            事務職、営業アシスタント、経理、店舗スタッフの皆さん、エクセルの複雑な数式やマクロを無理に勉強する必要はもうありません。
           </p>
           <p>
-            本記事では、<strong>サーバー構築不要・維持コスト実質ゼロ（Googleの無料枠内で稼働）</strong>の<strong>Google Apps Script (GAS)</strong>をオーケストレーターとし、現行LLMで最高峰の日本語推論力・構造化データ抽出精度を誇る<strong>Anthropicの「Claude 3.5 Sonnet」</strong>、そして情報ハブである<strong>Notion API</strong>を直結した<strong>「自律型タスク抽出パイプライン」</strong>を構築します。
+            ChatGPTに<strong>エクセルやCSVファイルを添付して「月ごとの売上合計を表にして」「グラフを作って」と日本語で話しかけるだけ</strong>で、AIが裏側で自動計算して完璧なデータを返してくれます！
+          </p>
+          <p>
+            今回は、数学やプログラミングが苦手な方でも3分でできる超簡単データ集計術をお伝えします。
           </p>
 
-          <h2 id="sec-1">1. なぜ「GAS × Claude 3.5 Sonnet」なのか？アーキテクチャ比較</h2>
-          <div class="table-responsive">
-            <table class="styled-table">
-              <thead>
-                <tr>
-                  <th>比較項目</th>
-                  <th>一般的なiPaaS（Zapier/Make）</th>
-                  <th>本アーキテクチャ（GAS + Claude 3.5 Sonnet）</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>月額固定費</strong></td>
-                  <td>月$20〜$50（無料枠は即枯渇）</td>
-                  <td><strong>完全無料（Google無料枠内）</strong></td>
-                </tr>
-                <tr>
-                  <td><strong>LLM実行コスト</strong></td>
-                  <td>アドオン契約が必要な場合あり</td>
-                  <td><strong>Anthropic APIの従量課金のみ（月数百円程度）</strong></td>
-                </tr>
-                <tr>
-                  <td><strong>テキスト解析力</strong></td>
-                  <td>単純な正規表現や低機能モデル</td>
-                  <td><strong>Claude 3.5 Sonnetによる高度な意図・期限推論</strong></td>
-                </tr>
-                <tr>
-                  <td><strong>カスタマイズ性</strong></td>
-                  <td>ノード数・フロー制限あり</td>
-                  <td><strong>JavaScript/TypeScriptで自由なロジック記述が可能</strong></td>
-                </tr>
-              </tbody>
-            </table>
+          <h2 id="sec-1">1. 「VLOOKUPや関数が難しくて頭が痛い…」エクセル作業の悩み</h2>
+          <p>
+            実務でエクセルを使う際、つまずく原因のほとんどは「関数の文法」です。
+          </p>
+          <ul>
+            <li>「=IF(ISERROR(VLOOKUP(...))) みたいにカッコが多すぎてどこが間違っているかわからない」</li>
+            <li>「半角スペースが混ざっていたり、全角数字のせいで計算がエラー（#VALUE!）になる」</li>
+            <li>「ピボットテーブルの設定方法を毎回Googleで検索している」</li>
+          </ul>
+          <p>
+            本来やりたいのは<strong>「数字を集計して結果を見ること」</strong>なのに、「エクセルの数式と格闘すること」に何時間も費やしてしまっています。
+          </p>
+
+          <h2 id="sec-2">2. 【衝撃】関数を書かずに日本語で指示するだけで集計が終わる仕組み</h2>
+          <p>
+            ChatGPTには、ファイルを読み込んで自動で集計・グラフ化する機能（Advanced Data Analysis）が搭載されています。
+          </p>
+          <div class="callout-box success">
+            <div class="callout-title">使い方はたったの2ステップ！</div>
+            <ol style="margin-bottom:0; font-size:0.92rem;">
+              <li>ChatGPTのクリップマーク（添付ボタン）を押して、エクセル（.xlsx）またはCSVファイルを選択する。</li>
+              <li>「このデータの月別売上合計を出して」と日本語で入力して送信する。</li>
+            </ol>
           </div>
-
-          <h2 id="sec-2">2. システム全体像と処理シーケンス</h2>
           <p>
-            本システムは、GASの時間主導型トリガー（Time-driven Trigger）によって10分おきにバックグラウンド自律起動します。
+            たったこれだけで、AIがデータの中身を理解し、一瞬で計算結果の表を作成してくれます。
           </p>
-          <ol>
-            <li><strong>差分検知</strong>：Gmailの未読メールをクエリ検索（`label:UNREAD -label:AI-Processed`）。</li>
-            <li><strong>LLM推論</strong>：Claude 3.5 Sonnet の Tool Use（Structured Outputs）で厳格なJSONタスク構造体を抽出。「来週水曜」「月末」といった相対日付を、実行日を基準とした絶対日付（YYYY-MM-DD）に変換。</li>
-            <li><strong>Notion登録</strong>：Message IDに基づく重複チェック（冪等性の担保）を行い、Notion DBへUPSERT。処理済みラベルを付与。</li>
-          </ol>
 
           <!-- 広告枠プレースホルダー（CLSゼロ化） -->
           <div class="ad-slot-placeholder">
             <span class="ad-label">SPONSORED LINK</span>
             <div class="ad-demo-content">
-              <p style="font-weight:700; color:#1e293b; margin-bottom:0.25rem;">【Anthropic Console】Claude 3.5 Sonnet APIキーの取得</p>
-              <p style="font-size:0.85rem; color:#64748b;">高精度なTool Useと日本語推論。従量課金で月数百円から利用可能。</p>
-              <a href="https://console.anthropic.com/" target="_blank" rel="noopener noreferrer" class="ad-demo-btn">Anthropic Console 公式サイト →</a>
+              <p style="font-weight:700; color:#1e293b; margin-bottom:0.25rem;">【クラウド会計 freee / マネーフォワード】経理・請求書を自動化</p>
+              <p style="font-size:0.85rem; color:#64748b;">エクセルの転記作業をゼロに。銀行口座と連携して自動仕訳。</p>
+              <a href="index.html#featured" class="ad-demo-btn">おすすめ業務SaaS一覧を見る →</a>
             </div>
           </div>
 
-          <h2 id="sec-3">3. 前提条件とAPIキーの取得手順</h2>
-          <div class="callout-box">
-            <div class="callout-title">🔑 GAS スクリプトプロパティへの登録一覧</div>
-            <ul style="font-size:0.88rem; margin:0.5rem 0 0 1rem;">
-              <li><code>ANTHROPIC_API_KEY</code>：Anthropic Consoleで発行したキー（<code>sk-ant-api03-...</code>）</li>
-              <li><code>NOTION_API_KEY</code>：Notion Internal Integration Secret（<code>ntn_...</code>）</li>
-              <li><code>NOTION_DATABASE_ID</code>：タスク管理DBの32文字ID</li>
-              <li><code>SLACK_WEBHOOK_URL</code>：エラー通知用のSlack Incoming Webhook URL</li>
-            </ul>
-          </div>
-
-          <h2 id="sec-4">4. 【完全掲載】Google Apps Scriptの実装コード（Code.gs）</h2>
+          <h2 id="sec-3">3. 【実例①】バラバラな表記ゆれ（株、全角半角、日付）を一発で揃える</h2>
           <p>
-            GASのプロジェクト内に貼り付けてそのまま動くプロダクションコードです。
-            GAS特有の「6分制限」に対するセーフティ中断と、APIレートリミット（429）を自動リトライする<strong>指数バックオフ</strong>を標準装備しています。
+            色々な人が入力した顧客名簿などでありがちな「(株)」「（株）」「株式会社」の前株・後株の混在や、全角英数のバラつきを一発で揃えるプロンプトです。
           </p>
 
           <div class="code-box">
             <div class="code-header">
-              <span class="code-title">Google Apps Script (Code.gs) 実装コード</span>
-              <button class="copy-btn" data-target="gas-code">📋 コードをコピー</button>
+              <span class="code-title">表記ゆれ一発整頓プロンプト</span>
+              <button class="copy-btn" data-target="e1">プロンプトをコピー</button>
             </div>
             <div class="code-content">
-              <pre id="gas-code">/**
- * 自律型タスク抽出パイプライン: Gmail -> Claude 3.5 Sonnet -> Notion
- */
-const EXECUTION_TIMEOUT_MS = 270 * 1000; // 4分30秒でセーフティ中断
+              <pre id="e1">添付したファイルの「顧客名」列をチェックし、以下のルールで整頓（クレンジング）してください。
 
-function getEnv(key) {
-  const val = PropertiesService.getScriptProperties().getProperty(key);
-  if (!val) throw new Error(`[Config Error] "${key}" が設定されていません。`);
-  return val;
-}
-
-function main() {
-  const startTime = Date.now();
-  console.log(`[Start] タスク抽出パイプラインを開始: ${new Date().toISOString()}`);
-  try {
-    processGmailPipeline(startTime);
-    console.log(`[Finish] 終了。経過時間: ${(Date.now() - startTime) / 1000}s`);
-  } catch (error) {
-    console.error(`[Error] 異常終了: ${error.stack}`);
-    sendSlackAlert(`:rotating_light: *[GASパイプライン異常終了]*\n\`\`\`${error.stack}\`\`\``);
-  }
-}
-
-function processGmailPipeline(startTime) {
-  const query = PropertiesService.getScriptProperties().getProperty('GMAIL_SEARCH_QUERY') || 'is:unread -label:AI-Processed';
-  const threads = GmailApp.search(query, 0, 15);
-  if (threads.length === 0) return;
-
-  let processedLabel = GmailApp.getUserLabelByName('AI-Processed') || GmailApp.createLabel('AI-Processed');
-
-  for (const thread of threads) {
-    if (Date.now() - startTime > EXECUTION_TIMEOUT_MS) {
-      console.warn('[Safety] 実行時間上限に近づいたため中断します。');
-      break;
-    }
-
-    const messages = thread.getMessages();
-    const lastMessage = messages[messages.length - 1];
-    const messageId = lastMessage.getId();
-    const subject = thread.getFirstMessageSubject();
-    const sender = lastMessage.getFrom();
-    const body = lastMessage.getPlainBody().substring(0, 4000);
-    const threadUrl = `https://mail.google.com/mail/u/0/#inbox/${thread.getId()}`;
-
-    const result = extractTasksWithClaude({
-      source: 'Gmail',
-      title: subject,
-      sender: sender,
-      content: body
-    });
-
-    if (result && result.has_task && result.tasks.length > 0) {
-      for (const task of result.tasks) {
-        createNotionTask({
-          title: task.task_name,
-          dueDate: task.due_date,
-          priority: task.priority,
-          sourceType: 'Gmail',
-          sender: sender,
-          summary: task.summary,
-          externalId: `${messageId}_${task.task_name}`,
-          sourceUrl: threadUrl
-        });
-      }
-    }
-    thread.addLabel(processedLabel);
-    thread.markRead();
-  }
-}
-
-function extractTasksWithClaude(data) {
-  const apiKey = getEnv('ANTHROPIC_API_KEY');
-  const todayStr = Utilities.formatDate(new Date(), 'Asia/Tokyo', 'yyyy-MM-dd (E)');
-
-  const systemPrompt = `入力メッセージから受取人が実行すべき「明確なタスク」を抽出してください。
-相対日付（「来週火曜」等）は基準日（今日: ${todayStr}）から厳密にYYYY-MM-DDへ変換してください。
-メルマガやタスクがない連絡は has_task: false としてください。`;
-
-  const tools = [{
-    name: "submit_extracted_tasks",
-    description: "抽出タスク配列の出力",
-    input_schema: {
-      type: "object",
-      properties: {
-        has_task: { type: "boolean" },
-        tasks: {
-          type: "array",
-          items: {
-            type: "object",
-            properties: {
-              task_name: { type: "string" },
-              due_date: { type: ["string", "null"] },
-              priority: { type: "string", enum: ["High", "Medium", "Low"] },
-              summary: { type: "string" }
-            },
-            required: ["task_name", "due_date", "priority", "summary"]
-          }
-        }
-      },
-      required: ["has_task", "tasks"]
-    }
-  }];
-
-  const payload = {
-    model: "claude-3-5-sonnet-20241022",
-    max_tokens: 1500,
-    temperature: 0,
-    system: systemPrompt,
-    messages: [{ role: "user", content: `表題: ${data.title}\n本文:\n${data.content}` }],
-    tools: tools,
-    tool_choice: { type: "tool", name: "submit_extracted_tasks" }
-  };
-
-  const response = fetchWithBackoff("https://api.anthropic.com/v1/messages", {
-    method: "post",
-    contentType: "application/json",
-    headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01" },
-    payload: JSON.stringify(payload)
-  });
-
-  const resJson = JSON.parse(response.getContentText());
-  const toolUse = resJson.content?.find(b => b.type === "tool_use");
-  return toolUse ? toolUse.input : { has_task: false, tasks: [] };
-}
-
-function createNotionTask(task) {
-  const notionApiKey = getEnv('NOTION_API_KEY');
-  const databaseId = getEnv('NOTION_DATABASE_ID');
-
-  // 重複チェック
-  const queryUrl = `https://api.notion.com/v1/databases/${databaseId}/query`;
-  const existing = fetchWithBackoff(queryUrl, {
-    method: "post",
-    contentType: "application/json",
-    headers: { "Authorization": `Bearer ${notionApiKey}`, "Notion-Version": "2022-06-28" },
-    payload: JSON.stringify({ filter: { property: "External ID", rich_text: { equals: task.externalId } } })
-  });
-
-  if (JSON.parse(existing.getContentText()).results?.length > 0) return;
-
-  const properties = {
-    "Task Name": { title: [{ text: { content: task.title } }] },
-    "Status": { status: { name: "Not started" } },
-    "Priority": { select: { name: task.priority } },
-    "Source": { select: { name: task.sourceType } },
-    "Sender": { rich_text: [{ text: { content: task.sender.substring(0, 100) } }] },
-    "Summary": { rich_text: [{ text: { content: task.summary } }] },
-    "External ID": { rich_text: [{ text: { content: task.externalId } }] },
-    "Source URL": { url: task.sourceUrl }
-  };
-  if (task.dueDate) properties["Due Date"] = { date: { start: task.dueDate } };
-
-  fetchWithBackoff("https://api.notion.com/v1/pages", {
-    method: "post",
-    contentType: "application/json",
-    headers: { "Authorization": `Bearer ${notionApiKey}`, "Notion-Version": "2022-06-28" },
-    payload: JSON.stringify({ parent: { database_id: databaseId }, properties: properties })
-  });
-}
-
-function fetchWithBackoff(url, options, maxRetries = 4) {
-  let attempt = 0, delay = 1000;
-  while (attempt <= maxRetries) {
-    try {
-      const res = UrlFetchApp.fetch(url, Object.assign({}, options, { muteHttpExceptions: true }));
-      const code = res.getResponseCode();
-      if (code >= 200 && code < 300) return res;
-      if (code === 429 || code >= 500) Utilities.sleep(delay);
-      else throw new Error(`[HTTP ${code}] ${res.getContentText()}`);
-    } catch (e) {
-      if (attempt === maxRetries) throw e;
-    }
-    attempt++;
-    delay *= 2;
-  }
-}
-
-function sendSlackAlert(text) {
-  const webhook = PropertiesService.getScriptProperties().getProperty('SLACK_WEBHOOK_URL');
-  if (webhook) UrlFetchApp.fetch(webhook, { method: 'post', contentType: 'application/json', payload: JSON.stringify({ text }) });
-}</pre>
+1. 全角のアルファベットや数字、スペースはすべて半角に統一してください。
+2. 「(株)」や「（株）」はすべて「株式会社」に統一し、前株・後株の位置を正しく揃えてください。
+3. 修正完了後のデータを、新しいエクセルファイルとしてダウンロードできるようにリンクを出力してください。</pre>
             </div>
           </div>
 
-          <h2 id="sec-5">5. Notionデータベースのプロパティ定義</h2>
-          <div class="table-responsive">
-            <table class="styled-table">
-              <thead>
-                <tr>
-                  <th>プロパティ名</th>
-                  <th>種類 (Type)</th>
-                  <th>詳細・オプション</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td><strong>Task Name</strong></td><td>タイトル (Title)</td><td>タスク名</td></tr>
-                <tr><td><strong>Status</strong></td><td>ステータス (Status)</td><td>Not started, In progress, Done</td></tr>
-                <tr><td><strong>Due Date</strong></td><td>日付 (Date)</td><td>YYYY-MM-DD</td></tr>
-                <tr><td><strong>Priority</strong></td><td>セレクト (Select)</td><td>High, Medium, Low</td></tr>
-                <tr><td><strong>Source</strong></td><td>セレクト (Select)</td><td>Gmail, Slack</td></tr>
-                <tr><td><strong>Sender</strong></td><td>テキスト (Text)</td><td>差出人情報</td></tr>
-                <tr><td><strong>Summary</strong></td><td>テキスト (Text)</td><td>背景要約</td></tr>
-                <tr><td><strong>External ID</strong></td><td>テキスト (Text)</td><td>重複防止用ユニークキー</td></tr>
-                <tr><td><strong>Source URL</strong></td><td>URL</td><td>メールスレッド直リンク</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <h2 id="sec-6">6. 実際の動作検証とトークンコスト（月額約990円の試算）</h2>
-          <div class="callout-box success">
-            <div class="callout-title">💰 1日30通処理した場合の月額ランニングコスト</div>
-            <p style="font-size:0.9rem; line-height:1.7; margin-bottom:0;">
-              ・入力トークン：約1,200 tokens / 通（$0.108/日）<br>
-              ・出力トークン：約250 tokens / 通（$0.112/日）<br>
-              ・<strong>合計月額：約 $6.61 / 月 ＝ 【約 990 円 / 月】</strong><br>
-              Zapierのチームプラン（月額$69〜）と比較して、<strong>約1/10の圧倒的な低コスト</strong>でフルカスタマイズ自動化が実現できます。
-            </p>
-          </div>
-
-          <h2 id="sec-7">7. まとめ ＆ さらなる高度化への道</h2>
+          <h2 id="sec-4">4. 【実例②】「月別×商品別の売上合計を出して」とチャットで頼むだけ</h2>
           <p>
-            月額わずか約1,000円未満のAPI従量課金のみで、あなた専属のAIアシスタントが24時間メールとSlackを監視し、タスクをNotionへ自動整理してくれます。
-            ぜひ今週末の空き時間でセットアップしてみてください！
+            ピボットテーブルを使わなくても、見たい切り口を言葉で伝えるだけで綺麗なクロス集計表が出力されます。
           </p>
+
+          <div class="code-box">
+            <div class="code-header">
+              <span class="code-title">売上クロス集計プロンプト</span>
+              <button class="copy-btn" data-target="e2">プロンプトをコピー</button>
+            </div>
+            <div class="code-content">
+              <pre id="e2">添付した売上履歴データをもとに、以下の集計表を作成してください。
+
+・縦軸：注文月（2026年4月、5月、6月…）
+・横軸：商品カテゴリ（A商品、B商品、C商品…）
+・値：売上金額の合計（3桁カンマ区切りの円表示）
+
+表形式で出力し、最も売上が大きかった月と商品の組み合わせを教えてください。</pre>
+            </div>
+          </div>
+
+          <h2 id="sec-5">5. 【実例③】チャット上で売上グラフを自動生成してダウンロード</h2>
+          <p>
+            集計結果が出たら、続けてこう指示するだけで見栄えの良いグラフ画像を書き出してくれます。
+          </p>
+
+          <div class="code-box">
+            <div class="code-header">
+              <span class="code-title">グラフ自動作成プロンプト</span>
+              <button class="copy-btn" data-target="e3">プロンプトをコピー</button>
+            </div>
+            <div class="code-content">
+              <pre id="e3">先ほどの月別売上合計の推移を、わかりやすい「折れ線グラフ」として画像で出力してください。
+日本語の文字化けが起きないようにフォントを調整し、見やすい色使いにしてください。</pre>
+            </div>
+          </div>
+          <p>
+            生成されたグラフ画像は右クリックでそのままコピーできるので、プレゼン資料や上司への報告チャットにそのまま貼り付けられます！
+          </p>
+
+          <h2 id="sec-6">6. 会社の数字や個人情報を守る「マスキング（伏せ字）の鉄則」</h2>
+          <p>
+            エクセルデータをAIにアップロードする際は、セキュリティの観点から<strong>「事前の一手」</strong>を行うのがビジネスの鉄則です。
+          </p>
+          <ul>
+            <li><strong>顧客の個人情報列は削除する</strong>：氏名、住所、電話番号、メールアドレスの列は、集計に関係なければ事前に削除して保存したファイルを添付します。</li>
+            <li><strong>顧客名を記号化する</strong>：どうしても企業名が必要な場合は、「A社」「B社」などに一括置換してからAIに渡します。</li>
+          </ul>
+
+          <h2 id="sec-7">7. まとめ ＆ 次のおすすめステップ</h2>
+          <p>
+            エクセルの関数を暗記する時代は終わりました。これからは<strong>「何を集計したいか」を日本語でAIに伝えるスキル</strong>さえあれば、誰でも5分でデータ分析が完了します。
+          </p>
+          <p>
+            続く<strong>第5弾記事「パワポのスライド構成案が3分でできるプレゼン下書き術」</strong>では、集計したデータをもとに上司や取引先に提案するスライドを爆速で作る方法をご紹介します！
+          </p>
+
+          <div style="text-align:center; margin:2rem 0;">
+            <a href="article-5.html" class="ad-demo-btn" style="padding:1rem 2rem; font-size:1.05rem;">第5弾：パワポスライド構成案が3分でできる術を読む →</a>
+          </div>
 
           <!-- 著者バイオカード -->
           <div class="author-bio-card">
-            <div class="bio-avatar" style="background:#7c3aed;">技</div>
+            <div class="bio-avatar" style="background:#0284c7;">デ</div>
             <div>
-              <div class="bio-name">エンジニア・高度自動化担当ライター</div>
-              <div class="bio-role">Webエンジニア / 自動化・自律エージェントアーキテクト</div>
-              <p class="bio-desc">
-                LLM API、GAS、Docker、ローカルAI環境（Ollama, n8n）を統合した「業務完全自動化」を追求。現場ですぐ動くコードと泥臭いエラーハンドリングを網羅した技術記事を執筆。
-              </p>
+              <div class="bio-name">データ実務・オフィス担当</div>
+              <div class="bio-role">業務改善コンサルタント / 元・手作業集計の事務職</div>
+              <p class="bio-desc">エクセル関数やマクロが苦手な方でも、AIを相棒にして「数字の集計・報告」を最短で終わらせる実践ノウハウを発信中。</p>
             </div>
-          </div>
-
-          <!-- 内部リンク相互送客 -->
-          <div class="callout-box" style="margin-top:2rem;">
-            <div class="callout-title">🚀 あわせて読みたい！関連記事</div>
-            <ul style="margin:0.5rem 0 0 1rem; font-size:0.92rem;">
-              <li><a href="article-1.html">【現場の時短テク】作業時間を35分➔3分に短縮するChatGPT議事録作成プロンプト</a></li>
-              <li><a href="article-2.html">【組織・チーム向け】ChatGPT Team vs Claude Enterprise徹底比較｜損益分岐点とセキュリティ</a></li>
-              <li><a href="article-3.html">【個人向け】Notion AI×クラウド会計で月20時間を生み出すワークフロー</a></li>
-            </ul>
           </div>
         </div>
       </main>
 
       <!-- サイドバー -->
       <aside class="article-sidebar">
-        <div class="sidebar-widget">
-          <div class="widget-title">人気記事ランキング</div>
-          <div class="popular-item">
-            <div class="popular-num">1</div>
-            <a href="article-1.html" class="popular-link">【作業時間35分➔3分】ChatGPT議事録作成プロンプト</a>
+        <div class="sidebar-card">
+          <div class="sidebar-title">全8弾 実践記事一覧</div>
+          <div class="recent-article-item">
+            <span style="font-size:0.75rem; color:var(--text-muted);">第1弾</span>
+            <a href="article-1.html">ChatGPT超入門！神質問ワザ7選</a>
           </div>
-          <div class="popular-item">
-            <div class="popular-num">2</div>
-            <a href="article-2.html" class="popular-link">ChatGPT Team vs Claude Enterprise徹底比較</a>
+          <div class="recent-article-item">
+            <span style="font-size:0.75rem; color:var(--text-muted);">第2弾</span>
+            <a href="article-2.html">ビジネスメール一発作成プロンプト集</a>
           </div>
-          <div class="popular-item">
-            <div class="popular-num">3</div>
-            <a href="article-3.html" class="popular-link">Notion AI×クラウド会計 自動化コックピット</a>
+          <div class="recent-article-item">
+            <span style="font-size:0.75rem; color:var(--text-muted);">第3弾</span>
+            <a href="article-3.html">ChatGPT議事録作成プロンプト</a>
           </div>
-          <div class="popular-item">
-            <div class="popular-num">4</div>
-            <a href="article-4.html" class="popular-link">Claude×GAS タスク自律抽出パイプライン</a>
+          <div class="recent-article-item" style="border-left:3px solid #0284c7; padding-left:0.5rem;">
+            <span style="font-size:0.75rem; color:#0284c7; font-weight:700;">第4弾（閲覧中）</span>
+            <a href="article-4.html" style="font-weight:700;">エクセル関数不要！丸投げ集計術</a>
+          </div>
+          <div class="recent-article-item">
+            <span style="font-size:0.75rem; color:var(--text-muted);">第5弾</span>
+            <a href="article-5.html">パワポスライド構成案が3分でできる術</a>
+          </div>
+          <div class="recent-article-item">
+            <span style="font-size:0.75rem; color:var(--text-muted);">第6弾</span>
+            <a href="article-6.html">ChatGPT×無料Canvaでバナー爆速制作</a>
+          </div>
+          <div class="recent-article-item">
+            <span style="font-size:0.75rem; color:var(--text-muted);">第7弾</span>
+            <a href="article-7.html">一人起業・副業Notion×AI仕事術</a>
+          </div>
+          <div class="recent-article-item">
+            <span style="font-size:0.75rem; color:var(--text-muted);">第8弾</span>
+            <a href="article-8.html">職場で安全に使う基礎＆社内提案メモ</a>
           </div>
         </div>
       </aside>
@@ -439,28 +262,39 @@ function sendSlackAlert(text) {
           <div class="logo-mark" style="width:32px; height:32px;">
             <img src="images/bizhack-icon-main.jpg" alt="BizHack AI ロゴ" width="32" height="32">
           </div>
-          <h4 style="margin:0;">BizHack AI</h4>
+          <h4 style="margin:0;">BizHack AI（ビズハックAI）</h4>
         </div>
-        <p style="font-size:0.85rem; line-height:1.7;">現場の仕事を3時間短縮する生成AI・SaaS実践マガジン</p>
+        <p style="line-height:1.7; font-size:0.85rem; margin-bottom:1rem;">
+          現場の仕事を3時間短縮する生成AI・SaaS実践マガジン。<br>
+          読者の信頼を第一に、独自検証データとコピペで動く実用コンテンツのみを発信します。
+        </p>
+        <p style="font-size:0.8rem; color:#64748b;">運営：BizHack AI 運営委員会</p>
       </div>
       <div class="footer-col">
-        <h4>ナビゲーション</h4>
+        <h4>特集カテゴリー</h4>
         <ul class="footer-links">
-          <li><a href="index.html">ホーム</a></li>
-          <li><a href="privacy.html">プライバシーポリシー</a></li>
-          <li><a href="privacy.html#contact">お問い合わせ</a></li>
+          <li><a href="index.html#featured">AI超入門</a></li>
+          <li><a href="index.html#featured">日常実務・メール術</a></li>
+          <li><a href="index.html#featured">現場実務・時短</a></li>
+          <li><a href="index.html#featured">事務職・エクセル時短</a></li>
+          <li><a href="index.html#featured">企画・プレゼン</a></li>
+          <li><a href="index.html#featured">デザイン・Web作成</a></li>
+          <li><a href="index.html#featured">個人事業・副業DX</a></li>
+          <li><a href="index.html#featured">職場導入・セキュリティ</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>規約・ポリシー</h4>
+        <h4>サイト規約・透明性情報</h4>
         <ul class="footer-links">
-          <li><a href="privacy.html#disclaimer">免責事項</a></li>
-          <li><a href="privacy.html#pr-policy">広告開示基準</a></li>
+          <li><a href="privacy.html">プライバシーポリシー</a></li>
+          <li><a href="privacy.html#disclaimer">免責事項・著作権</a></li>
+          <li><a href="privacy.html#pr-policy">ステマ規制対応方針</a></li>
+          <li><a href="privacy.html#contact">お問い合わせ窓口</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 BizHack AI. All rights reserved.</span>
+      <p>© 2026 BizHack AI 運営委員会. All rights reserved.</p>
     </div>
   </footer>
 
