@@ -1066,3 +1066,50 @@ a:hover {
     gap: 1rem;
   }
 }
+
+/* 専属読者モニター 検証メモボックス */
+.reader-review-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #6366f1;
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.4rem;
+  margin: 1.75rem 0;
+}
+
+.reader-review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed #cbd5e1;
+}
+
+.reader-review-title {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: #1e1b4b;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.reader-tag {
+  background: #e0e7ff;
+  color: #4338ca;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+}
+
+.reader-review-body {
+  font-size: 0.88rem;
+  color: #334155;
+  line-height: 1.65;
+}
+
+.reader-review-body p:last-child {
+  margin-bottom: 0;
+}
