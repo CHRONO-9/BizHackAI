@@ -3,316 +3,389 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Antigravity Playground</title>
-  <style>
-    :root {
-      --bg-dark: #090a0f;
-      --card-bg: rgba(255, 255, 255, 0.06);
-      --card-border: rgba(255, 255, 255, 0.12);
-      --accent: #6366f1;
-      --accent-glow: rgba(99, 102, 241, 0.4);
-      --text-main: #f8fafc;
-      --text-sub: #94a3b8;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: radial-gradient(circle at 50% 20%, #1b2735 0%, var(--bg-dark) 100%);
-      color: var(--text-main);
-      min-height: 100vh;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    canvas {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .container {
-      position: relative;
-      z-index: 1;
-      max-width: 540px;
-      width: 90%;
-      padding: 2.5rem;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 24px;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .container:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 30px 60px -12px rgba(99, 102, 241, 0.25);
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 0.35rem 0.85rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #a5b4fc;
-      background: rgba(99, 102, 241, 0.15);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      border-radius: 9999px;
-      margin-bottom: 1.25rem;
-    }
-
-    h1 {
-      font-size: 2.25rem;
-      font-weight: 800;
-      margin-bottom: 0.75rem;
-      background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    p {
-      color: var(--text-sub);
-      line-height: 1.6;
-      margin-bottom: 2rem;
-      font-size: 0.95rem;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .stat-box {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 1rem 0.5rem;
-    }
-
-    .stat-value {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #38bdf8;
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
-      color: var(--text-sub);
-      margin-top: 0.25rem;
-    }
-
-    .controls {
-      display: flex;
-      gap: 0.75rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    button {
-      cursor: pointer;
-      border: none;
-      border-radius: 12px;
-      padding: 0.75rem 1.25rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: white;
-      box-shadow: 0 4px 15px var(--accent-glow);
-    }
-
-    .btn-primary:hover {
-      background: #4f46e5;
-      transform: scale(1.03);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-main);
-      border: 1px solid var(--card-border);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.14);
-    }
-  </style>
+  <title>BizHack AI｜現場の仕事を3時間短縮する生成AI・SaaS実践マガジン</title>
+  <meta name="description" content="現役BizDev・情シス・エンジニア・実務家・マーケター・データアナリストが、現場で本当に役立つ生成AIツール・業務効率化SaaSのリアルな検証データと実践プロンプトを発信する特化メディア。">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/jpeg" href="images/bizhack-icon-main.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <canvas id="canvas"></canvas>
+  <div id="read-progress"></div>
 
-  <main class="container">
-    <span class="badge">Antigravity Demo • Auto-Published</span>
-    <h1>Zero Gravity Space</h1>
-    <p>マウスを動かすと周囲のパーティクルが反発し、重力の向きや強さをリアルタイムに切り替えられるインタラクティブデモです。<br><small style="color: #a5b4fc;">最終自動更新: 2026-10-13 12:35 JST</small></p>
+  <!-- ヘッダー -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo-area">
+        <a href="index.html" style="display:flex; align-items:center; gap:0.85rem; text-decoration:none;">
+          <div class="logo-mark">
+            <img src="images/bizhack-icon-main.jpg" alt="BizHack AI ロゴ" width="46" height="46">
+          </div>
+          <div>
+            <span class="logo-title">BizHack AI</span>
+            <span class="logo-tagline">現場の仕事を3時間短縮する実践マガジン</span>
+          </div>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">ホーム</a>
+        <a href="#featured" class="nav-link">特集記事一覧</a>
+        <a href="#authors" class="nav-link">専属執筆陣（6名）</a>
+        <a href="privacy.html" class="nav-link">サイト規約・PRポリシー</a>
+      </nav>
+    </div>
+  </header>
 
-    <div class="stats">
-      <div class="stat-box">
-        <div class="stat-value" id="count-val">80</div>
-        <div class="stat-label">Particles</div>
+  <main class="main-wrapper">
+    <!-- ヒーローセクション（均整のとれた2カラム・デザイン刷新） -->
+    <section class="hero-section">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <!-- 洗練された2連バッジ -->
+          <div class="hero-badge-wrap">
+            <span class="hero-badge-primary">⚔️ 研ぎ澄まされた切れ味で無駄を一刀両断</span>
+            <span class="hero-badge-sub">2026年最新 DX・生成AI実務検証マガジン</span>
+          </div>
+
+          <!-- タイポグラフィを強調したキラータイトル -->
+          <h1 class="hero-title">
+            「現場の仕事を<span class="time-accent">3時間短縮</span>する」<br>
+            リアルな検証データと実践プロンプト。
+          </h1>
+
+          <!-- アクセントボーダー付きリードボックス -->
+          <div class="hero-lead-box">
+            <p class="hero-lead">
+              <strong>AIの一般的な回答や表面的なまとめ記事は、もういらない。</strong><br>
+              現役のBizDev・現場実務家・ソロプレナー・エンジニア・マーケター・アナリストの6名体制で、自腹検証と実測タイムログに基づいた「明日すぐ業務で使えるソリューション」をお届けします。
+            </p>
+          </div>
+        </div>
+
+        <!-- 右側：日本刀エンブレム大型カード（空白解消＆ブランド象徴） -->
+        <div class="hero-emblem-card">
+          <div class="hero-emblem-img">
+            <img src="images/bizhack-icon-main.jpg" alt="BizHack AI 日本刀シンボル（一刀両断）" width="140" height="140">
+          </div>
+          <span class="hero-emblem-tag">⚔️ BRAND PHILOSOPHY</span>
+          <div class="hero-emblem-title">BizHack AI 一刀両断</div>
+          <p class="hero-emblem-desc">
+            名刀の研ぎ澄まされた切れ味で、<br>非効率な業務プロセスを断ち切る。
+          </p>
+        </div>
       </div>
-      <div class="stat-box">
-        <div class="stat-value" id="gravity-val">反重力</div>
-        <div class="stat-label">Mode</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-value" id="speed-val">1.0x</div>
-        <div class="stat-label">Speed</div>
-      </div>
+    </section>
+
+    <!-- ステマ規制対応 PR表記 -->
+    <div class="pr-disclosure-bar">
+      <span class="pr-badge">PR / 広告開示</span>
+      <span>当サイトの記事は一部アフィリエイト広告を含みますが、実務検証データに基づき客観的・中立な情報提供を行っています。</span>
     </div>
 
-    <div class="controls">
-      <button class="btn-primary" id="toggle-gravity">重力モード切替</button>
-      <button class="btn-secondary" id="add-particles">＋ パーティクル追加</button>
-      <button class="btn-secondary" id="speed-btn">速度変更</button>
-    </div>
+    <!-- 特集記事グリッド（全6マス・完全均整レイアウト） -->
+    <section id="featured">
+      <div class="section-header">
+        <h2 class="section-title">注目の第1弾 実践記事パッケージ（全6本）</h2>
+        <span style="font-size:0.85rem; color:var(--text-muted);">全6テーマ・即実践可能</span>
+      </div>
+
+      <div class="articles-grid">
+        <!-- 記事①（現場実務・時短） -->
+        <article class="article-card">
+          <div class="card-thumb" style="background: linear-gradient(135deg, #065f46, #059669);">
+            <div class="thumb-pattern"></div>
+            <div class="thumb-glow"></div>
+            <div class="thumb-header">
+              <span class="category-tag cat-field">⚡ 現場実務・時短</span>
+              <span class="thumb-tag-right">コピペOK</span>
+            </div>
+            <div class="thumb-visual">
+              <div class="thumb-main-title">⏱️ 35分 ➔ 3分</div>
+              <div class="thumb-pill">🔥 作業時間 91% CUT</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">
+              <a href="article-1.html">⏱️【作業時間35分➔3分】雑なメモを貼るだけ！上司に一発で通る「ChatGPT議事録作成プロンプト」【コピペOK】</a>
+            </h3>
+            <p class="card-excerpt">
+              「会議後の議事録まとめが一番憂鬱…」そんな悩みを抱える営業・企画・バックオフィス必見。作業時間91%減の実測データと、殴り書きメモを一発で整頓するプロンプトを無料公開。
+            </p>
+            <div class="card-meta">
+              <div class="author-chip">
+                <div class="author-avatar" style="background:#059669;">実</div>
+                <span>現場実務・時短担当</span>
+              </div>
+              <span>読了目安 6分</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 記事②（DX・BizDev） -->
+        <article class="article-card">
+          <div class="card-thumb" style="background: linear-gradient(135deg, #1e40af, #2563eb);">
+            <div class="thumb-pattern"></div>
+            <div class="thumb-glow"></div>
+            <div class="thumb-header">
+              <span class="category-tag cat-biz">🏢 DX・法人導入</span>
+              <span class="thumb-tag-right">稟議書テンプレ付</span>
+            </div>
+            <div class="thumb-visual">
+              <div class="thumb-main-title">🤖 ChatGPT vs Claude 🎭</div>
+              <div class="thumb-pill">📊 損益分岐点・ROI 467%</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">
+              <a href="article-2.html">🏢【稟議を通すROI試算つき】ChatGPT Team/Enterprise vs Claude Enterprise徹底比較｜月額費用の損益分岐点とセキュリティ要件の実務ガイド</a>
+            </h3>
+            <p class="card-excerpt">
+              月額$25を経営陣にどう納得させるか？実務ブラインドテスト、時給別損益分岐点マトリクス、情シス審査チェックリスト、そのまま使える稟議書テンプレートまで完全網羅。
+            </p>
+            <div class="card-meta">
+              <div class="author-chip">
+                <div class="author-avatar" style="background:#2563eb;">DX</div>
+                <span>DX・BizDev担当</span>
+              </div>
+              <span>読了目安 10分</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 記事③（ソロプレナー） -->
+        <article class="article-card">
+          <div class="card-thumb" style="background: linear-gradient(135deg, #92400e, #d97706);">
+            <div class="thumb-pattern"></div>
+            <div class="thumb-glow"></div>
+            <div class="thumb-header">
+              <span class="category-tag cat-solo">💼 ソロプレナー・副業</span>
+              <span class="thumb-tag-right">無料テンプレ配布</span>
+            </div>
+            <div class="thumb-visual">
+              <div class="thumb-main-title">📑 Notion AI × 会計</div>
+              <div class="thumb-pill">🎉 月20時間の可処分時間創出</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">
+              <a href="article-3.html">💼【ワンオペ脱却】一人起業家のための「Notion AI×クラウド会計」自動化コックピット構築術──商談メモから請求管理まで、月20時間を生み出すワークフロー</a>
+            </h3>
+            <p class="card-excerpt">
+              商談メモからタスク分解、見積書起草、請求書発行までを半自動化。月25時間かかっていた雑務を5時間に削減した全記録と、ワンクリックで複製できる無料Notionテンプレートを配布！
+            </p>
+            <div class="card-meta">
+              <div class="author-chip">
+                <div class="author-avatar" style="background:#d97706;">自</div>
+                <span>ソロプレナー担当</span>
+              </div>
+              <span>読了目安 8分</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 記事④（テック・自動化） -->
+        <article class="article-card">
+          <div class="card-thumb" style="background: linear-gradient(135deg, #5b21b6, #7c3aed);">
+            <div class="thumb-pattern"></div>
+            <div class="thumb-glow"></div>
+            <div class="thumb-header">
+              <span class="category-tag cat-tech">⚙️ 技術検証・GAS</span>
+              <span class="thumb-tag-right">全コード掲載</span>
+            </div>
+            <div class="thumb-visual">
+              <div class="thumb-main-title">⚡ Claude 3.5 × GAS</div>
+              <div class="thumb-pill">💰 維持費ほぼ0円・自律抽出</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">
+              <a href="article-4.html">⚡【完全無料・完全自動】Claude 3.5 Sonnet × Google Apps Scriptで構築する「未読Gmail & SlackからNotionへの自律型タスク抽出パイプライン」</a>
+            </h3>
+            <p class="card-excerpt">
+              サーバー不要・維持費実質ゼロ。Googleの無料枠内でClaudeのTool Useを走らせ、メールやSlackのタスクをNotionへ自動集約する完全スクリプト（指数バックオフ・6分制限回避付き）をオープン公開。
+            </p>
+            <div class="card-meta">
+              <div class="author-chip">
+                <div class="author-avatar" style="background:#7c3aed;">技</div>
+                <span>テック・自動化担当</span>
+              </div>
+              <span>読了目安 12分</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 記事⑤（AIマーケティング・新追加） -->
+        <article class="article-card">
+          <div class="card-thumb" style="background: linear-gradient(135deg, #9d174d, #ec4899);">
+            <div class="thumb-pattern"></div>
+            <div class="thumb-glow"></div>
+            <div class="thumb-header">
+              <span class="category-tag" style="background:#ec4899; color:white;">🎨 AIマーケ・デザイン</span>
+              <span class="thumb-tag-right">呪文テンプレート付</span>
+            </div>
+            <div class="thumb-visual">
+              <div class="thumb-main-title">🖼️ Midjourney × Copy</div>
+              <div class="thumb-pill">📈 A/Bテスト実証 CVR 2.4倍</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">
+              <a href="article-5.html">🎨【CVR2.4倍】もう画像とコピーで悩まない！Midjourney×ChatGPTで作る「売れるLP・SNSバナー」爆速制作術【プロンプト集つき】</a>
+            </h3>
+            <p class="card-excerpt">
+              外注費80%削減＆成約率2.4倍を達成した実証データ！ChatGPTで5つの切り口コピーを瞬時に起草し、Midjourneyで商用レベルの背景画像を1発出力するハイブリッド制作術。
+            </p>
+            <div class="card-meta">
+              <div class="author-chip">
+                <div class="author-avatar" style="background:#ec4899;">マ</div>
+                <span>AIマーケティング担当</span>
+              </div>
+              <span>読了目安 8分</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 記事⑥（データ分析・新追加） -->
+        <article class="article-card">
+          <div class="card-thumb" style="background: linear-gradient(135deg, #075985, #0284c7);">
+            <div class="thumb-pattern"></div>
+            <div class="thumb-glow"></div>
+            <div class="thumb-header">
+              <span class="category-tag" style="background:#0284c7; color:white;">📊 データ分析・集計</span>
+              <span class="thumb-tag-right">関数不要・手作業ゼロ</span>
+            </div>
+            <div class="thumb-visual">
+              <div class="thumb-main-title">📈 ChatGPT × Sheets</div>
+              <div class="thumb-pill">⚡ 数万行クレンジング ➔ グラフ化</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">
+              <a href="article-6.html">📊【関数不要・手作業ゼロ】ChatGPT×スプレッドシートで大量データを一瞬でクレンジング・集計する自動化テクニック</a>
+            </h3>
+            <p class="card-excerpt">
+              複雑なVLOOKUPや手作業の名寄せはもう不要！CSVを投げるだけでバラバラな顧客名・日付・金額を一括正規化し、売上推移グラフまで3分で出力するデータ実務ハック。
+            </p>
+            <div class="card-meta">
+              <div class="author-chip">
+                <div class="author-avatar" style="background:#0284c7;">デ</div>
+                <span>データ分析担当</span>
+              </div>
+              <span>読了目安 9分</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 執筆陣（E-E-A-T）紹介セクション（全6名・3列×2行） -->
+    <section id="authors" style="margin-top:4rem;">
+      <div class="section-header">
+        <h2 class="section-title">BizHack AI 専属実務家執筆陣（6名体制）</h2>
+        <span style="font-size:0.85rem; color:var(--text-muted);">現場の一次情報と実証データを担保</span>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem;">
+        <!-- 著者① -->
+        <div style="background:white; border:1px solid var(--border); border-radius:var(--radius-md); padding:1.25rem;">
+          <div style="font-weight:700; color:#059669; font-size:0.85rem;">⚡ 現場実務・時短ノウハウ担当</div>
+          <h3 style="font-size:1.1rem; margin:0.25rem 0 0.5rem 0;">元・残業まみれ現場担当</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.6;">
+            営業・総務・バックオフィス出身。難しい用語を排し、明日コピペで残業を減らせる超実践プロンプト記事を担当。
+          </p>
+        </div>
+
+        <!-- 著者② -->
+        <div style="background:white; border:1px solid var(--border); border-radius:var(--radius-md); padding:1.25rem;">
+          <div style="font-weight:700; color:#2563eb; font-size:0.85rem;">🏢 DX推進・BizDev担当</div>
+          <h3 style="font-size:1.1rem; margin:0.25rem 0 0.5rem 0;">現役BizDevプレイヤー</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.6;">
+            事業会社でSaaS・生成AIの全社導入とセキュリティ審査を主導。損益分岐点（ROI）に基づいた投資判断記事を担当。
+          </p>
+        </div>
+
+        <!-- 著者③ -->
+        <div style="background:white; border:1px solid var(--border); border-radius:var(--radius-md); padding:1.25rem;">
+          <div style="font-weight:700; color:#d97706; font-size:0.85rem;">💼 ソロプレナー・個人事業主担当</div>
+          <h3 style="font-size:1.1rem; margin:0.25rem 0 0.5rem 0;">現役ひとり起業家</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.6;">
+            一人起業・副業ワーカー。Notionやクラウド会計を活用し、最小固定費で最大時間を生み出すワンオペ術を担当。
+          </p>
+        </div>
+
+        <!-- 著者④ -->
+        <div style="background:white; border:1px solid var(--border); border-radius:var(--radius-md); padding:1.25rem;">
+          <div style="font-weight:700; color:#7c3aed; font-size:0.85rem;">⚙️ エンジニア・高度自動化担当</div>
+          <h3 style="font-size:1.1rem; margin:0.25rem 0 0.5rem 0;">自動化ハッカー・SE</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.6;">
+            LLM API、GAS、Docker、ローカルAIに精通。動くスクリプトと検証環境をオープンに公開する技術記事を担当。
+          </p>
+        </div>
+
+        <!-- 著者⑤（新追加） -->
+        <div style="background:white; border:1px solid var(--border); border-radius:var(--radius-md); padding:1.25rem;">
+          <div style="font-weight:700; color:#ec4899; font-size:0.85rem;">🎨 AIマーケティング・デザイン担当</div>
+          <h3 style="font-size:1.1rem; margin:0.25rem 0 0.5rem 0;">現役Webマーケター</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.6;">
+            月間数千万円のWeb広告を運用。Midjourney×ChatGPTを駆使し、制作費80%減＆CVR向上をもたらす実践記事を担当。
+          </p>
+        </div>
+
+        <!-- 著者⑥（新追加） -->
+        <div style="background:white; border:1px solid var(--border); border-radius:var(--radius-md); padding:1.25rem;">
+          <div style="font-weight:700; color:#0284c7; font-size:0.85rem;">📊 データ分析・スプレッドシート担当</div>
+          <h3 style="font-size:1.1rem; margin:0.25rem 0 0.5rem 0;">現役データアナリスト</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.6;">
+            数千万行の売上データ解析とダッシュボード構築を担当。関数不要でAIにデータを整頓・集計させる技術記事を担当。
+          </p>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <script>
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
+  <!-- フッター -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.75rem;">
+          <div class="logo-mark" style="width:32px; height:32px;">
+            <img src="images/bizhack-icon-main.jpg" alt="BizHack AI ロゴ" width="32" height="32">
+          </div>
+          <h4 style="margin:0;">BizHack AI（ビズハックAI）</h4>
+        </div>
+        <p style="line-height:1.7; font-size:0.85rem; margin-bottom:1rem;">
+          現場の仕事を3時間短縮する生成AI・SaaS実践マガジン。<br>
+          読者の信頼を第一に、独自検証データとコピペで動く実用コンテンツのみを発信します。
+        </p>
+        <p style="font-size:0.8rem; color:#64748b;">運営：BizHack AI 運営委員会</p>
+      </div>
+      <div class="footer-col">
+        <h4>カテゴリ</h4>
+        <ul class="footer-links">
+          <li><a href="article-1.html">⚡ 現場実務・時短ノウハウ</a></li>
+          <li><a href="article-2.html">🏢 DX推進・法人SaaS比較</a></li>
+          <li><a href="article-3.html">💼 ソロプレナー・Notion活用</a></li>
+          <li><a href="article-4.html">⚙️ 高度自動化・GASスクリプト</a></li>
+          <li><a href="article-5.html">🎨 AIマーケ・バナー制作</a></li>
+          <li><a href="article-6.html">📊 データ分析・集計ハック</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>規約・ポリシー</h4>
+        <ul class="footer-links">
+          <li><a href="privacy.html">プライバシーポリシー</a></li>
+          <li><a href="privacy.html#disclaimer">免責事項</a></li>
+          <li><a href="privacy.html#pr-policy">広告掲載・PR表記基準</a></li>
+          <li><a href="privacy.html#contact">お問い合わせ窓口</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 BizHack AI. All rights reserved.</span>
+      <span>Verified Editorial & Compliance Standards</span>
+    </div>
+  </footer>
 
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
-
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    });
-
-    const mouse = { x: -1000, y: -1000 };
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
-
-    // -1: 反重力(上昇), 0: 無重力(浮遊), 1: 通常重力(落下)
-    let gravityMode = -1;
-    let speedMultiplier = 1;
-    const particles = [];
-
-    const colors = ['#6366f1', '#38bdf8', '#a855f7', '#ec4899', '#2dd4bf'];
-
-    function createParticle() {
-      return {
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 1.5,
-        vy: (Math.random() - 0.5) * 1.5,
-        radius: Math.random() * 3.5 + 1.5,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        alpha: Math.random() * 0.6 + 0.3
-      };
-    }
-
-    for (let i = 0; i < 80; i++) {
-      particles.push(createParticle());
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-
-        // 重力の影響
-        p.vy += gravityMode * 0.015 * speedMultiplier;
-        // 最大速度の制限
-        p.vy = Math.max(-2.5, Math.min(2.5, p.vy));
-
-        // マウスとの反発
-        const dx = p.x - mouse.x;
-        const dy = p.y - mouse.y;
-        const dist = Math.hypot(dx, dy);
-        if (dist < 120 && dist > 0) {
-          const force = (120 - dist) / 120;
-          p.x += (dx / dist) * force * 4;
-          p.y += (dy / dist) * force * 4;
-        }
-
-        p.x += p.vx * speedMultiplier;
-        p.y += p.vy * speedMultiplier;
-
-        // 画面端のループ処理
-        if (p.x < 0) p.x = width;
-        if (p.x > width) p.x = 0;
-        if (p.y < 0) p.y = height;
-        if (p.y > height) p.y = 0;
-
-        // 描画
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.alpha;
-        ctx.fill();
-
-        // 近くのパーティクル同士を線で結ぶ
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const d = Math.hypot(p.x - p2.x, p.y - p2.y);
-          if (d < 100) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = p.color;
-            ctx.globalAlpha = (1 - d / 100) * 0.2;
-            ctx.stroke();
-          }
-        }
-      }
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    // UIイベント
-    const countVal = document.getElementById('count-val');
-    const gravityVal = document.getElementById('gravity-val');
-    const speedVal = document.getElementById('speed-val');
-
-    document.getElementById('toggle-gravity').addEventListener('click', () => {
-      if (gravityMode === -1) {
-        gravityMode = 0;
-        gravityVal.textContent = '無重力';
-      } else if (gravityMode === 0) {
-        gravityMode = 1;
-        gravityVal.textContent = '通常重力';
-      } else {
-        gravityMode = -1;
-        gravityVal.textContent = '反重力';
-      }
-    });
-
-    document.getElementById('add-particles').addEventListener('click', () => {
-      for (let i = 0; i < 20; i++) {
-        particles.push(createParticle());
-      }
-      countVal.textContent = particles.length;
-    });
-
-    document.getElementById('speed-btn').addEventListener('click', () => {
-      speedMultiplier = speedMultiplier === 1 ? 2 : speedMultiplier === 2 ? 0.5 : 1;
-      speedVal.textContent = speedMultiplier.toFixed(1) + 'x';
-    });
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>

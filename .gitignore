@@ -1,0 +1,6 @@
+# 不要な古いバックアップやキャッシュを除外
+backup/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
