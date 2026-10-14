@@ -183,10 +183,8 @@ a:hover {
 }
 
 .hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 280px;
-  gap: 2.5rem;
-  align-items: center;
+  display: block;
+  max-width: 920px;
 }
 
 .hero-badge-wrap {
