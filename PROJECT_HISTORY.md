@@ -84,6 +84,9 @@
 10. **独自ドメイン『www.bizhack-ai.com』の取得・正式接続完了**:
     - ブランド価値の向上、将来のGoogle AdSense審査申請およびSEO評価の蓄積を見据え、独自ドメイン `www.bizhack-ai.com` を取得・接続。
     - GitHub Pages（CNAME）との接続および常時SSL化の動作確認を完了。
+11. **Google Search Console登録 ＆ Google アナリティクス4（GA4）の全ページ導入**:
+    - Google Search Console所有権確認メタタグおよびcanonical URLを各ページに設置。
+    - GA4測定ID `G-PXPDE46RFR`（gtag.js）をトップページ・全9記事・規約の全11ページに一括導入し、アクセス解析体制を確立。
 
 ---
 
