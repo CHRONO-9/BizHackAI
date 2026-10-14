@@ -56,15 +56,15 @@
 
         <!-- 目次 -->
         <nav class="toc-box">
-          <div class="toc-title">📋 目次</div>
+          <div class="toc-title">目次</div>
           <ul class="toc-list">
-            <li><a href="#sec-1">🧩 1. なぜ「GAS × Claude 3.5 Sonnet」なのか？アーキテクチャ比較</a></li>
-            <li><a href="#sec-2">🔄 2. システム全体像と処理シーケンス</a></li>
-            <li><a href="#sec-3">🔑 3. 前提条件とAPIキーの取得手順</a></li>
-            <li><a href="#sec-4">💻 4. 【完全掲載】Google Apps Scriptの実装コード（Code.gs）</a></li>
-            <li><a href="#sec-5">🗄️ 5. Notionデータベースのプロパティ定義と設定</a></li>
-            <li><a href="#sec-6">💰 6. 実際の動作検証とトークンコスト（月額約990円の試算）</a></li>
-            <li><a href="#sec-7">🚀 7. まとめ ＆ さらなる高度化への道</a></li>
+            <li><a href="#sec-1">1. なぜ「GAS × Claude 3.5 Sonnet」なのか？アーキテクチャ比較</a></li>
+            <li><a href="#sec-2">2. システム全体像と処理シーケンス</a></li>
+            <li><a href="#sec-3">3. 前提条件とAPIキーの取得手順</a></li>
+            <li><a href="#sec-4">4. 【完全掲載】Google Apps Scriptの実装コード（Code.gs）</a></li>
+            <li><a href="#sec-5">5. Notionデータベースのプロパティ定義と設定</a></li>
+            <li><a href="#sec-6">6. 実際の動作検証とトークンコスト（月額約990円の試算）</a></li>
+            <li><a href="#sec-7">7. まとめ ＆ さらなる高度化への道</a></li>
           </ul>
         </nav>
 
@@ -79,7 +79,7 @@
             本記事では、<strong>サーバー構築不要・維持コスト実質ゼロ（Googleの無料枠内で稼働）</strong>の<strong>Google Apps Script (GAS)</strong>をオーケストレーターとし、現行LLMで最高峰の日本語推論力・構造化データ抽出精度を誇る<strong>Anthropicの「Claude 3.5 Sonnet」</strong>、そして情報ハブである<strong>Notion API</strong>を直結した<strong>「自律型タスク抽出パイプライン」</strong>を構築します。
           </p>
 
-          <h2 id="sec-1">🧩 1. なぜ「GAS × Claude 3.5 Sonnet」なのか？アーキテクチャ比較</h2>
+          <h2 id="sec-1">1. なぜ「GAS × Claude 3.5 Sonnet」なのか？アーキテクチャ比較</h2>
           <div class="table-responsive">
             <table class="styled-table">
               <thead>
@@ -114,7 +114,7 @@
             </table>
           </div>
 
-          <h2 id="sec-2">🔄 2. システム全体像と処理シーケンス</h2>
+          <h2 id="sec-2">2. システム全体像と処理シーケンス</h2>
           <p>
             本システムは、GASの時間主導型トリガー（Time-driven Trigger）によって10分おきにバックグラウンド自律起動します。
           </p>
@@ -134,7 +134,7 @@
             </div>
           </div>
 
-          <h2 id="sec-3">🔑 3. 前提条件とAPIキーの取得手順</h2>
+          <h2 id="sec-3">3. 前提条件とAPIキーの取得手順</h2>
           <div class="callout-box">
             <div class="callout-title">🔑 GAS スクリプトプロパティへの登録一覧</div>
             <ul style="font-size:0.88rem; margin:0.5rem 0 0 1rem;">
@@ -145,7 +145,7 @@
             </ul>
           </div>
 
-          <h2 id="sec-4">💻 4. 【完全掲載】Google Apps Scriptの実装コード（Code.gs）</h2>
+          <h2 id="sec-4">4. 【完全掲載】Google Apps Scriptの実装コード（Code.gs）</h2>
           <p>
             GASのプロジェクト内に貼り付けてそのまま動くプロダクションコードです。
             GAS特有の「6分制限」に対するセーフティ中断と、APIレートリミット（429）を自動リトライする<strong>指数バックオフ</strong>を標準装備しています。
@@ -341,7 +341,7 @@ function sendSlackAlert(text) {
             </div>
           </div>
 
-          <h2 id="sec-5">🗄️ 5. Notionデータベースのプロパティ定義</h2>
+          <h2 id="sec-5">5. Notionデータベースのプロパティ定義</h2>
           <div class="table-responsive">
             <table class="styled-table">
               <thead>
@@ -365,7 +365,7 @@ function sendSlackAlert(text) {
             </table>
           </div>
 
-          <h2 id="sec-6">💰 6. 実際の動作検証とトークンコスト（月額約990円の試算）</h2>
+          <h2 id="sec-6">6. 実際の動作検証とトークンコスト（月額約990円の試算）</h2>
           <div class="callout-box success">
             <div class="callout-title">💰 1日30通処理した場合の月額ランニングコスト</div>
             <p style="font-size:0.9rem; line-height:1.7; margin-bottom:0;">
@@ -376,7 +376,7 @@ function sendSlackAlert(text) {
             </p>
           </div>
 
-          <h2 id="sec-7">🚀 7. まとめ ＆ さらなる高度化への道</h2>
+          <h2 id="sec-7">7. まとめ ＆ さらなる高度化への道</h2>
           <p>
             月額わずか約1,000円未満のAPI従量課金のみで、あなた専属のAIアシスタントが24時間メールとSlackを監視し、タスクをNotionへ自動整理してくれます。
             ぜひ今週末の空き時間でセットアップしてみてください！
