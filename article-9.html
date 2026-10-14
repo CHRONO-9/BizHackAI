@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【文書・PDF時短】難解な契約書・公的書類・社内規程を3分で噛み砕く！ChatGPT文書添削＆要約術｜BizHack AI</title>
+  <meta name="description" content="何十ページもある自治体の公募要領、取引先の秘密保持契約書（NDA）、長文の社内就業規則に悩む方必見！ChatGPTを活用して「要点3つ」「自社の義務」「リスク条項」を3分で浮き彫りにする神プロンプトと誤字・敬語添削ワザを解説。">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/jpeg" href="images/bizhack-icon-main.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="read-progress"></div>
+
+  <!-- ヘッダー -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo-area">
+        <a href="index.html" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;">
+          <div class="logo-mark"><img src="images/bizhack-icon-main.jpg" alt="BizHack AI ロゴ" width="46" height="46"></div>
+          <div>
+            <span class="logo-title">BizHack AI</span>
+            <span class="logo-tagline">現場の仕事を3時間短縮する実践マガジン</span>
+          </div>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">ホーム</a>
+        <a href="index.html#featured" class="nav-link">特集記事</a>
+        <a href="privacy.html" class="nav-link">サイト規約・PRポリシー</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="main-wrapper">
+    <div class="article-layout">
+      <!-- 記事メインコンテンツ -->
+      <main class="article-main">
+        <!-- ステマ規制対応 PR表記 -->
+        <div class="pr-disclosure-bar">
+          <span class="pr-badge">PR</span>
+          <span>本記事は客観的な実務検証データに基づき中立に執筆されています。一部に提携ツールの紹介リンクを含みます。</span>
+        </div>
+
+        <header class="article-header">
+          <span class="category-tag cat-biz">文書・PDF時短</span>
+          <h1 class="article-title">【文書・PDF時短】難解な契約書・公的書類・社内規程を3分で噛み砕く！ChatGPT文書添削＆要約術</h1>
+          <div class="article-meta-bar">
+            <span>執筆：業務改善・法務サポート担当</span>
+            <span>更新日：2026年10月14日</span>
+            <span>読了目安：約7分</span>
+          </div>
+        </header>
+
+        <!-- 目次 -->
+        <nav class="toc-box">
+          <div class="toc-title">目次</div>
+          <ul class="toc-list">
+            <li><a href="#sec-1">1. 「お堅い長文PDF」を読むだけで半日潰れていませんか？</a></li>
+            <li><a href="#sec-2">2. なぜChatGPTを使うと難解文書が3分で頭に入るのか？</a></li>
+            <li><a href="#sec-3">3. 【即コピペOK】難解文書を一発で噛み砕く神プロンプト3選</a></li>
+            <li><a href="#sec-4">4. 読者モニター検証メモ（40代総務・法務兼任担当の実証）</a></li>
+            <li><a href="#sec-5">5. 手直しゼロ化！80点ドラフト検品チェックシート</a></li>
+            <li><a href="#sec-6">6. 契約書や公的書類を扱うときの「セキュリティと法的免責の鉄則」</a></li>
+            <li><a href="#sec-7">7. まとめ ＆ 明日からの実践ステップ</a></li>
+          </ul>
+        </nav>
+
+        <!-- 本文 -->
+        <div class="article-body">
+          <h2 id="sec-1">1. 「お堅い長文PDF」を読むだけで半日潰れていませんか？</h2>
+          <p>
+            自治体や省庁の補助金公募要領、取引先から送られてきた秘密保持契約書（NDA）、改定された就業規則やセキュリティガイドライン……。
+          </p>
+          <p>
+            「専門用語だらけで頭に入ってこない」「文字が小さくて読むだけで目が疲れる」「自社にとって何がリスクなのか見落とすのが怖い」とお悩みのビジネスパーソンは非常に多いはずです。
+          </p>
+          <div class="callout-box">
+            <div class="callout-title">実務現場のリアルな叫び</div>
+            <p style="margin-bottom:0; font-size:0.9rem;">
+              ・30ページの公募要領を読み込んだのに、最後の数行に書いてあった「対象外要件」を見落としていた…<br>
+              ・契約書の条文が「甲は乙に対し…」と入り組んでいて、誰が何をすればいいのか分からない…<br>
+              ・自分が書いた社内通知文が「失礼な言い回しになっていないか」何度も推敲して時間が溶ける…
+            </p>
+          </div>
+          <p>
+            こうした<strong>「お堅い長文の読解・添削」こそ、ChatGPTが最も得意とする領域</strong>です。
+          </p>
+
+          <h2 id="sec-2">2. なぜChatGPTを使うと難解文書が3分で頭に入るのか？</h2>
+          <p>
+            人間が長文を最初から一字一句読むと、全体の構造が見えないまま疲弊してしまいます。
+          </p>
+          <p>
+            一方、ChatGPTに適切なプロンプトを与えると、以下の3つを瞬時に切り分けて整理してくれます。
+          </p>
+          <ol>
+            <li><strong>「要点3行」の骨子抽出</strong>：中学生でも理解できる日常言葉に要約</li>
+            <li><strong>「誰が・何をすべきか（義務と禁止事項）」のリスト化</strong>：主語と述語を明確に再構成</li>
+            <li><strong>「見落としがちな落とし穴（リスク）」のハイライト</strong>：違約金、解約条件、提出期限などを強調</li>
+          </ol>
+
+          <!-- 広告プレースホルダー -->
+          <div class="ad-slot-placeholder">
+            <span class="ad-badge">スポンサーリンク</span>
+            <p style="font-size:0.85rem; color:#64748b; margin:0.5rem 0 1rem 0;">文書要約・クラウドOCR連携ツールの最新導入比較</p>
+            <div class="ad-demo-box">
+              <span style="font-weight:700; color:#0f172a; font-size:0.9rem;">【PR】無料から試せる法人向けセキュアAIドキュメント管理</span>
+              <a href="#" class="ad-demo-btn">詳細資料を無料ダウンロード</a>
+            </div>
+          </div>
+
+          <h2 id="sec-3">3. 【即コピペOK】難解文書を一発で噛み砕く神プロンプト3選</h2>
+
+          <h3>① 長文PDF・公募要領を「中学生でもわかる言葉」に要約する</h3>
+          <div class="code-box">
+            <div class="code-header">
+              <span class="code-title">長文要約プロンプト</span>
+              <button class="copy-btn" data-target="doc1">プロンプトをコピー</button>
+            </div>
+            <div class="code-content">
+              <pre id="doc1"># 命令
+以下の【対象テキスト】を読み、法律や行政の専門用語を一切使わず、「中学生でも1回で理解できる日常の言葉」で要約してください。改行崩れがある場合は自然に繋げて読んでください。
+
+# 出力フォーマット
+1. ひとことで言うと何か（30文字以内）
+2. 主なポイント3点（箇条書き）
+3. 申請・対象となる条件（箇条書き）
+4. やってはいけない注意点・失格要件
+
+# 対象テキスト
+[ここにPDFや要領のテキストを貼り付け]</pre>
+            </div>
+          </div>
+
+          <h3>② 契約書・覚書から「自社の義務と不利なリスク」だけを炙り出す</h3>
+          <div class="code-box">
+            <div class="code-header">
+              <span class="code-title">契約書リスク抽出プロンプト</span>
+              <button class="copy-btn" data-target="doc2">プロンプトをコピー</button>
+            </div>
+            <div class="code-content">
+              <pre id="doc2"># 命令
+あなたは経験豊富な法務アシスタントです。
+以下の【契約書テキスト】において、当社（受託者／乙）の立場から見て、
+「当社が負う義務・責任」と「不利・リスクになり得る条項」を抽出して整理してください。
+
+# 抽出項目
+1. 当社が必ず実行しなければならない義務一覧
+2. 当社にとって負担が大きい、または違約金・損害賠償が発生する条項
+3. 契約解除や変更に関する条件
+4. 相手方（発注者／甲）と事前に交渉・確認すべきポイント
+
+# 契約書テキスト
+[ここに契約書の条文を貼り付け]</pre>
+            </div>
+          </div>
+
+          <h3>③ 自作の社内案内文・通知書を「失礼のない完璧な文面」に添削する</h3>
+          <div class="code-box">
+            <div class="code-header">
+              <span class="code-title">文書添削・校正プロンプト</span>
+              <button class="copy-btn" data-target="doc3">プロンプトをコピー</button>
+            </div>
+            <div class="code-content">
+              <pre id="doc3"># 命令
+以下の【下書き文章】を校正・添削してください。
+誤字脱字、二重敬語、失礼に聞こえる言い回しを修正し、読み手がスムーズに行動できる洗練されたビジネス文書に書き直してください。
+
+# 制約事項
+・修正後の完成文をまず提示してください。
+・どこをなぜ修正したのかの「添削ポイント」を3つ教えてください。
+
+# 下書き文章
+[ここに自分で書いた案内文やメール下書きを貼り付け]</pre>
+            </div>
+          </div>
+
+          <h2 id="sec-4">4. 読者モニター検証メモ（40代総務・法務兼任担当の実証）</h2>
+
+          <!-- 読者モニター検証メモ -->
+          <div class="reader-review-box">
+            <div class="reader-review-header">
+              <span class="reader-review-title">読者モニター検証メモ（佐々木さん / 40代総務・法務兼任）</span>
+              <span class="reader-tag">実務書類で検証</span>
+            </div>
+            <div class="reader-review-body">
+              <p><strong>「PDFからコピペした時の『変な位置の改行』も一瞬で直して読んでくれました！」</strong><br>
+              PDFビューアからテキストをコピーすると、文章の途中に不要な改行が大量に入って読みにくくなるのが悩みでした。しかし、上記プロンプトの通り『改行崩れがある場合は自然に繋げて読んでください』と1行指示しておくだけで、AIが勝手に文章を繋ぎ直して正確に理解してくれました。<br>
+              また、30ページの自治体助成金要領を要約させたら、見落としていた『従業員5名以上の要件』を即座に指摘してくれて冷や汗が出ました。書類読みの時間が3時間から10分に短縮されています。</p>
+            </div>
+          </div>
+
+          <h2 id="sec-5">5. 手直しゼロ化！80点ドラフト検品チェックシート</h2>
+          <p>
+            AIが要約や添削をしてくれた後、「そのまま信じて良いか不安」という手戻りをなくすため、以下の<strong>30秒セルフチェック</strong>を行ってください。
+          </p>
+
+          <!-- 80点ドラフト検品チェックシート -->
+          <div class="draft-checklist-box">
+            <div class="draft-checklist-header">
+              <span class="draft-checklist-title">手直しゼロ化！80点ドラフト検品チェックシート</span>
+              <span class="draft-badge">30秒確認</span>
+            </div>
+            <ul class="checklist-items">
+              <li class="checklist-item">
+                <span class="checklist-check">✓</span>
+                <span><strong>日付・期限の整合性</strong>：提出締切日や契約満了日が原典の数字と一致しているか</span>
+              </li>
+              <li class="checklist-item">
+                <span class="checklist-check">✓</span>
+                <span><strong>金額・パーセンテージ</strong>：助成金額や違約金の上限、割合（%）に誤りがないか</span>
+              </li>
+              <li class="checklist-item">
+                <span class="checklist-check">✓</span>
+                <span><strong>甲乙の主語関係</strong>：「自社がやるべきこと」と「相手がやること」が逆転していないか</span>
+              </li>
+              <li class="checklist-item">
+                <span class="checklist-check">✓</span>
+                <span><strong>自社固有の事情</strong>：会社の特有ルールや暗黙の前提が抜けていないか</span>
+              </li>
+            </ul>
+          </div>
+
+          <h2 id="sec-6">6. 契約書や公的書類を扱うときの「セキュリティと法的免責の鉄則」</h2>
+          <p>
+            重要なビジネス文書を扱う際は、以下の2大ルールを厳守してください。
+          </p>
+          <div class="callout-box warning">
+            <div class="callout-title">重要：法務・セキュリティの必須マナー</div>
+            <ol style="margin-bottom:0; font-size:0.9rem;">
+              <li><strong>会社名・個人名・金額のマスキング</strong>：相手先の正式社名や契約金額は「A社」「金〇〇円」に伏せ字にしてから入力する。</li>
+              <li><strong>最終確認は必ず人間が行う（AIは法的助言ではない）</strong>：AIは要点の整理とリスクの洗い出しを支援するツールであり、正式な契約締結時は顧問弁護士や法務部門による確認を行ってください。</li>
+            </ol>
+          </div>
+
+          <h2 id="sec-7">7. まとめ ＆ 明日からの実践ステップ</h2>
+          <p>
+            何十ページもある書類を前に「どこから読めばいいんだ…」とため息をつく日々は、もう終わりです。
+          </p>
+          <p>
+            AIにまず大枠を3行で要約させ、リスク箇所にマーカーを引かせることで、あなたのデスクワークは劇的に軽くなります。ぜひ明日手元に来た最初の書類で、この神プロンプトを試してみてください！
+          </p>
+
+          <div style="text-align:center; margin:2.5rem 0;">
+            <a href="index.html#routine" class="ad-demo-btn" style="padding:1rem 2rem; font-size:1.05rem;">朝の3分AIルーティン表を見る →</a>
+          </div>
+
+          <!-- 著者バイオカード -->
+          <div class="author-bio-card">
+            <div class="author-avatar" style="width:48px; height:48px; font-size:1.2rem; background:#475569;">書</div>
+            <div class="author-info">
+              <h4>執筆：BizHack AI 業務改善・法務サポートチーム</h4>
+              <p>
+                中小企業の管理部門・法務・総務実務を長年担当。生成AIとOCRを活用した書類審査の工数削減ノウハウを一次検証しています。
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- サイドバー -->
+      <aside class="article-sidebar">
+        <!-- 目次ウィジェット -->
+        <div class="sidebar-widget">
+          <h3 class="widget-title">記事の目次</h3>
+          <ul class="sidebar-toc">
+            <li><a href="#sec-1">1. 長文PDFを読む悩み</a></li>
+            <li><a href="#sec-2">2. なぜAIで3分理解できるのか</a></li>
+            <li><a href="#sec-3">3. 神プロンプト3選</a></li>
+            <li><a href="#sec-4">4. 読者モニター検証メモ</a></li>
+            <li><a href="#sec-5">5. 80点検品チェックシート</a></li>
+            <li><a href="#sec-6">6. セキュリティと法的免責</a></li>
+            <li><a href="#sec-7">7. まとめ・実践ステップ</a></li>
+          </ul>
+        </div>
+
+        <!-- 関連特集記事ナビ（全9弾） -->
+        <div class="sidebar-widget">
+          <h3 class="widget-title">特集記事パッケージ（全9弾）</h3>
+          <div class="recent-article-item">
+            <span style="font-size:0.75rem; color:var(--text-muted);">第1弾</span>
+            <a href="article-1.html">ChatGPT超入門！神質問ワザ7選</a>
+          </div>
+          <div class="recent-article-item">
+            <span style="font-size:0.75rem; color:var(--text-muted);">第2弾</span>
+            <a href="article-2.html">ビジネスメール一発作成プロンプト集</a>
+          </div>
+          <div class="recent-article-item">
+            <span style="font-size:0.75rem; color:var(--text-muted);">第3弾</span>
+            <a href="article-3.html">ChatGPT議事録作成プロンプト</a>
+          </div>
+          <div class="recent-article-item">
+            <span style="font-size:0.75rem; color:var(--text-muted);">第4弾</span>
+            <a href="article-4.html">エクセル関数不要！丸投げ集計術</a>
+          </div>
+          <div class="recent-article-item">
+            <span style="font-size:0.75rem; color:var(--text-muted);">第5弾</span>
+            <a href="article-5.html">パワポスライド構成案が3分でできる術</a>
+          </div>
+          <div class="recent-article-item">
+            <span style="font-size:0.75rem; color:var(--text-muted);">第6弾</span>
+            <a href="article-6.html">ChatGPT×無料Canvaでバナー爆速制作</a>
+          </div>
+          <div class="recent-article-item">
+            <span style="font-size:0.75rem; color:var(--text-muted);">第7弾</span>
+            <a href="article-7.html">一人起業・副業Notion×AI仕事術</a>
+          </div>
+          <div class="recent-article-item">
+            <span style="font-size:0.75rem; color:var(--text-muted);">第8弾</span>
+            <a href="article-8.html">職場で安全に使う基礎＆社内提案メモ</a>
+          </div>
+          <div class="recent-article-item" style="border-left:3px solid #0284c7; padding-left:0.5rem;">
+            <span style="font-size:0.75rem; color:#0284c7; font-weight:700;">第9弾（閲覧中）</span>
+            <a href="article-9.html" style="font-weight:700;">難解な規程・書類を3分要約</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.75rem;">
+          <div class="logo-mark" style="width:32px; height:32px;">
+            <img src="images/bizhack-icon-main.jpg" alt="BizHack AI ロゴ" width="32" height="32">
+          </div>
+          <h4 style="margin:0;">BizHack AI（ビズハックAI）</h4>
+        </div>
+        <p style="line-height:1.7; font-size:0.85rem; margin-bottom:1rem;">
+          日々の面倒なPC仕事を3時間短縮する無料・コピペの実践生成AIマガジン。<br>
+          読者の信頼を第一に、独自検証データとコピペで動く実用コンテンツのみを発信します。
+        </p>
+        <p style="font-size:0.8rem; color:#64748b;">運営：BizHack AI 運営委員会</p>
+      </div>
+      <div class="footer-col">
+        <h4>特集カテゴリー</h4>
+        <ul class="footer-links">
+          <li><a href="article-1.html">AI超入門</a></li>
+          <li><a href="article-2.html">日常実務・メール術</a></li>
+          <li><a href="article-3.html">現場実務・時短</a></li>
+          <li><a href="article-4.html">事務職・エクセル時短</a></li>
+          <li><a href="article-5.html">企画・プレゼン</a></li>
+          <li><a href="article-6.html">デザイン・Web作成</a></li>
+          <li><a href="article-7.html">個人事業・副業DX</a></li>
+          <li><a href="article-8.html">職場導入・セキュリティ</a></li>
+          <li><a href="article-9.html">文書・PDF時短</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>サイト規約・透明性情報</h4>
+        <ul class="footer-links">
+          <li><a href="privacy.html">プライバシーポリシー</a></li>
+          <li><a href="privacy.html#disclaimer">免責事項・著作権</a></li>
+          <li><a href="privacy.html#pr-policy">ステマ規制対応方針</a></li>
+          <li><a href="privacy.html#contact">お問い合わせ窓口</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 BizHack AI 運営委員会. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
