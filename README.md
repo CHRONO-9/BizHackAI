@@ -2,7 +2,8 @@
 
 > **「研ぎ澄まされた切れ味で無駄を一刀両断」**  
 > 日々の面倒なPC仕事を3時間短縮する無料・コピペの実践生成AIマガジン  
-> 🌐 公開URL: [https://chrono-9.github.io/BizHackAI/](https://chrono-9.github.io/BizHackAI/)
+> 🌐 公式サイトURL: [https://www.bizhack-ai.com/](https://www.bizhack-ai.com/)  
+> *(旧GitHub Pages URL: https://chrono-9.github.io/BizHackAI/)*
 
 ---
 
