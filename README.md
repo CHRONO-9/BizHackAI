@@ -1,7 +1,8 @@
 # BizHack AI（ビズハックAI）
 
 > **「研ぎ澄まされた切れ味で無駄を一刀両断」**  
-> 現場の仕事を3時間短縮する生成AI・SaaS実務検証マガジン
+> 現場の仕事を3時間短縮する生成AI・SaaS実務検証マガジン  
+> 🌐 公開URL: [https://chrono-9.github.io/BizHackAI/](https://chrono-9.github.io/BizHackAI/)
 
 ---
 

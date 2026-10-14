@@ -109,5 +109,5 @@
    ```
 2. 別のPCでクローン:
    ```bash
-   git clone https://github.com/chrono-9/test.git
+   git clone https://github.com/chrono-9/BizHackAI.git
    ```
