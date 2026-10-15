@@ -90,9 +90,34 @@
         <span style="font-size:0.85rem; color:var(--text-muted);">初心者から応用まで・即コピペ可能</span>
       </div>
 
+      <!-- カテゴリー別クイック絞り込みタブ（案A 試作UI） -->
+      <div class="category-filter-nav">
+        <div class="filter-tabs-wrapper">
+          <button type="button" class="filter-tab active" data-filter="all">
+            <span class="tab-label">すべて表示</span>
+            <span class="tab-badge">全9弾</span>
+          </button>
+          <button type="button" class="filter-tab" data-filter="routine">
+            <span class="tab-label">事務・日常実務</span>
+            <span class="tab-badge">5本</span>
+          </button>
+          <button type="button" class="filter-tab" data-filter="creative">
+            <span class="tab-label">企画・副業DX</span>
+            <span class="tab-badge">3本</span>
+          </button>
+          <button type="button" class="filter-tab" data-filter="governance">
+            <span class="tab-label">組織導入・セキュリティ</span>
+            <span class="tab-badge">1本</span>
+          </button>
+        </div>
+        <p class="filter-hint" id="filter-hint">
+          ※お探しの業務領域・職種に合わせて瞬時に切り替えられます（デフォルト：全9弾）
+        </p>
+      </div>
+
       <div class="articles-grid">
         <!-- 記事①（AI超入門） -->
-        <article class="article-card">
+        <article class="article-card" data-category="routine">
           <div class="card-thumb" style="background: linear-gradient(135deg, #047857, #10b981);">
             <div class="thumb-pattern"></div>
             <div class="thumb-glow"></div>
@@ -113,7 +138,7 @@
           </div>
           <div class="card-body">
             <h3 class="card-title">
-              <a href="article-1.html">【第1弾】ゼロから始めるChatGPT超入門！今日から仕事で使える神質問テクニック7選</a>
+              <a href="article-1.html">ゼロから始めるChatGPT超入門！今日から仕事で使える神質問テクニック7選</a>
             </h3>
             <p class="card-excerpt">
               「難しそうで手を出せていない」「ありきたりな返答しか来ない」とお悩みの方必見。登録手順から、思い通りの回答を引き出す質問のコツ、日常業務を劇的に時短する7つの実践テクニックを解説。
@@ -129,7 +154,7 @@
         </article>
 
         <!-- 記事②（日常実務・メール術） -->
-        <article class="article-card">
+        <article class="article-card" data-category="routine">
           <div class="card-thumb" style="background: linear-gradient(135deg, #1d4ed8, #3b82f6);">
             <div class="thumb-pattern"></div>
             <div class="thumb-glow"></div>
@@ -150,7 +175,7 @@
           </div>
           <div class="card-body">
             <h3 class="card-title">
-              <a href="article-2.html">【第2弾】もう文章で悩まない！角が立たない・お詫び・催促・お礼メール一発作成プロンプト集</a>
+              <a href="article-2.html">もう文章で悩まない！角が立たない・お詫び・催促・お礼メール一発作成プロンプト集</a>
             </h3>
             <p class="card-excerpt">
               「催促しづらい…」「お詫びの文面どうしよう…」と悩む時間をゼロに。要件を殴り書きするだけで、失礼がなく好印象を与えるビジネスメールが5秒で完成するコピペ用プロンプト集。
@@ -166,7 +191,7 @@
         </article>
 
         <!-- 記事③（現場実務・議事録） -->
-        <article class="article-card">
+        <article class="article-card" data-category="routine">
           <div class="card-thumb" style="background: linear-gradient(135deg, #065f46, #059669);">
             <div class="thumb-pattern"></div>
             <div class="thumb-glow"></div>
@@ -187,7 +212,7 @@
           </div>
           <div class="card-body">
             <h3 class="card-title">
-              <a href="article-3.html">【第3弾】雑な殴り書きメモを貼るだけ！上司に一発で通る「ChatGPT議事録作成プロンプト」</a>
+              <a href="article-3.html">雑な殴り書きメモを貼るだけ！上司に一発で通る「ChatGPT議事録作成プロンプト」</a>
             </h3>
             <p class="card-excerpt">
               「会議後の議事録まとめが一番憂鬱…」そんな悩みを抱える営業・企画・バックオフィス必見。作業時間91%減の実測データと、殴り書きメモを一発で整頓するプロンプトを無料公開。
@@ -203,7 +228,7 @@
         </article>
 
         <!-- 記事④（事務職・エクセル時短） -->
-        <article class="article-card">
+        <article class="article-card" data-category="routine">
           <div class="card-thumb" style="background: linear-gradient(135deg, #0369a1, #0ea5e9);">
             <div class="thumb-pattern"></div>
             <div class="thumb-glow"></div>
@@ -224,7 +249,7 @@
           </div>
           <div class="card-body">
             <h3 class="card-title">
-              <a href="article-4.html">【第4弾】エクセルが苦手でも大丈夫！ChatGPTに「やりたいこと」を日本語で丸投げする超簡単データ集計術</a>
+              <a href="article-4.html">【関数・マクロ不要】エクセルが苦手でも大丈夫！ChatGPTに「やりたいこと」を日本語で丸投げする超簡単データ集計術</a>
             </h3>
             <p class="card-excerpt">
               VLOOKUPや数式が苦手な事務職必見！エクセルやCSVを添付して「月別売上をグラフにして」と頼むだけで、表記ゆれの整頓からクロス集計・グラフ出力まで3分で完了。
@@ -240,7 +265,7 @@
         </article>
 
         <!-- 記事⑤（企画・プレゼン） -->
-        <article class="article-card">
+        <article class="article-card" data-category="creative">
           <div class="card-thumb" style="background: linear-gradient(135deg, #be185d, #ec4899);">
             <div class="thumb-pattern"></div>
             <div class="thumb-glow"></div>
@@ -261,7 +286,7 @@
           </div>
           <div class="card-body">
             <h3 class="card-title">
-              <a href="article-5.html">【第5弾】箇条書きを投げるだけでPowerPointのスライド構成案ができる「企画・プレゼン下書き術」</a>
+              <a href="article-5.html">【白紙から3分で完成】箇条書きを投げるだけでPowerPointのスライド構成案ができる「企画・プレゼン下書き術」</a>
             </h3>
             <p class="card-excerpt">
               白紙のパワポを開いてフリーズする時間をゼロに！企画メモを投げるだけで「1枚目：表紙」「2枚目：課題」「3枚目：解決策」の論理構成とキーメッセージが3分で完成するプレゼン下書き術。
@@ -277,7 +302,7 @@
         </article>
 
         <!-- 記事⑥（デザイン・Web作成） -->
-        <article class="article-card">
+        <article class="article-card" data-category="creative">
           <div class="card-thumb" style="background: linear-gradient(135deg, #6d28d9, #8b5cf6);">
             <div class="thumb-pattern"></div>
             <div class="thumb-glow"></div>
@@ -298,7 +323,7 @@
           </div>
           <div class="card-body">
             <h3 class="card-title">
-              <a href="article-6.html">【第6弾】デザインセンス不要！ChatGPT×無料Canvaで作る「売れるSNS画像・Webバナー」爆速制作術</a>
+              <a href="article-6.html">【デザインセンス不要】ChatGPT×無料Canvaで作る「売れるSNS画像・Webバナー」爆速制作術</a>
             </h3>
             <p class="card-excerpt">
               Photoshopやデザイン経験は不要！ChatGPTで刺さるキャッチコピーを出し、無料ツールCanvaのプロ製テンプレートに当てはめるだけで、30分でおしゃれな画像を作る爆速ワークフロー。
@@ -314,7 +339,7 @@
         </article>
 
         <!-- 記事⑦（個人事業・副業DX） -->
-        <article class="article-card">
+        <article class="article-card" data-category="creative">
           <div class="card-thumb" style="background: linear-gradient(135deg, #b45309, #f59e0b);">
             <div class="thumb-pattern"></div>
             <div class="thumb-glow"></div>
@@ -335,7 +360,7 @@
           </div>
           <div class="card-body">
             <h3 class="card-title">
-              <a href="article-7.html">【第7弾】Notion×AIで「やること・スケジュール・顧客メモ」を一括管理する超シンプル仕事術</a>
+              <a href="article-7.html">【一人起業・副業】Notion×AIで「やること・スケジュール・顧客メモ」を一括管理する超シンプル仕事術</a>
             </h3>
             <p class="card-excerpt">
               仕事があちこちに散らばってパンクしそうなソロプレナー必見！NotionとAIを組み合わせて、日々のタスク、商談メモ、顧客情報を1箇所で超シンプルに一括管理する実践ワークフロー。
@@ -351,7 +376,7 @@
         </article>
 
         <!-- 記事⑧（職場導入・セキュリティ） -->
-        <article class="article-card">
+        <article class="article-card" data-category="governance">
           <div class="card-thumb" style="background: linear-gradient(135deg, #1e3a8a, #3b82f6);">
             <div class="thumb-pattern"></div>
             <div class="thumb-glow"></div>
@@ -372,7 +397,7 @@
           </div>
           <div class="card-body">
             <h3 class="card-title">
-              <a href="article-8.html">【第8弾】ChatGPTを職場で安全に使う基礎知識と、上司を納得させる「無料提案メモ」</a>
+              <a href="article-8.html">【会社で使いたい人へ】ChatGPTを職場で安全に使う基礎知識と、上司を納得させる「無料提案メモ」</a>
             </h3>
             <p class="card-excerpt">
               会社で堂々とChatGPTを使いたい方必見！情報漏洩を防ぐオプトアウト設定のやり方から、上司や情シスに「使っていいですか」と相談するためのコピペ用提案メモテンプレートまで徹底解説。
@@ -388,7 +413,7 @@
         </article>
 
         <!-- 記事⑨（文書・PDF時短） -->
-        <article class="article-card">
+        <article class="article-card" data-category="routine">
           <div class="card-thumb" style="background: linear-gradient(135deg, #334155, #475569);">
             <div class="thumb-pattern"></div>
             <div class="thumb-glow"></div>
@@ -409,7 +434,7 @@
           </div>
           <div class="card-body">
             <h3 class="card-title">
-              <a href="article-9.html">【第9弾】難解な契約書・公的書類・社内規程を3分で噛み砕く！ChatGPT文書添削＆要約術</a>
+              <a href="article-9.html">【文書・PDF時短】難解な契約書・公的書類・社内規程を3分で噛み砕く！ChatGPT文書添削＆要約術</a>
             </h3>
             <p class="card-excerpt">
               何十ページもある自治体の公募要領やNDA、社内規程を「要点3つ」「自社の義務」「リスク条項」に3分で噛み砕く神プロンプト。PDFコピペの改行崩れ対策や文章添削も解説。

@@ -78,4 +78,50 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // 4. カテゴリー別クイック絞り込みタブ（案A 試作UI）
+  const filterTabs = document.querySelectorAll('.filter-tab');
+  const articleCards = document.querySelectorAll('.articles-grid .article-card');
+  const filterHint = document.getElementById('filter-hint');
+
+  if (filterTabs.length > 0 && articleCards.length > 0) {
+    const hintMessages = {
+      all: '※お探しの業務領域・職種に合わせて瞬時に切り替えられます（全9弾を表示中）',
+      routine: '事務・日常実務向け（メール・議事録・エクセル・難解書類要約など 5本）を表示中',
+      creative: '企画・クリエイティブ・副業向け（パワポ構成案・Canva画像・Notion一人起業など 3本）を表示中',
+      governance: '組織導入・セキュリティ向け（情報漏洩対策・上司への社内提案メモ 1本）を表示中'
+    };
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetFilter = tab.getAttribute('data-filter');
+
+        // タブのアクティブ切り替え
+        filterTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // ヒント文の更新
+        if (filterHint && hintMessages[targetFilter]) {
+          filterHint.textContent = hintMessages[targetFilter];
+        }
+
+        // 記事カードの表示/非表示およびアニメーション
+        articleCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          card.classList.remove('is-animating');
+
+          if (targetFilter === 'all' || category === targetFilter) {
+            card.classList.remove('is-hidden');
+            // 次のフレームでアニメーションクラスを再付与
+            requestAnimationFrame(() => {
+              card.classList.add('is-animating');
+            });
+          } else {
+            card.classList.add('is-hidden');
+          }
+        });
+      });
+    });
+  }
 });
+
