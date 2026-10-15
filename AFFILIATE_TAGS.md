@@ -353,3 +353,162 @@ https://px.a8.net/svt/ejp?a8mat=4BEGDB+7O95GY+3SPO+BKSPR7
 <a href="https://px.a8.net/svt/ejp?a8mat=4BEH56+7Q1GAA+5YHY+5YRHE" rel="nofollow">【sXars】</a>
 <img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=4BEH56+7Q1GAA+5YHY+5YRHE" alt="">
 ```
+
+---
+
+## 🖥️ 案件6：ConoHa for Windows Server（GMOインターネットグループ株式会社）
+
+- **ジャンル**: Windows仮想デスクトップ（VPS）、クラウドサーバー、リモートワーク、Microsoft Office環境、24時間常時稼働環境
+- **対象読者**: 
+  - 職場のセキュリティや社内ルールで制約があるビジネスパーソン・主任・情シス（第8弾）
+  - エクセルマクロやPython・自動集計プログラムを24時間クラウドで常時稼働させたい事務・経理（第4弾）
+  - MacやiPad、出先からWindows環境・Officeをセキュアに操作したい一人起業家・フリーランス（第7弾）
+- **主な掲載推奨先**:
+  - `article-8.html`（【職場導入・セキュリティ】会社の情報漏洩を防ぎながら安全にAIを活用する社内ルール完全策定ガイド）
+  - `article-4.html`（【事務職・エクセル時短】関数もマクロも不要！ChatGPTで一瞬で終わらせる表計算テクニック）
+  - `article-7.html`（【一人起業・副業】Notion×AIで仕事・予定・メモを一括管理する超シンプル仕事術）
+  - サイドバー（リモートデスクトップ・クラウドPC枠）
+
+### 1. レクタングル・スクエアバナー（記事中・サイドバー推奨）
+
+#### ① 300 × 250（標準レクタングル A - 記事中推奨）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MH3EP" rel="nofollow">
+<img border="0" width="300" height="250" alt="" src="https://www25.a8.net/svt/bgt?aid=261014880124&wid=001&eno=01&mid=s00000000018034008000&mc=1"></a>
+<img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MH3EP" alt="">
+```
+
+#### ② 300 × 250（標準レクタングル B）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MHB4H" rel="nofollow">
+<img border="0" width="300" height="250" alt="" src="https://www23.a8.net/svt/bgt?aid=261014880124&wid=001&eno=01&mid=s00000000018034009000&mc=1"></a>
+<img border="0" width="1" height="1" src="https://www13.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MHB4H" alt="">
+```
+
+#### ③ 336 × 280（ラージレクタングル - 高CTR）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MJVPT" rel="nofollow">
+<img border="0" width="336" height="280" alt="" src="https://www28.a8.net/svt/bgt?aid=261014880124&wid=001&eno=01&mid=s00000000018034021000&mc=1"></a>
+<img border="0" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MJVPT" alt="">
+```
+
+#### ④ 250 × 250（スクエア - サイドバー推奨）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MKIV5" rel="nofollow">
+<img border="0" width="250" height="250" alt="" src="https://www26.a8.net/svt/bgt?aid=261014880124&wid=001&eno=01&mid=s00000000018034024000&mc=1"></a>
+<img border="0" width="1" height="1" src="https://www13.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MKIV5" alt="">
+```
+
+#### ⑤ 300 × 600（ハーフページ / スカイスクレイパー）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MJO01" rel="nofollow">
+<img border="0" width="300" height="600" alt="" src="https://www24.a8.net/svt/bgt?aid=261014880124&wid=001&eno=01&mid=s00000000018034020000&mc=1"></a>
+<img border="0" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MJO01" alt="">
+```
+
+---
+
+### 2. 横長バナー（ヘッダー下・記事中・フッター上部・サイドバー推奨）
+
+#### ① 728 × 90（リーダーボード - PC横長）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MK3FL" rel="nofollow">
+<img border="0" width="728" height="90" alt="" src="https://www23.a8.net/svt/bgt?aid=261014880124&wid=001&eno=01&mid=s00000000018034022000&mc=1"></a>
+<img border="0" width="1" height="1" src="https://www14.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MK3FL" alt="">
+```
+
+#### ② 468 × 60（フルバナー A）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MGG9D" rel="nofollow">
+<img border="0" width="468" height="60" alt="" src="https://www28.a8.net/svt/bgt?aid=261014880124&wid=001&eno=01&mid=s00000000018034005000&mc=1"></a>
+<img border="0" width="1" height="1" src="https://www18.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MGG9D" alt="">
+```
+
+#### ③ 468 × 60（フルバナー B）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MG8JL" rel="nofollow">
+<img border="0" width="468" height="60" alt="" src="https://www29.a8.net/svt/bgt?aid=261014880124&wid=001&eno=01&mid=s00000000018034004000&mc=1"></a>
+<img border="0" width="1" height="1" src="https://www16.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MG8JL" alt="">
+```
+
+#### ④ 320 × 50（モバイルバナー A）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MGVOX" rel="nofollow">
+<img border="0" width="320" height="50" alt="" src="https://www26.a8.net/svt/bgt?aid=261014880124&wid=001&eno=01&mid=s00000000018034007000&mc=1"></a>
+<img border="0" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MGVOX" alt="">
+```
+
+#### ⑤ 320 × 50（モバイルバナー B）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MGNZ5" rel="nofollow">
+<img border="0" width="320" height="50" alt="" src="https://www20.a8.net/svt/bgt?aid=261014880124&wid=001&eno=01&mid=s00000000018034006000&mc=1"></a>
+<img border="0" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MGNZ5" alt="">
+```
+
+#### ⑥ 234 × 60（ハーフバナー A）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MHQK1" rel="nofollow">
+<img border="0" width="234" height="60" alt="" src="https://www23.a8.net/svt/bgt?aid=261014880124&wid=001&eno=01&mid=s00000000018034011000&mc=1"></a>
+<img border="0" width="1" height="1" src="https://www15.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MHQK1" alt="">
+```
+
+#### ⑦ 234 × 60（ハーフバナー B）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MHIU9" rel="nofollow">
+<img border="0" width="234" height="60" alt="" src="https://www27.a8.net/svt/bgt?aid=261014880124&wid=001&eno=01&mid=s00000000018034010000&mc=1"></a>
+<img border="0" width="1" height="1" src="https://www13.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MHIU9" alt="">
+```
+
+#### ⑧ 120 × 60（ボタンバナー A）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MHY9T" rel="nofollow">
+<img border="0" width="120" height="60" alt="" src="https://www22.a8.net/svt/bgt?aid=261014880124&wid=001&eno=01&mid=s00000000018034012000&mc=1"></a>
+<img border="0" width="1" height="1" src="https://www13.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MHY9T" alt="">
+```
+
+#### ⑨ 120 × 60（ボタンバナー B）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MI5ZL" rel="nofollow">
+<img border="0" width="120" height="60" alt="" src="https://www20.a8.net/svt/bgt?aid=261014880124&wid=001&eno=01&mid=s00000000018034013000&mc=1"></a>
+<img border="0" width="11" height="1" src="https://www11.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MI5ZL" alt="">
+```
+
+---
+
+### 3. テキストリンク
+
+#### ① 最新OS機能訴求（Windows Server 2025）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MJ0UQ" rel="nofollow">最新OS「Windows Server 2025」が使える！『ConoHa for Windows Server』</a>
+<img border="0" width="1" height="1" src="https://www15.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MJ0UQ" alt="">
+```
+
+#### ② 自由入力リンク（文脈に合わせた自然なテキスト挿入）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MLDQA" rel="nofollow">自由入力</a>
+<img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MLDQA" alt="">
+```
+
+#### ③ シンプルブランドリンク
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MIT4Y" rel="nofollow">ConoHa for Windows Server</a>
+<img border="0" width="1" height="1" src="https://www11.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MIT4Y" alt="">
+```
+
+#### ④ 気軽・初心者向け訴求
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MFLEA" rel="nofollow">気軽に使える【ConoHa for Windows Server】</a>
+<img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MFLEA" alt="">
+```
+
+#### ⑤ 24時間安定稼働・初期費用無料訴求
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MFT42" rel="nofollow">24時間安定稼働の初期費用無料、【ConoHa for Windows Server】</a>
+<img border="0" width="1" height="1" src="https://www13.a8.net/0.gif?a8mat=4BEGDC+21TRSI+50+5MFT42" alt="">
+```
+
+#### ⑥ メルマガ・テキストURL
+```text
+https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MG0TVhttps://vps.conoha.jp/windows/
+```
+
