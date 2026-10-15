@@ -86,8 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (filterTabs.length > 0 && articleCards.length > 0) {
     const hintMessages = {
-      all: '※お探しの業務領域・職種に合わせて瞬時に切り替えられます（全9弾を表示中）',
-      routine: '事務・日常実務向け（メール・議事録・エクセル・難解書類要約など 5本）を表示中',
+      all: '※お探しの業務領域・職種に合わせて瞬時に切り替えられます（全11弾を表示中）',
+      routine: '事務・日常実務向け（メール・議事録・エクセル・PDF要約・請求書仕訳・スプシ自動化など 7本）を表示中',
       creative: '企画・クリエイティブ・副業向け（パワポ構成案・Canva画像・Notion一人起業など 3本）を表示中',
       governance: '組織導入・セキュリティ向け（情報漏洩対策・上司への社内提案メモ 1本）を表示中'
     };
