@@ -25,5 +25,25 @@
 - **標準記事テンプレート**: [`article-template.html`](./article-template.html)
 - **広告自動選定ルール**: [`.agents/rules/article-creation-ad-rules.md`](./.agents/rules/article-creation-ad-rules.md)
 - **公式広告コード台帳**: [`AFFILIATE_TAGS.md`](./AFFILIATE_TAGS.md)
+- **品質検品スクリプト**: [`scripts/verify-site.ps1`](./scripts/verify-site.ps1)
 - **プロジェクト履歴**: [`PROJECT_HISTORY.md`](./PROJECT_HISTORY.md)
 - **プライバシーポリシー・ステマ開示方針**: [`privacy.html`](./privacy.html)
+
+---
+
+## 🛡️ 3. 公開前自動検品プロトコル（必須実行チェック）
+
+記事の追加、HTMLの修正、デザイン変更を行った際は、コミット・プッシュする前に**必ず以下の自動検品スクリプトを実行し、全ファイルが「PASS（エラー0件）」であることを機械的に検証すること**を義務付けます。
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\verify-site.ps1
+```
+
+### 検証項目：
+1. **CSSリンクの整合性**：`css/style.css` の実在ファイルとの完全一致（404・タイポ防止）
+2. **広告・トラフィックタグ**：Google AdSense（`ca-pub-4599027497639401`）および Google Analytics（`G-PXPDE46RFR`）の存在
+3. **必須レイアウト構造**：`.main-wrapper`, `.article-layout`, `.article-main`, `.article-sidebar` の完全性
+4. **ステマ規制遵守**：`.pr-disclosure-bar` の明記
+5. **テンプレート残骸**：未置換のプレースホルダー（`{{...}}`）の非残留
+6. **ASPアフィリエイト整合性**：1px計測画像の保持および `rel="nofollow"` の付与
+
