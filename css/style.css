@@ -92,23 +92,23 @@ a:hover {
 .logo-area {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 1rem;
 }
 
 .logo-mark {
-  width: 46px;
-  height: 46px;
+  width: 56px;
+  height: 56px;
   background: #000000;
-  border-radius: 12px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-weight: 800;
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   flex-shrink: 0;
   transition: transform 0.2s ease;
 }
@@ -125,20 +125,20 @@ a:hover {
 }
 
 .logo-title {
-  font-size: 1.45rem;
-  font-weight: 850;
+  font-size: 1.8rem;
+  font-weight: 900;
   color: #0f172a;
   letter-spacing: -0.03em;
-  line-height: 1.15;
+  line-height: 1.12;
   display: block;
 }
 
 .logo-tagline {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  font-weight: 600;
+  font-size: 0.88rem;
+  color: #475569;
+  font-weight: 700;
   display: block;
-  margin-top: 3px;
+  margin-top: 4px;
   letter-spacing: -0.01em;
 }
 
@@ -1166,18 +1166,20 @@ img, svg, video, canvas, iframe {
   .logo-area {
     display: flex;
     align-items: center;
-    gap: 0.65rem;
+    gap: 0.8rem;
   }
   .logo-mark {
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
   }
   .logo-title {
-    font-size: 1.15rem;
+    font-size: 1.4rem;
+    font-weight: 900;
   }
   .logo-tagline {
-    font-size: 0.68rem;
+    font-size: 0.76rem;
+    font-weight: 600;
   }
   .main-nav {
     display: flex;
@@ -1405,10 +1407,11 @@ img, svg, video, canvas, iframe {
 /* 超小型スマホ対応 (380px以下 / iPhone SEなど) */
 @media (max-width: 380px) {
   .logo-title {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
   }
   .logo-tagline {
-    display: none;
+    font-size: 0.68rem;
+    display: block;
   }
   .hero-title {
     font-size: 1.4rem;
