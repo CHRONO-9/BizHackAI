@@ -3,98 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>【関数不要】スプレッドシートの面倒な集計・コピペは全部ChatGPTにお任せ！コピペで動く超実務テクニック | BizHack AI</title>
-  <meta name="description" content="Googleスプレッドシート特有の難解な関数（QUERYやARRAYFORMULA）やGASに挫折していませんか？ChatGPTにやりたいことを日本語で伝えるだけで、コピペで動く関数式や自動化スクリプトを一瞬で生成する実務テクニックを解説！">
-  <meta name="keywords" content="Googleスプレッドシート, ChatGPT, QUERY関数, ARRAYFORMULA, GAS, Google Apps Script, 業務効率化, プロンプト, スプシ時短">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PXPDE46RFR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  <!-- OGP / SNS共有設定 -->
-  <meta property="og:title" content="【関数不要】スプレッドシートの面倒な集計・コピペは全部ChatGPTにお任せ！コピペで動く超実務テクニック | BizHack AI">
-  <meta property="og:description" content="Googleスプレッドシート特有の難解な関数（QUERYやARRAYFORMULA）やGASに挫折していませんか？ChatGPTにやりたいことを日本語で伝えるだけで、コピペで動く関数式や自動化スクリプトを一瞬で生成する実務テクニックを解説！">
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="https://www.bizhack-ai.com/article-11.html">
-  <meta property="og:image" content="https://www.bizhack-ai.com/images/bizhack-icon-main.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- Google AdSense（自動広告コード） -->
+    gtag('config', 'G-PXPDE46RFR');
+  </script>
+  <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4599027497639401"
-     crossorigin="anonymous"></script>
-
-  <!-- Google Fonts & Stylesheet (キャッシュバスター付き) -->
+       crossorigin="anonymous"></script>
+  <title>【関数不要】スプレッドシートの面倒な集計・コピペは全部ChatGPTにお任せ！コピペで動く超実務テクニック｜BizHack AI</title>
+  <meta name="description" content="Googleスプレッドシート特有の難解な関数（QUERYやARRAYFORMULA）やGASに挫折していませんか？ChatGPTにやりたいことを日本語で伝えるだけで、コピペで動く関数式や自動化スクリプトを一瞬で生成する実務テクニックを解説！">
+  <link rel="canonical" href="https://www.bizhack-ai.com/article-11.html">
+  <link rel="stylesheet" href="css/style.css?v=20261015c">
+  <link rel="icon" type="image/jpeg" href="images/bizhack-icon-main.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20261015c">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- 景表法・ステマ規制対応 グローバルPR開示バー -->
-  <div class="ad-disclosure-bar" style="background:#f1f5f9; color:#64748b; font-size:0.75rem; text-align:center; padding:0.35rem 1rem; border-bottom:1px solid #e2e8f0;">
-    当サイトはアフィリエイト広告およびGoogle AdSenseを利用して収益を得て運営されています。
-  </div>
+  <div id="read-progress"></div>
 
-  <!-- サイトヘッダー -->
+  <!-- ヘッダー -->
   <header class="site-header">
     <div class="header-container">
-      <a href="index.html" class="logo">
-        <div class="logo-mark" style="width:34px; height:34px;">
-          <img src="images/bizhack-icon-main.jpg" alt="BizHack AI ロゴ" width="34" height="34">
-        </div>
-        <span>BizHack AI</span>
-      </a>
-      <nav class="nav-links">
-        <a href="index.html">ホーム</a>
-        <a href="bookmarklet.html">便利ツール</a>
-        <a href="privacy.html">規約・免責事項</a>
+      <div class="logo-area">
+        <a href="index.html" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;">
+          <div class="logo-mark"><img src="images/bizhack-icon-main.jpg" alt="BizHack AI ロゴ" width="46" height="46"></div>
+          <div>
+            <span class="logo-title">BizHack AI</span>
+            <span class="logo-tagline">現場の仕事を3時間短縮する実践マガジン</span>
+          </div>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">ホーム</a>
+        <a href="index.html#featured" class="nav-link">特集記事</a>
+        <a href="privacy.html" class="nav-link">サイト規約・PRポリシー</a>
       </nav>
     </div>
   </header>
 
-  <!-- パンくずリスト -->
-  <nav class="breadcrumb-container" aria-label="Breadcrumb">
-    <ol class="breadcrumb">
-      <li><a href="index.html">ホーム</a></li>
-      <li><a href="index.html#articles">事務職・エクセル・スプシ時短</a></li>
-      <li aria-current="page">第11弾：スプレッドシート×ChatGPT実務テクニック</li>
-    </ol>
-  </nav>
-
-  <!-- メインコンテンツ領域 -->
-  <div class="article-layout">
-    <div class="article-container">
+  <div class="main-wrapper">
+    <div class="article-layout">
+      <!-- 記事メインコンテンツ -->
       <main class="article-main">
-        <!-- 記事ヘッダー -->
+        <!-- ステマ規制対応 PR表記 -->
+        <div class="pr-disclosure-bar">
+          <span class="pr-badge">PR</span>
+          <span>本記事は客観的な実務検証データに基づき中立に執筆されています。一部に提携ツールの紹介リンクを含みます。</span>
+        </div>
+
         <header class="article-header">
-          <div class="article-meta-top">
-            <span class="category-badge">現場実務・スプシ時短</span>
-            <span class="reading-time">⏱️ 読了目安 7分</span>
-            <span class="update-date">最終更新：2026年10月15日</span>
+          <span class="category-tag cat-tech">現場実務・スプシ時短</span>
+          <h1 class="article-title">【関数不要】スプレッドシートの面倒な集計・コピペは全部ChatGPTにお任せ！コピペで動く超実務テクニック</h1>
+          <div class="article-meta-bar">
+            <span>執筆：スプレッドシート・業務自動化担当</span>
+            <span>更新日：2026年10月15日</span>
+            <span>読了目安：約7分</span>
           </div>
-          <h1 class="article-title">
-            【関数不要】スプレッドシートの面倒な集計・コピペは全部ChatGPTにお任せ！コピペで動く超実務テクニック
-          </h1>
-          <p class="article-lead">
-            社内の情報共有や顧客リストの管理で標準ツールとなっている<strong>Googleスプレッドシート（スプシ）</strong>。<br>
-            「複数条件の集計でQUERY関数を使いたいけれど構文エラーになる」「行が増えるたびに関数をコピペするのが面倒」「Googleフォームの回答を自動で別シートに振り分けたいがGAS（Google Apps Script）が書けない」と悩んでいませんか？<br>
-            本記事では、関数暗記やプログラミング知識ゼロでも、<strong>日本語でやりたいことを伝えるだけでコピペで動く関数・GASを一発生成するChatGPT活用術</strong>を徹底公開します！
-          </p>
         </header>
 
-        <!-- 記事本文 -->
-        <div class="article-content">
-          <!-- 目次 -->
-          <div class="toc-box">
-            <div class="toc-title">📑 本記事の目次</div>
-            <ul class="toc-list">
-              <li><a href="#sec-1">1. エクセルと何が違う？スプレッドシート×ChatGPTの相乗効果</a></li>
-              <li><a href="#sec-2">2. 【神プロンプト①】難解なQUERY関数・ARRAYFORMULAを一撃作成</a></li>
-              <li><a href="#sec-3">3. 【神プロンプト②】バラバラなデータの「名寄せ・重複削除」プロンプト</a></li>
-              <li><a href="#sec-4">4. 【神プロンプト③】コピペで動く！フォーム連動の自動通知GAS作成術</a></li>
-              <li><a href="#sec-5">5. チーム共有シートを壊さないための「安全ガードレール」</a></li>
-              <li><a href="#sec-pr">【おすすめ自動化ツール】顧客管理・会員運営を丸ごとノーコード自動化</a></li>
-              <li><a href="#sec-summary">6. まとめ ＆ 明日からのスプレッドシート時短術</a></li>
-            </ul>
-          </div>
+        <!-- 目次 -->
+        <nav class="toc-box">
+          <div class="toc-title">目次</div>
+          <ul class="toc-list">
+            <li><a href="#sec-1">1. エクセルと何が違う？スプレッドシート×ChatGPTの相乗効果</a></li>
+            <li><a href="#sec-2">2. 【神プロンプト①】難解なQUERY関数・ARRAYFORMULAを一撃作成</a></li>
+            <li><a href="#sec-3">3. 【神プロンプト②】バラバラなデータの「名寄せ・重複削除」プロンプト</a></li>
+            <li><a href="#sec-4">4. 【神プロンプト③】コピペで動く！フォーム連動の自動通知GAS作成術</a></li>
+            <li><a href="#sec-5">5. チーム共有シートを壊さないための「安全ガードレール」</a></li>
+            <li><a href="#sec-6">6. まとめ ＆ 明日からのスプレッドシート時短術</a></li>
+          </ul>
+        </nav>
 
-          <!-- セクション1 -->
+        <div class="article-content">
+          <p>
+            社内の情報共有や顧客リストの管理で標準ツールとなっている<strong>Googleスプレッドシート（スプシ）</strong>。<br>
+            「複数条件の集計でQUERY関数を使いたいけれど構文エラーになる」「行が増えるたびに関数をコピペするのが面倒」「Googleフォームの回答を自動で別シートに振り分けたいがGAS（Google Apps Script）が書けない」と悩んでいませんか？
+          </p>
+          <p>
+            本記事では、関数暗記やプログラミング知識ゼロでも、<strong>日本語でやりたいことを伝えるだけでコピペで動く関数・GASを一発生成するChatGPT活用術</strong>を徹底公開します！
+          </p>
+
           <h2 id="sec-1">1. エクセルと何が違う？スプレッドシート×ChatGPTの相乗効果</h2>
           <p>
             第4弾で解説した「エクセル時短術」も大好評ですが、Googleスプレッドシートにはエクセルにはない<strong>「Web特有の強力な機能」</strong>が存在します。
@@ -108,14 +102,12 @@
             これらスプレッドシート特有のハードルは、<strong>「ChatGPTにやりたい日本語を投げて数式やスクリプトを代筆してもらう」</strong>ことですべて解決します！
           </p>
 
-          <!-- セクション2 -->
           <h2 id="sec-2">2. 【神プロンプト①】難解なQUERY関数・ARRAYFORMULAを一撃作成</h2>
           <p>
             スプレッドシート最強の関数といえば、別シートから条件に合う行だけをごっそり抽出・集計できる<strong>「QUERY関数」</strong>です。しかし、シングルクォーテーションやカンマの配置ミスで動かないことが多々あります。<br>
             以下のプロンプトを使えば、条件を日本語で伝えるだけで1秒で正確な数式が手に入ります。
           </p>
 
-          <!-- コピペ用プロンプトコードブロック -->
           <div class="code-box">
             <div class="code-header">
               <span class="code-title">神プロンプト①：スプレッドシート数式・QUERY関数作成</span>
@@ -144,7 +136,6 @@
             </div>
           </div>
 
-          <!-- セクション3 -->
           <h2 id="sec-3">3. 【神プロンプト②】バラバラなデータの「名寄せ・重複削除」プロンプト</h2>
           <p>
             複数人で編集していると、「株式会社ABC」「（株）ABC」「ABC株式会社」のように会社名がバラバラになったり、全角・半角が混在して正しく集計できない問題が頻発します。<br>
@@ -171,7 +162,6 @@
             </div>
           </div>
 
-          <!-- セクション4 -->
           <h2 id="sec-4">4. 【神プロンプト③】コピペで動く！フォーム連動の自動通知GAS作成術</h2>
           <p>
             「Googleフォームから問い合わせが来たら、スプシに記録した上で担当者宛にSlackやGmailで自動通知を飛ばしたい」。<br>
@@ -205,7 +195,6 @@ Googleフォームの回答がスプレッドシートに1行追加された時�
             </div>
           </div>
 
-          <!-- セクション5 -->
           <h2 id="sec-5">5. チーム共有シートを壊さないための「安全ガードレール」</h2>
           <p>
             複数人で共有するスプレッドシートでAIが生成した数式やスクリプトを導入する際は、以下の点に気をつけましょう。
@@ -249,10 +238,8 @@ Googleフォームの回答がスプレッドシートに1行追加された時�
             </ul>
           </div>
 
-          <!-- ============================================================== -->
-          <!-- 記事中スポンサー・PR枠（TAKETIN）                              -->
-          <!-- ============================================================== -->
-          <div id="sec-pr" class="pr-recommend-box" style="margin:2.5rem 0; padding:1.75rem 1.5rem; background:var(--card-bg, #ffffff); border:1px solid var(--border-color, #e2e8f0); border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.06); text-align:center;">
+          <!-- スポンサー・PR枠（TAKETIN） -->
+          <div class="pr-recommend-box" style="margin:2.5rem 0; padding:1.75rem 1.5rem; background:var(--card-bg, #ffffff); border:1px solid var(--border-color, #e2e8f0); border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.06); text-align:center;">
             <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; border-bottom:1px dashed var(--border-color, #e2e8f0); padding-bottom:0.5rem;">
               <span style="font-size:0.75rem; font-weight:700; color:#dc2626; background:#fee2e2; padding:0.2rem 0.6rem; border-radius:4px;">PR（広告）</span>
               <span style="font-size:0.8rem; color:var(--text-muted, #64748b);">顧客管理・フォーム運用の完全自動化</span>
@@ -303,8 +290,7 @@ Googleフォームの回答がスプレッドシートに1行追加された時�
             </p>
           </div>
 
-          <!-- まとめ -->
-          <h2 id="sec-summary">6. まとめ ＆ 明日からのスプレッドシート時短術</h2>
+          <h2 id="sec-6">6. まとめ ＆ 明日からのスプレッドシート時短術</h2>
           <p>
             Googleスプレッドシートの関数やGASは、自分でイチから勉強して書くものではなく、<strong>「AIに書いてもらってコピペするもの」</strong>に変わりました。
           </p>
@@ -316,7 +302,7 @@ Googleフォームの回答がスプレッドシートに1行追加された時�
 
           <!-- 著者バイオカード -->
           <div class="author-bio-card">
-            <div class="bio-avatar" style="background:#059669;">ス</div>
+            <div class="bio-avatar" style="background:#15803d;">ス</div>
             <div>
               <div class="bio-name">スプレッドシート・業務自動化担当</div>
               <div class="bio-role">社内SE / クラウド業務改善アドバイザー</div>

@@ -10,7 +10,7 @@
 
 1. **標準テンプレートの使用**:
    - 必ず [`article-template.html`](./article-template.html) をベースにしてHTMLを生成すること。
-   - CSS読み込みは必ずキャッシュバスター付き（`css/styles.css?v=...`）にすること。
+   - CSS読み込みは必ずキャッシュバスター付き（`css/style.css?v=...`）にすること。
    - `<head>` にGoogle AdSense自動広告タグ（`ca-pub-4599027497639401`）を必ず含めること。
 2. **広告自動選定ルール（AIプロンプト規定）の遵守**:
    - 記事を執筆する際は、[`.agents/rules/article-creation-ad-rules.md`](./.agents/rules/article-creation-ad-rules.md) に規定された**「テーマ別広告自動選定マトリクス」**に従い、記事のテーマに最適なASP案件を自動選定して組み込むこと。

@@ -3,97 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>【事務・経理DX】ChatGPTにPDFを投げるだけ！請求書・領収書の手入力をゼロにする自動仕訳＆データ抽出術 | BizHack AI</title>
-  <meta name="description" content="毎月届くバラバラなPDF請求書や領収書の手入力に追われていませんか？ChatGPTにファイルをドラッグ＆ドロップするだけで、取引先名・金額・インボイス番号・勘定科目を一瞬でCSV化する神プロンプトを公開！">
-  <meta name="keywords" content="ChatGPT, 経理, 請求書, 領収書, PDF要約, 自動仕訳, インボイス制度, 電帳法, 業務効率化, プロンプト">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PXPDE46RFR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  <!-- OGP / SNS共有設定 -->
-  <meta property="og:title" content="【事務・経理DX】ChatGPTにPDFを投げるだけ！請求書・領収書の手入力をゼロにする自動仕訳＆データ抽出術 | BizHack AI">
-  <meta property="og:description" content="毎月届くバラバラなPDF請求書や領収書の手入力に追われていませんか？ChatGPTにファイルをドラッグ＆ドロップするだけで、取引先名・金額・インボイス番号・勘定科目を一瞬でCSV化する神プロンプトを公開！">
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="https://www.bizhack-ai.com/article-10.html">
-  <meta property="og:image" content="https://www.bizhack-ai.com/images/bizhack-icon-main.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- Google AdSense（自動広告コード） -->
+    gtag('config', 'G-PXPDE46RFR');
+  </script>
+  <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4599027497639401"
-     crossorigin="anonymous"></script>
-
-  <!-- Google Fonts & Stylesheet (キャッシュバスター付き) -->
+       crossorigin="anonymous"></script>
+  <title>【事務・経理DX】ChatGPTにPDFを投げるだけ！請求書・領収書の手入力をゼロにする自動仕訳＆データ抽出術｜BizHack AI</title>
+  <meta name="description" content="毎月届くバラバラなPDF請求書や領収書の手入力に追われていませんか？ChatGPTにファイルをドラッグ＆ドロップするだけで、取引先名・金額・インボイス番号・勘定科目を一瞬でCSV化する神プロンプトを公開！">
+  <link rel="canonical" href="https://www.bizhack-ai.com/article-10.html">
+  <link rel="stylesheet" href="css/style.css?v=20261015c">
+  <link rel="icon" type="image/jpeg" href="images/bizhack-icon-main.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20261015c">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- 景表法・ステマ規制対応 グローバルPR開示バー -->
-  <div class="ad-disclosure-bar" style="background:#f1f5f9; color:#64748b; font-size:0.75rem; text-align:center; padding:0.35rem 1rem; border-bottom:1px solid #e2e8f0;">
-    当サイトはアフィリエイト広告およびGoogle AdSenseを利用して収益を得て運営されています。
-  </div>
+  <div id="read-progress"></div>
 
-  <!-- サイトヘッダー -->
+  <!-- ヘッダー -->
   <header class="site-header">
     <div class="header-container">
-      <a href="index.html" class="logo">
-        <div class="logo-mark" style="width:34px; height:34px;">
-          <img src="images/bizhack-icon-main.jpg" alt="BizHack AI ロゴ" width="34" height="34">
-        </div>
-        <span>BizHack AI</span>
-      </a>
-      <nav class="nav-links">
-        <a href="index.html">ホーム</a>
-        <a href="bookmarklet.html">便利ツール</a>
-        <a href="privacy.html">規約・免責事項</a>
+      <div class="logo-area">
+        <a href="index.html" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;">
+          <div class="logo-mark"><img src="images/bizhack-icon-main.jpg" alt="BizHack AI ロゴ" width="46" height="46"></div>
+          <div>
+            <span class="logo-title">BizHack AI</span>
+            <span class="logo-tagline">現場の仕事を3時間短縮する実践マガジン</span>
+          </div>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">ホーム</a>
+        <a href="index.html#featured" class="nav-link">特集記事</a>
+        <a href="privacy.html" class="nav-link">サイト規約・PRポリシー</a>
       </nav>
     </div>
   </header>
 
-  <!-- パンくずリスト -->
-  <nav class="breadcrumb-container" aria-label="Breadcrumb">
-    <ol class="breadcrumb">
-      <li><a href="index.html">ホーム</a></li>
-      <li><a href="index.html#articles">事務職・エクセル・経理時短</a></li>
-      <li aria-current="page">第10弾：請求書・領収書PDFの自動仕訳術</li>
-    </ol>
-  </nav>
-
-  <!-- メインコンテンツ領域 -->
-  <div class="article-layout">
-    <div class="article-container">
+  <div class="main-wrapper">
+    <div class="article-layout">
+      <!-- 記事メインコンテンツ -->
       <main class="article-main">
-        <!-- 記事ヘッダー -->
+        <!-- ステマ規制対応 PR表記 -->
+        <div class="pr-disclosure-bar">
+          <span class="pr-badge">PR</span>
+          <span>本記事は客観的な実務検証データに基づき中立に執筆されています。一部に提携ツールの紹介リンクを含みます。</span>
+        </div>
+
         <header class="article-header">
-          <div class="article-meta-top">
-            <span class="category-badge">経理・バックオフィスDX</span>
-            <span class="reading-time">⏱️ 読了目安 7分</span>
-            <span class="update-date">最終更新：2026年10月15日</span>
+          <span class="category-tag cat-tech">経理・バックオフィスDX</span>
+          <h1 class="article-title">【事務・経理DX】ChatGPTにPDFを投げるだけ！請求書・領収書の手入力をゼロにする自動仕訳＆データ抽出術</h1>
+          <div class="article-meta-bar">
+            <span>執筆：経理DX・バックオフィス効率化担当</span>
+            <span>更新日：2026年10月15日</span>
+            <span>読了目安：約7分</span>
           </div>
-          <h1 class="article-title">
-            【事務・経理DX】ChatGPTにPDFを投げるだけ！請求書・領収書の手入力をゼロにする自動仕訳＆データ抽出術
-          </h1>
-          <p class="article-lead">
-            インボイス制度や電子帳簿保存法が始まって以降、メール添付やクラウドストレージに届く<strong>「バラバラな形式のPDF請求書・領収書」</strong>。金額や日付、取引先名、インボイス登録番号（T+13桁）を目視で確認し、会計ソフトやエクセルに1件ずつ手入力する作業に毎月何時間も奪われていませんか？<br>
-            本記事では、ChatGPTのマルチモーダル機能（画像・PDF解析）を活用し、<strong>ファイルをドラッグ＆ドロップするだけで支払い一覧表や会計仕訳データを一撃で自動生成する神プロンプト</strong>を徹底解説します！
-          </p>
         </header>
 
-        <!-- 記事本文 -->
-        <div class="article-content">
-          <!-- 目次 -->
-          <div class="toc-box">
-            <div class="toc-title">📑 本記事の目次</div>
-            <ul class="toc-list">
-              <li><a href="#sec-1">1. なぜ「PDF請求書の手入力」はChatGPTに丸投げすべきなのか？</a></li>
-              <li><a href="#sec-2">2. 【安全鉄則】経理データをAIに渡す前のマスキングルール</a></li>
-              <li><a href="#sec-3">3. 【神プロンプト①】PDF請求書から「支払一覧表CSV」を一瞬で抽出する術</a></li>
-              <li><a href="#sec-4">4. 【神プロンプト②】勘定科目をAIが自動推定！会計インポート仕訳の生成</a></li>
-              <li><a href="#sec-5">5. 【神プロンプト③】インボイス登録番号（T+13桁）の自動照合＆税率判定</a></li>
-              <li><a href="#sec-pr">【おすすめ経理DXツール】エクセル手入力から卒業するクラウド自動連携</a></li>
-              <li><a href="#sec-summary">6. まとめ ＆ 明日からの経理DXロードマップ</a></li>
-            </ul>
-          </div>
+        <!-- 目次 -->
+        <nav class="toc-box">
+          <div class="toc-title">目次</div>
+          <ul class="toc-list">
+            <li><a href="#sec-1">1. なぜ「PDF請求書の手入力」はChatGPTに丸投げすべきなのか？</a></li>
+            <li><a href="#sec-2">2. 【安全鉄則】経理データをAIに渡す前のマスキングルール</a></li>
+            <li><a href="#sec-3">3. 【神プロンプト①】PDF請求書から「支払一覧表CSV」を一瞬で抽出する術</a></li>
+            <li><a href="#sec-4">4. 【神プロンプト②】勘定科目をAIが自動推定！会計インポート仕訳の生成</a></li>
+            <li><a href="#sec-5">5. 【神プロンプト③】インボイス登録番号（T+13桁）の自動照合＆税率判定</a></li>
+            <li><a href="#sec-6">6. まとめ ＆ 明日からの経理DXロードマップ</a></li>
+          </ul>
+        </nav>
 
-          <!-- セクション1 -->
+        <div class="article-content">
+          <p>
+            インボイス制度や電子帳簿保存法が始まって以降、メール添付やクラウドストレージに届く<strong>「バラバラな形式のPDF請求書・領収書」</strong>。<br>
+            金額や日付、取引先名、インボイス登録番号（T+13桁）を目視で確認し、会計ソフトやエクセルに1件ずつ手入力する作業に毎月何時間も奪われていませんか？
+          </p>
+          <p>
+            本記事では、ChatGPTのマルチモーダル機能（画像・PDF解析）を活用し、<strong>ファイルをドラッグ＆ドロップするだけで支払い一覧表や会計仕訳データを一撃で自動生成する神プロンプト</strong>を徹底解説します！
+          </p>
+
           <h2 id="sec-1">1. なぜ「PDF請求書の手入力」はChatGPTに丸投げすべきなのか？</h2>
           <p>
             経理や総務の現場で毎月最もストレスがかかるのが、<strong>「取引先ごとにレイアウトがバラバラな請求書・領収書」</strong>のデータ化です。
@@ -114,7 +109,6 @@
             </p>
           </div>
 
-          <!-- セクション2 -->
           <h2 id="sec-2">2. 【安全鉄則】経理データをAIに渡す前のマスキングルール</h2>
           <p>
             経理データを扱う際は、セキュリティに細心の注意を払いましょう。第8弾のセキュリティ基礎でも解説した通り、以下の2点を必ず徹底してください。
@@ -124,13 +118,11 @@
             <li><strong>極秘データのマスキング</strong>：役員報酬や未公開の機密取引などは、金額部分を黒塗り（または伏せ字）にしてから読み取らせる。</li>
           </ol>
 
-          <!-- セクション3 -->
           <h2 id="sec-3">3. 【神プロンプト①】PDF請求書から「支払一覧表CSV」を一瞬で抽出する術</h2>
           <p>
             まずは基本形です。届いた請求書PDFをChatGPTの入力欄にドラッグ＆ドロップし、以下のプロンプトを実行してください。
           </p>
 
-          <!-- コピペ用プロンプトコードブロック -->
           <div class="code-box">
             <div class="code-header">
               <span class="code-title">神プロンプト①：請求書PDFデータ抽出＆CSV整形</span>
@@ -159,13 +151,12 @@
           </div>
 
           <p>
-            出力されたCSVをコピーしてエクセルやGoogleスプレッドシートに貼り付けるだけで、**「月末の支払予定一覧表」**があっという間に完成します！
+            出力されたCSVをコピーしてエクセルやGoogleスプレッドシートに貼り付けるだけで、<strong>「月末の支払予定一覧表」</strong>があっという間に完成します！
           </p>
 
-          <!-- セクション4 -->
           <h2 id="sec-4">4. 【神プロンプト②】勘定科目をAIが自動推定！会計インポート仕訳の生成</h2>
           <p>
-            さらに進んだ活用法として、請求書の品目内容から**「借方勘定科目」や「税区分」を自動判定させ、会計ソフトのインポート形式に仕立てる**方法です。
+            さらに進んだ活用法として、請求書の品目内容から<strong>「借方勘定科目」や「税区分」を自動判定させ、会計ソフトのインポート形式に仕立てる</strong>方法です。
           </p>
 
           <div class="code-box">
@@ -188,7 +179,6 @@
             </div>
           </div>
 
-          <!-- セクション5 -->
           <h2 id="sec-5">5. 【神プロンプト③】インボイス登録番号（T+13桁）の自動照合＆税率判定</h2>
           <p>
             インボイス制度で最も神経を使うのが、「この請求書は適格請求書（インボイス）の要件を満たしているか？」のチェックです。これもAIに一括チェックさせましょう。
@@ -249,10 +239,8 @@
             </ul>
           </div>
 
-          <!-- ============================================================== -->
-          <!-- 記事中スポンサー・PR枠（マネーフォワード クラウド）           -->
-          <!-- ============================================================== -->
-          <div id="sec-pr" class="pr-recommend-box" style="margin:2.5rem 0; padding:1.75rem 1.5rem; background:var(--card-bg, #ffffff); border:1px solid var(--border-color, #e2e8f0); border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.06); text-align:center;">
+          <!-- スポンサー・PR枠（マネーフォワード クラウド） -->
+          <div class="pr-recommend-box" style="margin:2.5rem 0; padding:1.75rem 1.5rem; background:var(--card-bg, #ffffff); border:1px solid var(--border-color, #e2e8f0); border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.06); text-align:center;">
             <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; border-bottom:1px dashed var(--border-color, #e2e8f0); padding-bottom:0.5rem;">
               <span style="font-size:0.75rem; font-weight:700; color:#dc2626; background:#fee2e2; padding:0.2rem 0.6rem; border-radius:4px;">PR（広告）</span>
               <span style="font-size:0.8rem; color:var(--text-muted, #64748b);">経理・バックオフィスの完全自動化</span>
@@ -295,8 +283,7 @@
             </p>
           </div>
 
-          <!-- まとめ -->
-          <h2 id="sec-summary">6. まとめ ＆ 明日からの経理DXロードマップ</h2>
+          <h2 id="sec-6">6. まとめ ＆ 明日からの経理DXロードマップ</h2>
           <p>
             経理や事務の本来の価値は、「領収書を目で見てキーボードで打ち込むこと」ではありません。数字を正しく把握し、経営や現場にフィードバックすることです。
           </p>
@@ -308,7 +295,7 @@
 
           <!-- 著者バイオカード -->
           <div class="author-bio-card">
-            <div class="bio-avatar" style="background:#0284c7;">経</div>
+            <div class="bio-avatar" style="background:#0f766e;">経</div>
             <div>
               <div class="bio-name">経理DX・バックオフィス効率化担当</div>
               <div class="bio-role">元・経理事務リーダー / バックオフィス改善コンサルタント</div>
@@ -322,7 +309,7 @@
       <aside class="article-sidebar">
         <!-- 記事ナビゲーションカード -->
         <div class="sidebar-card">
-          <div class="sidebar-title">全10弾 実践記事一覧</div>
+          <div class="sidebar-title">全11弾 実践記事一覧</div>
           <div class="recent-article-item"><span style="font-size:0.75rem; color:var(--text-muted);">第1弾</span><a href="article-1.html">ChatGPT超入門！神質問ワザ7選</a></div>
           <div class="recent-article-item"><span style="font-size:0.75rem; color:var(--text-muted);">第2弾</span><a href="article-2.html">ビジネスメール一発作成プロンプト</a></div>
           <div class="recent-article-item"><span style="font-size:0.75rem; color:var(--text-muted);">第3弾</span><a href="article-3.html">ChatGPT議事録作成プロンプト</a></div>
@@ -336,6 +323,7 @@
             <span style="font-size:0.75rem; color:#1e40af; font-weight:700;">第10弾（閲覧中）</span>
             <a href="article-10.html" style="font-weight:700;">請求書・領収書PDFの自動仕訳術</a>
           </div>
+          <div class="recent-article-item"><span style="font-size:0.75rem; color:var(--text-muted);">第11弾</span><a href="article-11.html">スプレッドシート×AI実務テクニック</a></div>
         </div>
 
         <!-- サイドバーPRカード（マネーフォワード クラウド） -->
@@ -393,6 +381,7 @@
           <li><a href="article-8.html">職場導入・セキュリティ</a></li>
           <li><a href="article-9.html">文書・PDF時短</a></li>
           <li><a href="article-10.html">経理・バックオフィスDX</a></li>
+          <li><a href="article-11.html">現場実務・スプシ時短</a></li>
         </ul>
       </div>
       <div class="footer-col">

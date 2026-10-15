@@ -1,94 +1,89 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ARTICLE_TITLE}} | BizHack AI</title>
-  <meta name="description" content="{{ARTICLE_DESCRIPTION}}">
-  <meta name="keywords" content="{{ARTICLE_KEYWORDS}}">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PXPDE46RFR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  <!-- OGP / SNS共有設定 -->
-  <meta property="og:title" content="{{ARTICLE_TITLE}} | BizHack AI">
-  <meta property="og:description" content="{{ARTICLE_DESCRIPTION}}">
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="https://www.bizhack-ai.com/{{ARTICLE_FILENAME}}">
-  <meta property="og:image" content="https://www.bizhack-ai.com/images/bizhack-icon-main.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- Google AdSense（自動広告コード） -->
+    gtag('config', 'G-PXPDE46RFR');
+  </script>
+  <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4599027497639401"
-     crossorigin="anonymous"></script>
-
-  <!-- Google Fonts & Stylesheet (キャッシュバスター付き) -->
+       crossorigin="anonymous"></script>
+  <title>{{ARTICLE_TITLE}}｜BizHack AI</title>
+  <meta name="description" content="{{ARTICLE_DESCRIPTION}}">
+  <link rel="canonical" href="https://www.bizhack-ai.com/{{ARTICLE_FILENAME}}">
+  <link rel="stylesheet" href="css/style.css?v=20261015c">
+  <link rel="icon" type="image/jpeg" href="images/bizhack-icon-main.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20261015c">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- 景表法・ステマ規制対応 グローバルPR開示バー -->
-  <div class="ad-disclosure-bar" style="background:#f1f5f9; color:#64748b; font-size:0.75rem; text-align:center; padding:0.35rem 1rem; border-bottom:1px solid #e2e8f0;">
-    当サイトはアフィリエイト広告およびGoogle AdSenseを利用して収益を得て運営されています。
-  </div>
+  <div id="read-progress"></div>
 
-  <!-- サイトヘッダー -->
+  <!-- ヘッダー -->
   <header class="site-header">
     <div class="header-container">
-      <a href="index.html" class="logo">
-        <div class="logo-mark" style="width:34px; height:34px;">
-          <img src="images/bizhack-icon-main.jpg" alt="BizHack AI ロゴ" width="34" height="34">
-        </div>
-        <span>BizHack AI</span>
-      </a>
-      <nav class="nav-links">
-        <a href="index.html">ホーム</a>
-        <a href="bookmarklet.html">便利ツール</a>
-        <a href="privacy.html">規約・免責事項</a>
+      <div class="logo-area">
+        <a href="index.html" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;">
+          <div class="logo-mark"><img src="images/bizhack-icon-main.jpg" alt="BizHack AI ロゴ" width="46" height="46"></div>
+          <div>
+            <span class="logo-title">BizHack AI</span>
+            <span class="logo-tagline">現場の仕事を3時間短縮する実践マガジン</span>
+          </div>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">ホーム</a>
+        <a href="index.html#featured" class="nav-link">特集記事</a>
+        <a href="privacy.html" class="nav-link">サイト規約・PRポリシー</a>
       </nav>
     </div>
   </header>
 
-  <!-- パンくずリスト -->
-  <nav class="breadcrumb-container" aria-label="Breadcrumb">
-    <ol class="breadcrumb">
-      <li><a href="index.html">ホーム</a></li>
-      <li><a href="index.html#articles">{{ARTICLE_CATEGORY}}</a></li>
-      <li aria-current="page">{{ARTICLE_SHORT_TITLE}}</li>
-    </ol>
-  </nav>
-
-  <!-- メインコンテンツ領域 -->
-  <div class="article-layout">
-    <div class="article-container">
+  <div class="main-wrapper">
+    <div class="article-layout">
+      <!-- 記事メインコンテンツ -->
       <main class="article-main">
-        <!-- 記事ヘッダー -->
+        <!-- ステマ規制対応 PR表記 -->
+        <div class="pr-disclosure-bar">
+          <span class="pr-badge">PR</span>
+          <span>本記事は客観的な実務検証データに基づき中立に執筆されています。一部に提携ツールの紹介リンクを含みます。</span>
+        </div>
+
         <header class="article-header">
-          <div class="article-meta-top">
-            <span class="category-badge">{{ARTICLE_CATEGORY}}</span>
-            <span class="reading-time">⏱️ 読了目安 {{READING_TIME}}分</span>
-            <span class="update-date">最終更新：{{UPDATE_DATE}}</span>
-          </div>
+          <span class="category-tag cat-tech">{{ARTICLE_CATEGORY}}</span>
           <h1 class="article-title">{{ARTICLE_TITLE}}</h1>
-          <p class="article-lead">
-            {{ARTICLE_LEAD_TEXT}}
-          </p>
+          <div class="article-meta-bar">
+            <span>執筆：{{AUTHOR_NAME}}</span>
+            <span>更新日：{{UPDATE_DATE}}</span>
+            <span>読了目安：約{{READING_TIME}}分</span>
+          </div>
         </header>
 
-        <!-- 記事本文 -->
+        <!-- 目次 -->
+        <nav class="toc-box">
+          <div class="toc-title">目次</div>
+          <ul class="toc-list">
+            <li><a href="#sec-1">1. {{SECTION_1_TITLE}}</a></li>
+            <li><a href="#sec-2">2. {{SECTION_2_TITLE}}</a></li>
+            <li><a href="#sec-3">3. {{SECTION_3_TITLE}}</a></li>
+            <li><a href="#sec-4">4. {{SECTION_4_TITLE}}</a></li>
+            <li><a href="#sec-5">5. {{SECTION_5_TITLE}}</a></li>
+            <li><a href="#sec-summary">6. まとめ ＆ 明日からの実践チェックリスト</a></li>
+          </ul>
+        </nav>
+
         <div class="article-content">
-          <!-- 目次 -->
-          <div class="toc-box">
-            <div class="toc-title">📑 本記事の目次</div>
-            <ul class="toc-list">
-              <li><a href="#sec-1">1. {{SECTION_1_TITLE}}</a></li>
-              <li><a href="#sec-2">2. {{SECTION_2_TITLE}}</a></li>
-              <li><a href="#sec-3">3. {{SECTION_3_TITLE}}</a></li>
-              <li><a href="#sec-4">4. {{SECTION_4_TITLE}}</a></li>
-              <li><a href="#sec-5">5. {{SECTION_5_TITLE}}</a></li>
-              <li><a href="#sec-pr">【おすすめ業務DXツール】{{PR_SECTION_TITLE}}</a></li>
-              <li><a href="#sec-summary">6. まとめ ＆ 明日からの実践チェックリスト</a></li>
-            </ul>
-          </div>
+          <p>
+            {{ARTICLE_LEAD_TEXT}}
+          </p>
 
           <!-- セクション1 -->
           <h2 id="sec-1">1. {{SECTION_1_TITLE}}</h2>
@@ -168,7 +163,7 @@
           <!-- ============================================================== -->
           <!-- 記事中スポンサー・PR枠（※AI広告選定ルールにより自動選定・挿入） -->
           <!-- ============================================================== -->
-          <div id="sec-pr" class="pr-recommend-box" style="margin:2.5rem 0; padding:1.75rem 1.5rem; background:var(--card-bg, #ffffff); border:1px solid var(--border-color, #e2e8f0); border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.06); text-align:center;">
+          <div class="pr-recommend-box" style="margin:2.5rem 0; padding:1.75rem 1.5rem; background:var(--card-bg, #ffffff); border:1px solid var(--border-color, #e2e8f0); border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.06); text-align:center;">
             <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; border-bottom:1px dashed var(--border-color, #e2e8f0); padding-bottom:0.5rem;">
               <span style="font-size:0.75rem; font-weight:700; color:#dc2626; background:#fee2e2; padding:0.2rem 0.6rem; border-radius:4px;">PR（広告）</span>
               <span style="font-size:0.8rem; color:var(--text-muted, #64748b);">{{PR_CATEGORY_LABEL}}</span>
@@ -183,7 +178,6 @@
             <!-- 高CVRテキストリンク -->
             <div style="margin-bottom:1.25rem; padding:0.85rem 1rem; background:#eff6ff; border:1px solid #dbeafe; border-radius:8px;">
               <div style="font-size:0.95rem; font-weight:700;">
-                <!-- {{PR_TEXT_LINK_HTML}} -->
                 <a href="{{PR_AFFILIATE_URL}}" rel="nofollow" target="_blank" style="color:#1d4ed8; text-decoration:underline;">
                   👉 {{PR_ANCHOR_TEXT}}
                 </a>
@@ -207,9 +201,8 @@
               </div>
             </div>
 
-            <!-- 公式300x250バナー（A8.net等の公式コード） -->
+            <!-- 公式300x250バナー -->
             <div style="display:inline-block; margin:0 auto; max-width:100%;">
-              <!-- {{PR_BANNER_300x250_HTML}} -->
               <a href="{{PR_AFFILIATE_URL}}" rel="nofollow" target="_blank" style="display:block; text-decoration:none;">
                 <img border="0" width="300" height="250" alt="{{PR_SERVICE_NAME}}" src="{{PR_BANNER_IMG_URL}}" style="max-width:100%; height:auto; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
               </a>
@@ -243,7 +236,7 @@
       <aside class="article-sidebar">
         <!-- 記事ナビゲーションカード -->
         <div class="sidebar-card">
-          <div class="sidebar-title">実践記事一覧</div>
+          <div class="sidebar-title">全11弾 実践記事一覧</div>
           <div class="recent-article-item"><span style="font-size:0.75rem; color:var(--text-muted);">第1弾</span><a href="article-1.html">ChatGPT超入門！神質問ワザ7選</a></div>
           <div class="recent-article-item"><span style="font-size:0.75rem; color:var(--text-muted);">第2弾</span><a href="article-2.html">ビジネスメール一発作成プロンプト</a></div>
           <div class="recent-article-item"><span style="font-size:0.75rem; color:var(--text-muted);">第3弾</span><a href="article-3.html">ChatGPT議事録作成プロンプト</a></div>
@@ -253,11 +246,11 @@
           <div class="recent-article-item"><span style="font-size:0.75rem; color:var(--text-muted);">第7弾</span><a href="article-7.html">一人起業・副業Notion×AI仕事術</a></div>
           <div class="recent-article-item"><span style="font-size:0.75rem; color:var(--text-muted);">第8弾</span><a href="article-8.html">職場で安全に使う基礎＆社内提案メモ</a></div>
           <div class="recent-article-item"><span style="font-size:0.75rem; color:var(--text-muted);">第9弾</span><a href="article-9.html">難解な規程・書類を3分要約</a></div>
+          <div class="recent-article-item"><span style="font-size:0.75rem; color:var(--text-muted);">第10弾</span><a href="article-10.html">請求書・領収書PDFの自動仕訳術</a></div>
+          <div class="recent-article-item"><span style="font-size:0.75rem; color:var(--text-muted);">第11弾</span><a href="article-11.html">スプレッドシート×AI実務テクニック</a></div>
         </div>
 
-        <!-- ============================================================== -->
-        <!-- サイドバーPRカード（※AI広告選定ルールにより自動選定・挿入）     -->
-        <!-- ============================================================== -->
+        <!-- サイドバーPRカード -->
         <div class="sidebar-card" style="text-align:center;">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.75rem; border-bottom:1px dashed var(--border-color, #e2e8f0); padding-bottom:0.4rem;">
             <span style="font-size:0.7rem; font-weight:700; color:#dc2626; background:#fee2e2; padding:0.15rem 0.4rem; border-radius:4px;">PR（広告）</span>
@@ -270,7 +263,6 @@
             {{SIDEBAR_PR_DESC}}
           </p>
           <div style="margin:0 auto 0.5rem auto; display:inline-block; max-width:100%;">
-            <!-- {{SIDEBAR_PR_BANNER_HTML}} (120x60 または 250x250) -->
             <a href="{{SIDEBAR_PR_AFFILIATE_URL}}" rel="nofollow" target="_blank" style="display:block;">
               <img border="0" width="120" height="60" alt="{{SIDEBAR_PR_SERVICE_NAME}}" src="{{SIDEBAR_PR_BANNER_IMG_URL}}" style="max-width:100%; height:auto; border-radius:6px; box-shadow:0 2px 6px rgba(0,0,0,0.08);">
             </a>
@@ -318,6 +310,8 @@
           <li><a href="article-7.html">個人事業・副業DX</a></li>
           <li><a href="article-8.html">職場導入・セキュリティ</a></li>
           <li><a href="article-9.html">文書・PDF時短</a></li>
+          <li><a href="article-10.html">経理・バックオフィスDX</a></li>
+          <li><a href="article-11.html">現場実務・スプシ時短</a></li>
         </ul>
       </div>
       <div class="footer-col">
