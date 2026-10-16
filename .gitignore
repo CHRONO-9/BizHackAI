@@ -4,3 +4,10 @@ __pycache__/
 *.pyc
 .DS_Store
 Thumbs.db
+
+# 秘密設定・認証情報ファイル（Git除外）
+config/
+*.secret.json
+email-config.json
+.env
+

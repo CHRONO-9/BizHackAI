@@ -121,6 +121,58 @@ $CommitMsg = "feat: publish article-$ArticleNumber.html (BizHack AI 第$ArticleN
 git commit -m $CommitMsg
 git push origin main
 
+$LatestCommitSha = (git rev-parse --short HEAD).Trim()
+
 Write-Host "==========================================================" -ForegroundColor Green
 Write-Host "  第$ArticleNumber弾 の公開とGitHubプッシュが完了しました！" -ForegroundColor Green
 Write-Host "==========================================================" -ForegroundColor Green
+
+# 7. 完了報告メールの送信
+$EmailConfigFile = "$WorkspaceRoot\config\email-config.json"
+if (Test-Path $EmailConfigFile) {
+    try {
+        Write-Host "[STEP 6] 完了通知メールを送信中..." -ForegroundColor Yellow
+        $mailConfig = Get-Content -Raw $EmailConfigFile | ConvertFrom-Json
+
+        $smtp = New-Object System.Net.Mail.SmtpClient($mailConfig.smtpServer, $mailConfig.smtpPort)
+        $smtp.EnableSsl = $mailConfig.enableSsl
+        $smtp.Credentials = New-Object System.Net.NetworkCredential($mailConfig.senderEmail, $mailConfig.appPassword)
+
+        $mail = New-Object System.Net.Mail.MailMessage
+        $mail.From = New-Object System.Net.Mail.MailAddress($mailConfig.senderEmail, "BizHack AI 運営事務局")
+        $mail.To.Add($mailConfig.recipientEmail)
+        $mail.Subject = "【BizHack AI】第${ArticleNumber}弾の記事公開＆GitHubプッシュが完了しました"
+        $mail.Body = @"
+阿部 圭二 様
+
+BizHack AI 日次記事自動公開システムよりご報告いたします。
+
+本日（$NowTimestampStr）のスケジュール記事が正常に公開され、品質検品をクリアしてGitHubへ自動プッシュされました。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+■ 公開完了レポート
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+・記事番号: 第${ArticleNumber}弾
+・記事タイトル: $ArticleTitle
+・公開URL: https://www.bizhack-ai.com/article-$ArticleNumber.html
+・GitHubコミット: $LatestCommitSha
+・コミットメッセージ: $CommitMsg
+・自動検品ステータス: PASS（エラー0件）
+
+数分以内にGitHub Pages（https://chrono-9.github.io/BizHackAI/）および公式サイトへ自動反映されます。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+※本メールはBizHack AI自動運用システムより送信されています。
+"@
+        $mail.BodyEncoding = [System.Text.Encoding]::UTF8
+        $mail.SubjectEncoding = [System.Text.Encoding]::UTF8
+
+        $smtp.Send($mail)
+        $mail.Dispose()
+        $smtp.Dispose()
+        Write-Host "[SUCCESS] 完了通知メールを $($mailConfig.recipientEmail) へ送信しました！" -ForegroundColor Green
+    } catch {
+        Write-Host "[WARN] メール送信に失敗しました: $($_.Exception.Message)" -ForegroundColor Yellow
+    }
+}
+
