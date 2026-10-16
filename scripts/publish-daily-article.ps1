@@ -63,7 +63,7 @@ if (-not (Test-Path $DraftFile)) {
     exit 1
 }
 
-Write-Host "[STEP 1] 第$ArticleNumber弾 を公開配置中: $DraftFile -> $TargetFile" -ForegroundColor Yellow
+Write-Host "[STEP 1] 第${ArticleNumber}弾 を公開配置中: $DraftFile -> $TargetFile" -ForegroundColor Yellow
 Copy-Item -Path $DraftFile -Destination $TargetFile -Force
 
 # 2. 記事メタデータの取得（タイトル・要約）
@@ -119,14 +119,14 @@ if ($LASTEXITCODE -ne 0) {
 # 6. Git コミット ＆ プッシュ
 Write-Host "[STEP 5] GitHubへのコミット・プッシュを実行中..." -ForegroundColor Yellow
 git add .
-$CommitMsg = "feat: publish article-$ArticleNumber.html (BizHack AI 第$ArticleNumber弾 自動公開)"
+$CommitMsg = "feat: publish article-$ArticleNumber.html (BizHack AI 第${ArticleNumber}弾 自動公開)"
 git commit -m $CommitMsg
 git push origin main
 
 $LatestCommitSha = (git rev-parse --short HEAD).Trim()
 
 Write-Host "==========================================================" -ForegroundColor Green
-Write-Host "  第$ArticleNumber弾 の公開とGitHubプッシュが完了しました！" -ForegroundColor Green
+Write-Host "  第${ArticleNumber}弾 の公開とGitHubプッシュが完了しました！" -ForegroundColor Green
 Write-Host "==========================================================" -ForegroundColor Green
 
 # 7. 完了報告メールの送信
