@@ -1793,18 +1793,23 @@ img, svg, video, canvas, iframe {
 .announcement-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0.45rem 1.25rem;
+  padding: 0.45rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .announcement-bar-link {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
+  justify-content: flex-start;
+  gap: 0.65rem;
   color: #f8fafc;
   text-decoration: none;
   transition: opacity 0.15s ease;
-  width: 100%;
+  min-width: 0;
+  flex: 1 1 auto;
 }
 
 .announcement-bar-link:hover {
@@ -1847,6 +1852,41 @@ img, svg, video, canvas, iframe {
   display: inline-flex;
   align-items: center;
   gap: 0.2rem;
+}
+
+.site-update-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.7rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  font-size: 0.74rem;
+  color: #cbd5e1;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.site-update-pill .update-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.85);
+  flex-shrink: 0;
+}
+
+.site-update-pill .update-label {
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.site-update-pill .update-time {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: #f8fafc;
+  letter-spacing: 0.02em;
 }
 
 /* ==========================================================================
@@ -2071,12 +2111,20 @@ img, svg, video, canvas, iframe {
     padding: 1.5rem 1rem;
     margin: 2rem 0;
   }
+  .announcement-container {
+    padding: 0.45rem 1rem;
+    gap: 0.65rem;
+  }
   .announcement-bar-link {
     justify-content: flex-start;
     gap: 0.5rem;
   }
   .announcement-text {
     font-size: 0.78rem;
+  }
+  .site-update-pill {
+    font-size: 0.7rem;
+    padding: 0.16rem 0.55rem;
   }
 }
 
@@ -2098,13 +2146,24 @@ img, svg, video, canvas, iframe {
     font-size: 1.05rem;
   }
   .announcement-container {
-    padding: 0.35rem 0.75rem;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.4rem 0.75rem;
+    gap: 0.28rem;
+  }
+  .announcement-bar-link {
+    width: 100%;
   }
   .announcement-text {
     font-size: 0.75rem;
   }
   .announcement-cta {
     display: none;
+  }
+  .site-update-pill {
+    align-self: flex-end;
+    font-size: 0.68rem;
+    padding: 0.12rem 0.5rem;
   }
 }
 
