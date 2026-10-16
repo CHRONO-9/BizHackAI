@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  // 2. コピペボタンのイベントリスナー
+  // 2. コピペボタンのイベントリスナー（＋GA4 prompt_copy イベント計測）
   const copyButtons = document.querySelectorAll('.copy-btn');
   copyButtons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -40,6 +40,17 @@ document.addEventListener('DOMContentLoaded', () => {
           const originalText = btn.innerHTML;
           btn.innerHTML = '✓ コピー完了！';
           btn.style.backgroundColor = '#059669';
+
+          // GA4 カスタムイベント送信: prompt_copy
+          if (typeof gtag === 'function') {
+            const promptTitle = btn.closest('.code-box')?.querySelector('.code-title')?.textContent?.trim() || targetId || 'prompt';
+            gtag('event', 'prompt_copy', {
+              article_path: window.location.pathname,
+              article_title: document.title,
+              prompt_id: targetId || 'inline',
+              prompt_title: promptTitle
+            });
+          }
 
           setTimeout(() => {
             btn.innerHTML = originalText;
@@ -123,5 +134,37 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // 5. GA4 カスタムイベント計測: アフィリエイト広告クリック (affiliate_click) & 関連記事回遊 (related_article_click)
+  const affiliateLinks = document.querySelectorAll('a[rel*="nofollow"]');
+  affiliateLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (typeof gtag === 'function') {
+        const imgAlt = link.querySelector('img')?.getAttribute('alt') || '';
+        const label = (link.textContent || imgAlt || link.href).trim().replace(/\s+/g, ' ').slice(0, 100);
+        const placement = link.closest('.article-sidebar') ? 'sidebar' : 'in_article';
+        gtag('event', 'affiliate_click', {
+          article_path: window.location.pathname,
+          article_title: document.title,
+          link_url: link.href,
+          link_label: label,
+          placement: placement
+        });
+      }
+    });
+  });
+
+  const relatedLinks = document.querySelectorAll('.related-article-card, .quick-start-link');
+  relatedLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (typeof gtag === 'function') {
+        gtag('event', 'internal_circulation_click', {
+          from_path: window.location.pathname,
+          to_url: link.getAttribute('href') || '',
+          component: link.classList.contains('quick-start-link') ? 'quick_start_banner' : 'related_articles_box'
+        });
+      }
+    });
+  });
 });
 
