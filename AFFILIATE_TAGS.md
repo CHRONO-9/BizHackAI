@@ -512,3 +512,83 @@ https://px.a8.net/svt/ejp?a8mat=4BEGDB+7O95GY+3SPO+BKSPR7
 https://px.a8.net/svt/ejp?a8mat=4BEGDC+21TRSI+50+5MG0TVhttps://vps.conoha.jp/windows/
 ```
 
+---
+
+## 🚀 案件7：TechGO（テックゴー / ハイクラスITエンジニア・ITコンサル転職）
+
+- **ジャンル**: ハイクラスITエンジニア転職、ITコンサル転職、上流工程転職、キャリア年収アップ
+- **対象読者**:
+  - 生成AIやGAS・Python等の業務自動化スキルを身につけ、IT・DXエンジニアへの転身や年収アップを目指すビジネスパーソン
+  - スプレッドシートやデータベース集計からシステム開発・上流工程へステップアップしたい実務担当者
+  - 現役エンジニアでハイクラス転職・コンサルタントへのキャリアアップを狙う読者
+- **主な掲載推奨先**:
+  - `article-11.html`（【業務自動化・スプシ時短】GAS・自動化スクリプト活用からエンジニアキャリアへ）
+  - `article-8.html`（【職場導入・セキュリティ】社内DX・IT推進担当者向け）
+  - `article-4.html`（【事務職・エクセル時短】データ集計からITスキルへの発展）
+  - `article-5.html`（【企画・プレゼン】ITコンサルタント・上流工程志向）
+  - サイドバー（ハイクラスIT転職枠）
+
+### 1. レクタングル・バナー
+
+#### ① 300 × 250（標準レクタングル A - 記事中・サイドバー推奨）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEH56+8DUSHE+5B0Y+HVNAP" rel="nofollow">
+<img border="0" width="300" height="250" alt="TechGO ハイクラスITエンジニア転職" src="https://www25.a8.net/svt/bgt?aid=261015882507&wid=001&eno=01&mid=s00000024757003003000&mc=1"></a>
+<img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=4BEH56+8DUSHE+5B0Y+HVNAP" alt="">
+```
+
+#### ② 300 × 250（標準レクタングル B）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEH56+8DUSHE+5B0Y+I0KRL" rel="nofollow">
+<img border="0" width="300" height="250" alt="TechGO ITエンジニア転職" src="https://www26.a8.net/svt/bgt?aid=261015882507&wid=001&eno=01&mid=s00000024757003026000&mc=1"></a>
+<img border="0" width="1" height="1" src="https://www11.a8.net/0.gif?a8mat=4BEH56+8DUSHE+5B0Y+I0KRL" alt="">
+```
+
+#### ③ 100 × 60（マイクロバナー / 小型アイコン枠推奨）
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEH56+8DUSHE+5B0Y+HVV0H" rel="nofollow">
+<img border="0" width="100" height="60" alt="TechGO" src="https://www26.a8.net/svt/bgt?aid=261015882507&wid=001&eno=01&mid=s00000024757003004000&mc=1"></a>
+<img border="0" width="1" height="1" src="https://www10.a8.net/0.gif?a8mat=4BEH56+8DUSHE+5B0Y+HVV0H" alt="">
+```
+
+---
+
+### 2. テキストリンク
+
+#### ① ハイクラスエンジニア転職訴求
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEH56+8DUSHE+5B0Y+I0D1U" rel="nofollow">TechGO（テックゴー）ハイクラスに届くエンジニア転職</a>
+<img border="0" width="1" height="1" src="https://www18.a8.net/0.gif?a8mat=4BEH56+8DUSHE+5B0Y+I0D1U" alt="">
+```
+
+#### ② ITエンジニア転職訴求
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEH56+8DUSHE+5B0Y+HV7V6" rel="nofollow">ITエンジニアの転職なら【TechGO（テックゴー）】</a>
+<img border="0" width="1" height="1" src="https://www18.a8.net/0.gif?a8mat=4BEH56+8DUSHE+5B0Y+HV7V6" alt="">
+```
+
+#### ③ 上流工程・キャリアアップ訴求
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEH56+8DUSHE+5B0Y+HWAG2" rel="nofollow">上流工程へのキャリアアップ転職【TechGO】</a>
+<img border="0" width="1" height="1" src="https://www13.a8.net/0.gif?a8mat=4BEH56+8DUSHE+5B0Y+HWAG2" alt="">
+```
+
+#### ④ ITコンサル訴求
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEH56+8DUSHE+5B0Y+HX5B6" rel="nofollow">ITコンサル・ハイクラス転職【TechGO】</a>
+<img border="0" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=4BEH56+8DUSHE+5B0Y+HX5B6" alt="">
+```
+
+#### ⑤ シンプルブランドリンク A
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEH56+8DUSHE+5B0Y+HVFKY" rel="nofollow">TechGO（テックゴー）</a>
+<img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=4BEH56+8DUSHE+5B0Y+HVFKY" alt="">
+```
+
+#### ⑥ シンプルブランドリンク B
+```html
+<a href="https://px.a8.net/svt/ejp?a8mat=4BEH56+8DUSHE+5B0Y+HWPVM" rel="nofollow">TechGO（テックゴー）</a>
+<img border="0" width="1" height="1" src="https://www16.a8.net/0.gif?a8mat=4BEH56+8DUSHE+5B0Y+HWPVM" alt="">
+```
+
+
