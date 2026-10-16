@@ -136,6 +136,58 @@
           </div>
         </header>
 
+                <!-- 即離脱防止：ファーストビュー即効バリューカード -->
+        <section class="fv-summary-card fv-theme-kiryu" aria-label="記事の要点と即効プロンプト">
+          <div class="fv-author-lead">
+            <div class="fv-author-avatar">
+              <img src="images/author-kiryu.jpg?v=20261016d" alt="桐生 健太" width="58" height="58" loading="lazy">
+            </div>
+            <div class="fv-author-speech">
+              <div class="fv-author-name-tag">
+                <span class="fv-author-name">桐生 健太（きりゅう けんた・38歳）</span>
+                <span class="fv-author-badge">現場実務・時短ノウハウ担当</span>
+              </div>
+              <p class="fv-author-comment">
+                「会議後の議事録作成ほど、現場のエネルギーを無駄に消耗する作業はありません。文字起こしや殴り書きメモを丸ごと投げるだけで、5分で『決定事項とタスク表』が完成します。まずは下の<strong>【10秒お試し要約プロンプト】</strong>で実感してください！」
+              </p>
+            </div>
+          </div>
+
+          <!-- 10秒お試しプロンプト（コピペボタン付き） -->
+          <div class="fv-try-box">
+            <div class="fv-try-header">
+              <span class="fv-try-title">⚡ 10秒お試し：まずはこのままコピペ！</span>
+              <button class="copy-btn fv-copy-btn" data-target="p-fv-3">プロンプトをコピー</button>
+            </div>
+            <pre id="p-fv-3" class="fv-try-code">以下の会議メモから、「①決定事項」「②保留・検討事項」「③誰がいつまでに何をするか（ToDo）」を整理して、箇条書きで分かりやすい議事録を作成してください：
+[ここに殴り書きの会議メモや発言録を貼り付け]</pre>
+            <p class="fv-try-hint">💡 散らかった発言メモをコピペするだけで、そのまま上司やチームに共有できる議事録が仕上がります。</p>
+          </div>
+
+          <!-- 本記事で持ち帰れる3大成果 -->
+          <div class="fv-takeaways-title">📌 この記事で持ち帰れる3大成果</div>
+          <ul class="fv-takeaways-list">
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon">✓</span>
+              <div><strong>議事録作成が5分で完了</strong><br>散らかったメモから結論を一発抽出</div>
+            </li>
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon">✓</span>
+              <div><strong>ToDo漏れを完全撲滅</strong><br>担当者と期日を自動マッピング</div>
+            </li>
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon">✓</span>
+              <div><strong>共有用メールも同時生成</strong><br>会議終了後すぐにチームへ一報できる</div>
+            </li>
+          </ul>
+
+          <!-- クイックジャンプ -->
+          <div class="fv-quick-links">
+            <a href="#sec-3" class="fv-quick-btn primary">📋 議事録プロンプト完成版へジャンプ ↓</a>
+            <a href="#sec-4" class="fv-quick-btn secondary">📧 報告メール変換テクニック ↓</a>
+            <a href="article-4.html" class="fv-quick-btn secondary">📊 エクセル丸投げ集計（第4弾）→</a>
+          </div>
+        </section>
         <!-- 目次 -->
         <nav class="toc-box">
           <div class="toc-title">目次</div>
@@ -174,14 +226,7 @@
             この記事では、ITやプログラミングの知識ゼロでも<strong>「今日からそのままコピペして使える議事録作成プロンプト」</strong>と、作業時間を91%削減した実測データを余すところなくお伝えします！
           </p>
 
-          <!-- 即離脱防止：クイックスタート＆相互誘導バナー -->
-          <div class="quick-start-banner">
-            <div class="quick-start-title">⚡ 今すぐ会議メモを整頓したい方へ：1クリックでプロンプトへ移動！</div>
-            <div class="quick-start-links">
-              <a href="#sec-3" class="quick-start-link primary">📋 コピペ用「議事録一発作成プロンプト」へ直行 ↓</a>
-              <a href="article-11.html" class="quick-start-link secondary">📊 会議後の数値集計・スプレッドシート自動化（第11弾）→</a>
-            </div>
-          </div>
+          
 
           <h2 id="sec-1">1. なぜ議事録作成は30分以上かかるのか？手作業に潜む「3つの無駄」</h2>
           <p>

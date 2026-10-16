@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -131,6 +131,58 @@
             <span>読了目安：約{{READING_TIME}}分</span>
           </div>
         </header>
+
+        <!-- 即離脱防止：ファーストビュー即効バリューカード -->
+        <section class="fv-summary-card fv-theme-kiryu" aria-label="記事の要点と即効プロンプト">
+          <div class="fv-author-lead">
+            <div class="fv-author-avatar">
+              <img src="images/{{AUTHOR_IMAGE}}" alt="{{AUTHOR_NAME}}" width="58" height="58" loading="lazy">
+            </div>
+            <div class="fv-author-speech">
+              <div class="fv-author-name-tag">
+                <span class="fv-author-name">{{AUTHOR_NAME}}</span>
+                <span class="fv-author-badge">{{AUTHOR_ROLE_SHORT}}</span>
+              </div>
+              <p class="fv-author-comment">
+                {{AUTHOR_LEAD_COMMENT}}
+              </p>
+            </div>
+          </div>
+
+          <!-- 10秒お試しプロンプト（コピペボタン付き） -->
+          <div class="fv-try-box">
+            <div class="fv-try-header">
+              <span class="fv-try-title">⚡ 10秒お試し：まずはこのままコピペ！</span>
+              <button class="copy-btn fv-copy-btn" data-target="p-fv-instant">プロンプトをコピー</button>
+            </div>
+            <pre id="p-fv-instant" class="fv-try-code">{{INSTANT_TRIAL_PROMPT}}</pre>
+            <p class="fv-try-hint">💡 {{INSTANT_TRIAL_HINT}}</p>
+          </div>
+
+          <!-- 本記事で持ち帰れる3大成果 -->
+          <div class="fv-takeaways-title">📌 この記事で持ち帰れる3大成果</div>
+          <ul class="fv-takeaways-list">
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon">✓</span>
+              <div><strong>{{TAKEAWAY_1_TITLE}}</strong><br>{{TAKEAWAY_1_DESC}}</div>
+            </li>
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon">✓</span>
+              <div><strong>{{TAKEAWAY_2_TITLE}}</strong><br>{{TAKEAWAY_2_DESC}}</div>
+            </li>
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon">✓</span>
+              <div><strong>{{TAKEAWAY_3_TITLE}}</strong><br>{{TAKEAWAY_3_DESC}}</div>
+            </li>
+          </ul>
+
+          <!-- クイックジャンプ -->
+          <div class="fv-quick-links">
+            <a href="#sec-3" class="fv-quick-btn primary">📋 {{QUICK_LINK_1_TEXT}} ↓</a>
+            <a href="#sec-2" class="fv-quick-btn secondary">⏱️ {{QUICK_LINK_2_TEXT}} ↓</a>
+            <a href="{{NEXT_ARTICLE_URL}}" class="fv-quick-btn secondary">{{NEXT_ARTICLE_LABEL}} →</a>
+          </div>
+        </section>
 
         <!-- 目次 -->
         <nav class="toc-box">

@@ -2741,6 +2741,77 @@ img, svg, video, canvas, iframe {
   }
 }
 
+/* 桐生 健太: ビジネスロイヤルブルー（現場実務・時短） */
+.fv-theme-kiryu {
+  background: linear-gradient(145deg, #eff6ff 0%, #ffffff 60%, #f8fafc 100%);
+  border-color: #bfdbfe;
+  border-left-color: #2563eb;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08);
+}
+.fv-theme-kiryu .fv-author-avatar { border-color: #2563eb; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2); }
+.fv-theme-kiryu .fv-author-badge { background: #dbeafe; color: #1e40af; border-color: #bfdbfe; }
+.fv-theme-kiryu .fv-try-title { color: #60a5fa; }
+.fv-theme-kiryu .fv-copy-btn, .fv-theme-kiryu .fv-quick-btn.primary { background: #2563eb; }
+.fv-theme-kiryu .fv-copy-btn:hover, .fv-theme-kiryu .fv-quick-btn.primary:hover { background: #1d4ed8; }
+.fv-theme-kiryu .fv-takeaway-icon { color: #2563eb; }
+
+/* 神崎 聡: スカイブルー＆シアン（データ実務・バックオフィスDX） */
+.fv-theme-kanzaki {
+  background: linear-gradient(145deg, #f0f9ff 0%, #ffffff 60%, #f8fafc 100%);
+  border-color: #bae6fd;
+  border-left-color: #0284c7;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.08);
+}
+.fv-theme-kanzaki .fv-author-avatar { border-color: #0284c7; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.2); }
+.fv-theme-kanzaki .fv-author-badge { background: #e0f2fe; color: #0369a1; border-color: #bae6fd; }
+.fv-theme-kanzaki .fv-try-title { color: #38bdf8; }
+.fv-theme-kanzaki .fv-copy-btn, .fv-theme-kanzaki .fv-quick-btn.primary { background: #0284c7; }
+.fv-theme-kanzaki .fv-copy-btn:hover, .fv-theme-kanzaki .fv-quick-btn.primary:hover { background: #0369a1; }
+.fv-theme-kanzaki .fv-takeaway-icon { color: #0284c7; }
+
+/* 黒澤 拓海: エグゼクティブ・スレート＆インディゴ（企画・組織導入・セキュリティ） */
+.fv-theme-kurosawa {
+  background: linear-gradient(145deg, #f8fafc 0%, #ffffff 60%, #f1f5f9 100%);
+  border-color: #cbd5e1;
+  border-left-color: #334155;
+  box-shadow: 0 4px 16px rgba(51, 65, 85, 0.08);
+}
+.fv-theme-kurosawa .fv-author-avatar { border-color: #334155; box-shadow: 0 2px 8px rgba(51, 65, 85, 0.2); }
+.fv-theme-kurosawa .fv-author-badge { background: #e2e8f0; color: #1e293b; border-color: #cbd5e1; }
+.fv-theme-kurosawa .fv-try-title { color: #94a3b8; }
+.fv-theme-kurosawa .fv-copy-btn, .fv-theme-kurosawa .fv-quick-btn.primary { background: #334155; }
+.fv-theme-kurosawa .fv-copy-btn:hover, .fv-theme-kurosawa .fv-quick-btn.primary:hover { background: #1e293b; }
+.fv-theme-kurosawa .fv-takeaway-icon { color: #334155; }
+
+/* 白石 彩乃: クリエイティブ・バイオレット（デザイン・マーケティング） */
+.fv-theme-shiraishi {
+  background: linear-gradient(145deg, #faf5ff 0%, #ffffff 60%, #fdf4ff 100%);
+  border-color: #e9d5ff;
+  border-left-color: #7c3aed;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.08);
+}
+.fv-theme-shiraishi .fv-author-avatar { border-color: #7c3aed; box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2); }
+.fv-theme-shiraishi .fv-author-badge { background: #f3e8ff; color: #6b21a8; border-color: #e9d5ff; }
+.fv-theme-shiraishi .fv-try-title { color: #c084fc; }
+.fv-theme-shiraishi .fv-copy-btn, .fv-theme-shiraishi .fv-quick-btn.primary { background: #7c3aed; }
+.fv-theme-shiraishi .fv-copy-btn:hover, .fv-theme-shiraishi .fv-quick-btn.primary:hover { background: #6d28d9; }
+.fv-theme-shiraishi .fv-takeaway-icon { color: #7c3aed; }
+
+/* 橘 颯太: ソロプレナー・アンバー＆ゴールド（一人起業・副業DX） */
+.fv-theme-tachibana {
+  background: linear-gradient(145deg, #fffbeb 0%, #ffffff 60%, #fef3c7 100%);
+  border-color: #fde68a;
+  border-left-color: #d97706;
+  box-shadow: 0 4px 16px rgba(217, 119, 6, 0.08);
+}
+.fv-theme-tachibana .fv-author-avatar { border-color: #d97706; box-shadow: 0 2px 8px rgba(217, 119, 6, 0.2); }
+.fv-theme-tachibana .fv-author-badge { background: #fef3c7; color: #92400e; border-color: #fde68a; }
+.fv-theme-tachibana .fv-try-title { color: #fbbf24; }
+.fv-theme-tachibana .fv-copy-btn, .fv-theme-tachibana .fv-quick-btn.primary { background: #d97706; }
+.fv-theme-tachibana .fv-copy-btn:hover, .fv-theme-tachibana .fv-quick-btn.primary:hover { background: #b45309; }
+.fv-theme-tachibana .fv-takeaway-icon { color: #d97706; }
+
+
 
 
 

@@ -136,6 +136,58 @@
           </div>
         </header>
 
+                <!-- 即離脱防止：ファーストビュー即効バリューカード -->
+        <section class="fv-summary-card fv-theme-kanzaki" aria-label="記事の要点と即効プロンプト">
+          <div class="fv-author-lead">
+            <div class="fv-author-avatar">
+              <img src="images/author-kanzaki.jpg?v=20261016d" alt="神崎 聡" width="58" height="58" loading="lazy">
+            </div>
+            <div class="fv-author-speech">
+              <div class="fv-author-name-tag">
+                <span class="fv-author-name">神崎 聡（かんざき さとし・51歳）</span>
+                <span class="fv-author-badge">データ実務・バックオフィスDX担当</span>
+              </div>
+              <p class="fv-author-comment">
+                「複雑な関数を暗記したり、数式エラーの解消に何時間も残業するのはもう終わりにしましょう。やりたいことを日本語で伝えるだけで、ChatGPTが最適な関数もマクロも一瞬で組み立ててくれます。まずは下の<strong>【10秒お試しプロンプト】</strong>で試してみてください。」
+              </p>
+            </div>
+          </div>
+
+          <!-- 10秒お試しプロンプト（コピペボタン付き） -->
+          <div class="fv-try-box">
+            <div class="fv-try-header">
+              <span class="fv-try-title">⚡ 10秒お試し：まずはこのままコピペ！</span>
+              <button class="copy-btn fv-copy-btn" data-target="p-fv-4">プロンプトをコピー</button>
+            </div>
+            <pre id="p-fv-4" class="fv-try-code">Excelで以下の処理を行いたいので、最適な関数（数式）を教えてください。使い方の手順とセル番地の例も添えて：
+「A列の社員番号をキーにして、別シートの『社員マスタ』から氏名と部署名をB列・C列に自動反映させたい。」</pre>
+            <p class="fv-try-hint">💡 複雑なVLOOKUPやXLOOKUPの構文も、日本語で希望を伝えるだけで正確な数式が返ってきます。</p>
+          </div>
+
+          <!-- 本記事で持ち帰れる3大成果 -->
+          <div class="fv-takeaways-title">📌 この記事で持ち帰れる3大成果</div>
+          <ul class="fv-takeaways-list">
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon">✓</span>
+              <div><strong>関数暗記の手間ゼロ化</strong><br>やりたいことを日本語で書くだけで数式生成</div>
+            </li>
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon">✓</span>
+              <div><strong>数式エラーの即時解決</strong><br>#N/A や #VALUE! の原因と修正法を解説</div>
+            </li>
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon">✓</span>
+              <div><strong>マクロ（VBA）自動生成</strong><br>ボタン1つで動く集計自動化コードの作成</div>
+            </li>
+          </ul>
+
+          <!-- クイックジャンプ -->
+          <div class="fv-quick-links">
+            <a href="#sec-3" class="fv-quick-btn primary">📋 エクセル丸投げ集計ワザへジャンプ ↓</a>
+            <a href="#sec-4" class="fv-quick-btn secondary">⚡ エラー解決プロンプト ↓</a>
+            <a href="article-11.html" class="fv-quick-btn secondary">📈 スプレッドシート自動化（第11弾）→</a>
+          </div>
+        </section>
         <!-- 目次 -->
         <nav class="toc-box">
           <div class="toc-title">目次</div>
@@ -165,15 +217,7 @@
             今回は、数学やプログラミングが苦手な方でも3分でできる超簡単データ集計術をお伝えします。
           </p>
 
-          <!-- 即離脱防止：クイックスタート＆相互誘導バナー -->
-          <div class="quick-start-banner">
-            <div class="quick-start-title">⚡ やりたい作業に合わせて最短ルートを選択！</div>
-            <div class="quick-start-links">
-              <a href="#sec-3" class="quick-start-link primary">📋 エクセル表記ゆれ・クロス集計プロンプトへ直行 ↓</a>
-              <a href="article-11.html" class="quick-start-link secondary">📊 Googleスプレッドシート（QUERY関数・GAS自動化）派の方は第11弾へ →</a>
-              <a href="article-10.html" class="quick-start-link secondary">🧾 請求書・領収書PDFの自動仕訳・CSV抽出は第10弾へ →</a>
-            </div>
-          </div>
+          
 
           <h2 id="sec-1">1. 「VLOOKUPや関数が難しくて頭が痛い…」エクセル作業の悩み</h2>
           <p>
