@@ -1,4 +1,4 @@
-# ==============================================================================
+﻿# ==============================================================================
 # BizHack AI - 日次記事自動公開＆プッシュスクリプト (publish-daily-article.ps1)
 # 毎日 0:00 に実行され、予約されたドラフト記事を公開・検品・Gitプッシュします。
 # ==============================================================================
@@ -97,9 +97,11 @@ $IndexPath = "$WorkspaceRoot\index.html"
 if (Test-Path $IndexPath) {
     $IndexContent = Get-Content -Path $IndexPath -Raw -Encoding utf8
     # お知らせバーのテキスト更新
-    $IndexContent = [regex]::Replace($IndexContent, '<span class="announcement-text">.*?</span>', "<span class=\"announcement-text\">最新第${ArticleNumber}弾「$ArticleTitle」を公開！</span>")
+    $NewAnnouncement = "<span class=`"announcement-text`">最新第${ArticleNumber}弾「$ArticleTitle」を公開！</span>"
+    $IndexContent = [regex]::Replace($IndexContent, '<span class="announcement-text">.*?</span>', { param($m) $NewAnnouncement })
     # 更新日時の更新
-    $IndexContent = [regex]::Replace($IndexContent, '<time datetime=".*?" class="update-time">.*?</time>', "<time datetime=\"$NowIsoStr\" class=\"update-time\">$NowTimestampStr</time>")
+    $NewTime = "<time datetime=`"$NowIsoStr`" class=`"update-time`">$NowTimestampStr</time>"
+    $IndexContent = [regex]::Replace($IndexContent, '<time datetime=".*?" class="update-time">.*?</time>', { param($m) $NewTime })
     Set-Content -Path $IndexPath -Value $IndexContent -Encoding utf8 -NoNewline
     Write-Host "[STEP 3] index.html のお知らせバーと更新日時を更新完了" -ForegroundColor Green
 }
