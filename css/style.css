@@ -2493,6 +2493,255 @@ img, svg, video, canvas, iframe {
   border-color: #2563eb;
 }
 
+/* ==========================================================================
+   記事冒頭ファーストビュー即効バリューカード (.fv-summary-card)
+   即離脱防止＆エンゲージメント向上施策
+   ========================================================================== */
+.fv-summary-card {
+  background: linear-gradient(145deg, #f0fdf4 0%, #ffffff 60%, #f8fafc 100%);
+  border: 1.5px solid #bbf7d0;
+  border-left: 5px solid #059669;
+  border-radius: var(--radius-md);
+  padding: 1.35rem 1.45rem;
+  margin: 1.5rem 0 1.75rem 0;
+  box-shadow: 0 4px 16px rgba(5, 150, 105, 0.08);
+}
+
+.fv-author-lead {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.fv-author-avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 2px solid #10b981;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+}
+
+.fv-author-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.fv-author-speech {
+  flex-grow: 1;
+}
+
+.fv-author-name-tag {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+}
+
+.fv-author-name {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.fv-author-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #d1fae5;
+  color: #065f46;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid #a7f3d0;
+}
+
+.fv-author-comment {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #334155;
+  margin: 0;
+  background: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+
+/* 10秒お試しプロンプトボックス */
+.fv-try-box {
+  background: #0f172a;
+  border-radius: 8px;
+  padding: 1rem 1.15rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+  color: #f8fafc;
+}
+
+.fv-try-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #334155;
+}
+
+.fv-try-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #34d399;
+}
+
+.fv-copy-btn {
+  background: #059669;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.3);
+}
+
+.fv-copy-btn:hover {
+  background: #10b981;
+  transform: translateY(-1px);
+}
+
+.fv-try-code {
+  background: transparent;
+  color: #e2e8f0;
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  line-height: 1.6;
+  margin: 0 0 0.5rem 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.fv-try-hint {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* 持ち帰れる成果リスト */
+.fv-takeaways-title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.fv-takeaways-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.6rem;
+  margin: 0 0 1.25rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fv-takeaway-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 0.6rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.fv-takeaway-item strong {
+  color: #0f172a;
+}
+
+.fv-takeaway-icon {
+  color: #059669;
+  font-size: 1rem;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+/* クイックジャンプリンク群 */
+.fv-quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.fv-quick-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+}
+
+.fv-quick-btn.primary {
+  background: #059669;
+  color: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.25);
+}
+
+.fv-quick-btn.primary:hover {
+  background: #047857;
+  transform: translateY(-1px);
+}
+
+.fv-quick-btn.secondary {
+  background: #ffffff;
+  color: #334155 !important;
+  border: 1px solid #cbd5e1;
+}
+
+.fv-quick-btn.secondary:hover {
+  border-color: #059669;
+  color: #059669 !important;
+  background: #f0fdf4;
+}
+
+@media (max-width: 640px) {
+  .fv-summary-card {
+    padding: 1.1rem 1rem;
+  }
+  .fv-author-lead {
+    gap: 0.75rem;
+  }
+  .fv-author-avatar {
+    width: 48px;
+    height: 48px;
+  }
+  .fv-takeaways-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+
 
 
 
