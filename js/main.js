@@ -17,10 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 2. コピペボタンのイベントリスナー（＋GA4 prompt_copy イベント計測）
-  const copyButtons = document.querySelectorAll('.copy-btn');
+  const copyButtons = document.querySelectorAll('.copy-btn, .fv-copy-btn, [data-copy-target]');
   copyButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      const targetId = btn.getAttribute('data-target');
+      const rawTarget = btn.getAttribute('data-target') || btn.getAttribute('data-copy-target') || '';
+      const targetId = rawTarget.replace(/^#/, '');
       let textToCopy = '';
 
       if (targetId) {
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
           textToCopy = targetElement.innerText || targetElement.textContent;
         }
       } else {
-        const codeBlock = btn.closest('.code-box')?.querySelector('.code-content pre');
+        const codeBlock = btn.closest('.code-box, .prompt-box, .fv-try-box, .fv-instant-tool')?.querySelector('pre');
         if (codeBlock) {
           textToCopy = codeBlock.innerText || codeBlock.textContent;
         }
@@ -43,7 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // GA4 カスタムイベント送信: prompt_copy
           if (typeof gtag === 'function') {
-            const promptTitle = btn.closest('.code-box')?.querySelector('.code-title')?.textContent?.trim() || targetId || 'prompt';
+            const promptTitle =
+              btn.closest('.code-box')?.querySelector('.code-title')?.textContent?.trim() ||
+              btn.closest('.prompt-box')?.querySelector('.prompt-title')?.textContent?.trim() ||
+              btn.closest('.fv-try-box')?.querySelector('.fv-try-title')?.textContent?.trim() ||
+              btn.closest('.fv-instant-tool')?.querySelector('.fv-tool-label span')?.textContent?.trim() ||
+              targetId ||
+              'prompt';
             gtag('event', 'prompt_copy', {
               article_path: window.location.pathname,
               article_title: document.title,
@@ -83,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, { rootMargin: '0px 0px -70% 0px' });
 
-    document.querySelectorAll('.article-content h2, .article-content h3').forEach(heading => {
+    document.querySelectorAll('.article-content h2, .article-content h3, article h2, article h3').forEach(heading => {
       if (heading.id) {
         observer.observe(heading);
       }
@@ -97,8 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (filterTabs.length > 0 && articleCards.length > 0) {
     const hintMessages = {
-      all: '※お探しの業務領域・職種に合わせて瞬時に切り替えられます（全11弾を表示中）',
-      routine: '事務・日常実務向け（メール・議事録・エクセル・PDF要約・請求書仕訳・スプシ自動化など 7本）を表示中',
+      all: '※お探しの業務領域・職種に合わせて瞬時に切り替えられます（全12弾を表示中）',
+      routine: '事務・日常実務向け（メール・議事録・エクセル・PDF要約・請求書仕訳・スプシ＆Gmail自動化など 8本）を表示中',
       creative: '企画・クリエイティブ・副業向け（パワポ構成案・Canva画像・Notion一人起業など 3本）を表示中',
       governance: '組織導入・セキュリティ向け（情報漏洩対策・上司への社内提案メモ 1本）を表示中'
     };
@@ -135,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. GA4 カスタムイベント計測: アフィリエイト広告クリック (affiliate_click) & 関連記事回遊 (related_article_click)
+  // 5. GA4 カスタムイベント計測: アフィリエイト広告クリック (affiliate_click) & 関連記事回遊 (internal_circulation_click)
   const affiliateLinks = document.querySelectorAll('a[rel*="nofollow"]');
   affiliateLinks.forEach(link => {
     link.addEventListener('click', () => {
@@ -154,14 +161,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const relatedLinks = document.querySelectorAll('.related-article-card, .quick-start-link');
+  const relatedLinks = document.querySelectorAll('.related-article-card, .quick-start-link, .step-up-link, .fv-quick-btn');
   relatedLinks.forEach(link => {
     link.addEventListener('click', () => {
       if (typeof gtag === 'function') {
+        let component = 'related_articles_box';
+        if (link.classList.contains('quick-start-link')) component = 'quick_start_banner';
+        else if (link.classList.contains('step-up-link')) component = 'in_article_step_up';
+        else if (link.classList.contains('fv-quick-btn')) component = 'fv_quick_jump';
         gtag('event', 'internal_circulation_click', {
           from_path: window.location.pathname,
           to_url: link.getAttribute('href') || '',
-          component: link.classList.contains('quick-start-link') ? 'quick_start_banner' : 'related_articles_box'
+          component: component
         });
       }
     });

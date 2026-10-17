@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -156,12 +156,13 @@
           <!-- 10秒お試しプロンプト（コピペボタン付き） -->
           <div class="fv-try-box">
             <div class="fv-try-header">
-              <span class="fv-try-title">⚡ 10秒お試し：まずはこのままコピペ！</span>
+              <span class="fv-try-title">⚡ 10秒お試し：まずはこのままコピペ！（数式＋集計丸投げ）</span>
               <button class="copy-btn fv-copy-btn" data-target="p-fv-4">プロンプトをコピー</button>
             </div>
-            <pre id="p-fv-4" class="fv-try-code">Excelで以下の処理を行いたいので、最適な関数（数式）を教えてください。使い方の手順とセル番地の例も添えて：
-「A列の社員番号をキーにして、別シートの『社員マスタ』から氏名と部署名をB列・C列に自動反映させたい。」</pre>
-            <p class="fv-try-hint">💡 複雑なVLOOKUPやXLOOKUPの構文も、日本語で希望を伝えるだけで正確な数式が返ってきます。</p>
+            <pre id="p-fv-4" class="fv-try-code">以下の売上・名簿データについて、①表記ゆれ（株式会社/（株）、全角半角スペース）を統一した綺麗な表を出力し、②担当者別・月別の合計金額を集計表（表形式）にまとめてください。また、同じ処理をExcelで行う場合のXLOOKUP/SUMIFS数式も併記してください：
+
+[ここにExcelの表データをそのままコピー＆ペースト]</pre>
+            <p class="fv-try-hint">💡 Excelのセル範囲をそのままコピーして貼るだけで、表記ゆれのクレンジング・クロス集計表・コピペ用数式が一発で返ってきます。</p>
           </div>
 
           <!-- 本記事で持ち帰れる3大成果 -->
@@ -183,8 +184,8 @@
 
           <!-- クイックジャンプ -->
           <div class="fv-quick-links">
-            <a href="#sec-3" class="fv-quick-btn primary">📋 エクセル丸投げ集計ワザへジャンプ ↓</a>
-            <a href="#sec-4" class="fv-quick-btn secondary">⚡ エラー解決プロンプト ↓</a>
+            <a href="#sec-3" class="fv-quick-btn primary">📋 表記ゆれ一発統一ワザを見る ↓</a>
+            <a href="#sec-4" class="fv-quick-btn secondary">📊 月別×商品別の自動クロス集計 ↓</a>
             <a href="article-11.html" class="fv-quick-btn secondary">📈 スプレッドシート自動化（第11弾）→</a>
           </div>
         </section>
@@ -528,6 +529,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20261017a"></script>
 </body>
 </html>

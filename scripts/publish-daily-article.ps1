@@ -1,4 +1,4 @@
-﻿# ==============================================================================
+# ==============================================================================
 # BizHack AI - 日次記事自動公開＆プッシュスクリプト (publish-daily-article.ps1)
 # 毎日 0:00 に実行され、予約されたドラフト記事を公開・検品・Gitプッシュします。
 # ==============================================================================
@@ -9,6 +9,9 @@ param (
 
 $ErrorActionPreference = "Stop"
 $WorkspaceRoot = "C:\Users\k_mil\Desktop\BzhackAI"
+if (-not (Test-Path $WorkspaceRoot)) {
+    $WorkspaceRoot = Split-Path -Parent $PSScriptRoot
+}
 Set-Location -Path $WorkspaceRoot
 
 # Git実行環境の設定（GCM連携）
@@ -70,6 +73,8 @@ Copy-Item -Path $DraftFile -Destination $TargetFile -Force
 $DraftContent = Get-Content -Path $TargetFile -Raw -Encoding utf8
 $TitleMatch = [regex]::Match($DraftContent, '<title>(.*?)｜BizHack AI</title>')
 $ArticleTitle = if ($TitleMatch.Success) { $TitleMatch.Groups[1].Value } else { "第${ArticleNumber}弾実践記事" }
+$DescMatch = [regex]::Match($DraftContent, '<meta name="description" content="(.*?)">')
+$ArticleDesc = if ($DescMatch.Success) { $DescMatch.Groups[1].Value } else { "現場の仕事を劇的に短縮するコピペ用プロンプトと自動化ノウハウを解説します。" }
 
 # 3. sitemap.xml の更新（未掲載なら追加）
 $SitemapPath = "$WorkspaceRoot\sitemap.xml"
@@ -92,18 +97,69 @@ if (Test-Path $SitemapPath) {
     }
 }
 
-# 4. index.html のお知らせバー＆最終更新日時更新
+# 4. index.html のお知らせバー・記事数・一覧カードの自動更新
 $IndexPath = "$WorkspaceRoot\index.html"
 if (Test-Path $IndexPath) {
     $IndexContent = Get-Content -Path $IndexPath -Raw -Encoding utf8
-    # お知らせバーのテキスト更新
+    # お知らせバーのリンク先とテキスト更新
+    $IndexContent = [regex]::Replace($IndexContent, '<a href="[^"]*" class="announcement-bar-link">', "<a href=`"article-${ArticleNumber}.html`" class=`"announcement-bar-link`">")
     $NewAnnouncement = "<span class=`"announcement-text`">最新第${ArticleNumber}弾「$ArticleTitle」を公開！</span>"
     $IndexContent = [regex]::Replace($IndexContent, '<span class="announcement-text">.*?</span>', { param($m) $NewAnnouncement })
     # 更新日時の更新
     $NewTime = "<time datetime=`"$NowIsoStr`" class=`"update-time`">$NowTimestampStr</time>"
     $IndexContent = [regex]::Replace($IndexContent, '<time datetime=".*?" class="update-time">.*?</time>', { param($m) $NewTime })
+    # 全N弾の表記更新
+    $PrevNumber = $ArticleNumber - 1
+    $IndexContent = $IndexContent -replace "全${PrevNumber}弾", "全${ArticleNumber}弾"
+    # 特集グリッドに未掲載ならカードを追加
+    if ($IndexContent -notmatch "<h3>\s*<a href=`"article-${ArticleNumber}\.html`">" -and $IndexContent -notmatch "<h3 class=`"card-title`">\s*<a href=`"article-${ArticleNumber}\.html`">") {
+        $TodayDotStr = $Today.ToString("yyyy.MM.dd")
+        $NewCardHtml = @"
+
+        <!-- 記事（第${ArticleNumber}弾 自動追加） -->
+        <article class="article-card" data-category="routine">
+          <div class="card-thumb" style="background: linear-gradient(135deg, #047857, #10b981);">
+            <div class="thumb-pattern"></div>
+            <div class="thumb-glow"></div>
+            <div class="thumb-header">
+              <div class="thumb-header-left">
+                <span class="series-badge">第${ArticleNumber}弾</span>
+                <span class="category-tag cat-biz">現場実務・AI自動化</span>
+              </div>
+              <span class="thumb-tag-right">NEW・コピペOK</span>
+            </div>
+            <div class="thumb-visual">
+              <div class="thumb-main-title">第${ArticleNumber}弾 実践AI時短術</div>
+            </div>
+            <div class="thumb-footer">
+              <span class="thumb-date">公開日：$TodayDotStr</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">
+              <a href="article-${ArticleNumber}.html">$ArticleTitle</a>
+            </h3>
+            <p class="card-excerpt">
+              $ArticleDesc
+            </p>
+            <div class="card-meta">
+              <div class="author-chip">
+                <div class="author-avatar" style="border-color:#10b981;"><img src="images/author-mizuno.jpg?v=20261016d" alt="BizHack AI 執筆陣" width="26" height="26" loading="lazy"></div>
+                <span>BizHack AI 編集部</span>
+              </div>
+              <span>読了目安 6分</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 執筆陣
+"@
+        $IndexContent = [regex]::Replace($IndexContent, '\s*</div>\s*</section>\s*<!-- 執筆陣', { param($m) $NewCardHtml })
+    }
     Set-Content -Path $IndexPath -Value $IndexContent -Encoding utf8 -NoNewline
-    Write-Host "[STEP 3] index.html のお知らせバーと更新日時を更新完了" -ForegroundColor Green
+    Write-Host "[STEP 3] index.html のお知らせバー・記事カード・更新日時を更新完了" -ForegroundColor Green
 }
 
 # 5. 品質検品スクリプト (verify-site.ps1) の実行

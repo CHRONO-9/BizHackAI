@@ -156,12 +156,17 @@
           <!-- 10秒お試しプロンプト（コピペボタン付き） -->
           <div class="fv-try-box">
             <div class="fv-try-header">
-              <span class="fv-try-title">⚡ 10秒お試し：まずはこのままコピペ！</span>
+              <span class="fv-try-title">⚡ 10秒お試し：まずはこのままコピペ！（表形式ToDo付き）</span>
               <button class="copy-btn fv-copy-btn" data-target="p-fv-3">プロンプトをコピー</button>
             </div>
-            <pre id="p-fv-3" class="fv-try-code">以下の会議メモから、「①決定事項」「②保留・検討事項」「③誰がいつまでに何をするか（ToDo）」を整理して、箇条書きで分かりやすい議事録を作成してください：
-[ここに殴り書きの会議メモや発言録を貼り付け]</pre>
-            <p class="fv-try-hint">💡 散らかった発言メモをコピペするだけで、そのまま上司やチームに共有できる議事録が仕上がります。</p>
+            <pre id="p-fv-3" class="fv-try-code">以下の【会議メモ】から、上司が30秒で把握できる議事録を作成してください。
+① 決定事項（結論ファーストで箇条書き3点以内）
+② ネクストアクション（| 担当者 | タスク内容 | 期限 | の表形式で出力）
+③ 保留・次回検討事項
+
+【会議メモ】
+[ここに殴り書きの会議メモやZoom/Teams文字起こしを貼り付け]</pre>
+            <p class="fv-try-hint">💡 散らかった発言メモを貼るだけで「誰が・いつまでに・何をするか」のToDo管理表まで一瞬で完成します。</p>
           </div>
 
           <!-- 本記事で持ち帰れる3大成果 -->
@@ -169,11 +174,11 @@
           <ul class="fv-takeaways-list">
             <li class="fv-takeaway-item">
               <span class="fv-takeaway-icon">✓</span>
-              <div><strong>議事録作成が5分で完了</strong><br>散らかったメモから結論を一発抽出</div>
+              <div><strong>議事録作成が3分で完了</strong><br>散らかったメモから結論を一発抽出</div>
             </li>
             <li class="fv-takeaway-item">
               <span class="fv-takeaway-icon">✓</span>
-              <div><strong>ToDo漏れを完全撲滅</strong><br>担当者と期日を自動マッピング</div>
+              <div><strong>ToDo漏れを完全撲滅</strong><br>担当者と期日を表形式で自動マッピング</div>
             </li>
             <li class="fv-takeaway-item">
               <span class="fv-takeaway-icon">✓</span>
@@ -183,9 +188,9 @@
 
           <!-- クイックジャンプ -->
           <div class="fv-quick-links">
-            <a href="#sec-3" class="fv-quick-btn primary">📋 議事録プロンプト完成版へジャンプ ↓</a>
-            <a href="#sec-4" class="fv-quick-btn secondary">📧 報告メール変換テクニック ↓</a>
-            <a href="article-4.html" class="fv-quick-btn secondary">📊 エクセル丸投げ集計（第4弾）→</a>
+            <a href="#sec-3" class="fv-quick-btn primary">📋 議事録プロンプト完成版＋実例を見る ↓</a>
+            <a href="#sec-5" class="fv-quick-btn secondary">⚡ 長尺会議・文字起こし投入の裏ワザ ↓</a>
+            <a href="article-12.html" class="fv-quick-btn secondary">📩 Gmail自動下書き（第12弾）→</a>
           </div>
         </section>
         <!-- 目次 -->
@@ -295,13 +300,15 @@
             会議後に<strong>「雑なメモを枠に貼り付けて送信ボタンを押すだけ」</strong>。あとはAIが数秒で叩き台を組み上げてくれるので、人間は「担当者と締切の日付が合っているか」をサッと確認するだけで完了します。
           </p>
 
-          <!-- 広告枠プレースホルダー（CLSゼロ化） -->
-          <div class="ad-slot-placeholder">
-            <span class="ad-label">SPONSORED LINK</span>
-            <div class="ad-demo-content">
-              <p style="font-weight:700; color:#1e293b; margin-bottom:0.25rem;">【AI文字起こし】会議の音声を自動でテキスト化するSaaSツール</p>
-              <p style="font-size:0.85rem; color:#64748b;">ZoomやTeamsの録音を自動で文字起こし。議事録作成の手間をさらに激減。</p>
-              <a href="index.html#featured" class="ad-demo-btn">おすすめ効率化ツール一覧を見る →</a>
+          <!-- 人気ステップアップ記事への回遊ボックス -->
+          <div class="ad-slot-placeholder" style="text-align:left; padding:1.25rem 1.5rem; background:#f0fdf4; border:1px solid #bbf7d0;">
+            <span class="ad-label" style="color:#047857; font-weight:700;">NEXT STEP / 会議・連絡業務を丸ごと自動化する人気記事</span>
+            <div class="ad-demo-content" style="margin-top:0.5rem;">
+              <p style="font-weight:700; color:#0f172a; margin-bottom:0.6rem; font-size:0.95rem;">議事録時短とセットで導入すると残業が激減する自動化ノウハウ：</p>
+              <div style="display:flex; flex-direction:column; gap:0.5rem; font-size:0.9rem;">
+                <a href="article-12.html" class="step-up-link" style="color:#047857; font-weight:700; text-decoration:underline;">📩 【第12弾】Gmail×GASで定型返信を自動下書き化！「メール下書き生成ボット」 →</a>
+                <a href="article-11.html" class="step-up-link" style="color:#15803d; font-weight:700; text-decoration:underline;">📊 【第11弾】スプレッドシートのタスク集計・Slack/メール自動通知をコピペで実装 →</a>
+              </div>
             </div>
           </div>
 
@@ -631,6 +638,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20261017a"></script>
 </body>
 </html>
