@@ -6,7 +6,8 @@ __pycache__/
 Thumbs.db
 
 # 秘密設定・認証情報ファイル（Git除外）
-config/
+config/email-config.json
+config/*.secret.json
 *.secret.json
 email-config.json
 .env

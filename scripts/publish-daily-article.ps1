@@ -1,6 +1,7 @@
 # ==============================================================================
-# BizHack AI - 日次記事自動公開＆プッシュスクリプト (publish-daily-article.ps1)
-# 毎日 0:00 に実行され、予約されたドラフト記事を公開・検品・Gitプッシュします。
+# BizHack AI - Daily Article Publisher (publish-daily-article.ps1)
+# ASCII-only script to prevent Windows PowerShell encoding and parsing errors.
+# Runs daily at 0:00 to publish, verify, commit, and push reserved draft articles.
 # ==============================================================================
 
 param (
@@ -14,12 +15,13 @@ if (-not (Test-Path $WorkspaceRoot)) {
 }
 Set-Location -Path $WorkspaceRoot
 
-# Git実行環境の設定（GCM連携）
+# Git execution environment setup
 $env:Path = "C:\Users\k_mil\AppData\Local\Programs\Git\cmd;C:\Users\k_mil\AppData\Local\Programs\Git\ucrt64\bin;C:\Users\k_mil\AppData\Local\Programs\GitCredentialManager;$env:Path"
 $env:GIT_EXEC_PATH = "C:\Users\k_mil\AppData\Local\Programs\Git\ucrt64\bin"
 
 $Today = Get-Date
 $TodayStr = $Today.ToString("yyyy-MM-dd")
+$TodayDotStr = $Today.ToString("yyyy.MM.dd")
 $NowTimestampStr = $Today.ToString("yyyy.MM.dd HH:mm")
 $NowIsoStr = $Today.ToString("yyyy-MM-ddTHH:mm:ss+09:00")
 
@@ -27,9 +29,8 @@ Write-Host "==========================================================" -Foregro
 Write-Host "  BizHack AI Daily Publication Runner ($NowTimestampStr)" -ForegroundColor Cyan
 Write-Host "==========================================================" -ForegroundColor Cyan
 
-# 1. 記事番号の特定
+# 1. Identify article number
 if ($ArticleNumber -eq 0) {
-    # 日付によるマッピング
     $DateSchedule = @{
         "2026-10-17" = 12
         "2026-10-18" = 13
@@ -39,11 +40,10 @@ if ($ArticleNumber -eq 0) {
         "2026-10-22" = 17
         "2026-10-23" = 18
     }
-    
+
     if ($DateSchedule.ContainsKey($TodayStr)) {
         $ArticleNumber = $DateSchedule[$TodayStr]
     } else {
-        # スケジュール外の場合、未公開の最小ドラフトを探す
         for ($i = 12; $i -le 18; $i++) {
             if (-not (Test-Path "$WorkspaceRoot\article-$i.html")) {
                 $ArticleNumber = $i
@@ -54,7 +54,7 @@ if ($ArticleNumber -eq 0) {
 }
 
 if ($ArticleNumber -eq 0) {
-    Write-Host "[INFO] 今日公開すべき対象記事はありません、または全記事公開済みです。" -ForegroundColor Green
+    Write-Host "[INFO] No target article found for today or all articles already published." -ForegroundColor Green
     exit 0
 }
 
@@ -62,134 +62,133 @@ $DraftFile = "$WorkspaceRoot\drafts\article-$ArticleNumber.html"
 $TargetFile = "$WorkspaceRoot\article-$ArticleNumber.html"
 
 if (-not (Test-Path $DraftFile)) {
-    Write-Host "[ERROR] ドラフトファイルが見つかりません: $DraftFile" -ForegroundColor Red
+    Write-Host "[ERROR] Draft file not found: $DraftFile" -ForegroundColor Red
     exit 1
 }
 
-Write-Host "[STEP 1] 第${ArticleNumber}弾 を公開配置中: $DraftFile -> $TargetFile" -ForegroundColor Yellow
+Write-Host "[STEP 1] Publishing draft: $DraftFile -> $TargetFile" -ForegroundColor Yellow
 Copy-Item -Path $DraftFile -Destination $TargetFile -Force
 
-# 2. 記事メタデータの取得（タイトル・要約）
-$DraftContent = Get-Content -Path $TargetFile -Raw -Encoding utf8
+# 2. Extract metadata
+$DraftContent = [System.IO.File]::ReadAllText($TargetFile, [System.Text.Encoding]::UTF8)
 $TitleMatch = [regex]::Match($DraftContent, '<title>(.*?)｜BizHack AI</title>')
-$ArticleTitle = if ($TitleMatch.Success) { $TitleMatch.Groups[1].Value } else { "第${ArticleNumber}弾実践記事" }
+$ArticleTitle = if ($TitleMatch.Success) { $TitleMatch.Groups[1].Value } else { "Article $ArticleNumber" }
 $DescMatch = [regex]::Match($DraftContent, '<meta name="description" content="(.*?)">')
-$ArticleDesc = if ($DescMatch.Success) { $DescMatch.Groups[1].Value } else { "現場の仕事を劇的に短縮するコピペ用プロンプトと自動化ノウハウを解説します。" }
+$ArticleDesc = if ($DescMatch.Success) { $DescMatch.Groups[1].Value } else { "" }
 
-# 3. sitemap.xml の更新（未掲載なら追加）
+# 3. Update sitemap.xml
 $SitemapPath = "$WorkspaceRoot\sitemap.xml"
 if (Test-Path $SitemapPath) {
-    $SitemapContent = Get-Content -Path $SitemapPath -Raw -Encoding utf8
+    $SitemapContent = [System.IO.File]::ReadAllText($SitemapPath, [System.Text.Encoding]::UTF8)
     $ArticleUrl = "https://www.bizhack-ai.com/article-$ArticleNumber.html"
     if ($SitemapContent -notlike "*$ArticleUrl*") {
-        $NewEntry = @"
-  <url>
-    <loc>$ArticleUrl</loc>
-    <lastmod>$TodayStr</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-</urlset>
-"@
-        $SitemapContent = $SitemapContent -replace '</urlset>', $NewEntry
-        Set-Content -Path $SitemapPath -Value $SitemapContent -Encoding utf8 -NoNewline
-        Write-Host "[STEP 2] sitemap.xml に $ArticleUrl を追加完了" -ForegroundColor Green
+        $NewEntry = "  <url>`n    <loc>$ArticleUrl</loc>`n    <lastmod>$TodayStr</lastmod>`n    <changefreq>weekly</changefreq>`n    <priority>0.8</priority>`n  </url>`n</urlset>"
+        $SitemapContent = $SitemapContent.Replace('</urlset>', $NewEntry)
+        [System.IO.File]::WriteAllText($SitemapPath, $SitemapContent, [System.Text.Encoding]::UTF8)
+        Write-Host "[STEP 2] Added $ArticleUrl to sitemap.xml" -ForegroundColor Green
     }
 }
 
-# 4. index.html のお知らせバー・記事数・一覧カードの自動更新
+# 4. Update index.html
 $IndexPath = "$WorkspaceRoot\index.html"
 if (Test-Path $IndexPath) {
-    $IndexContent = Get-Content -Path $IndexPath -Raw -Encoding utf8
-    # お知らせバーのリンク先とテキスト更新
-    $IndexContent = [regex]::Replace($IndexContent, '<a href="[^"]*" class="announcement-bar-link">', "<a href=`"article-${ArticleNumber}.html`" class=`"announcement-bar-link`">")
-    $NewAnnouncement = "<span class=`"announcement-text`">最新第${ArticleNumber}弾「$ArticleTitle」を公開！</span>"
-    $IndexContent = [regex]::Replace($IndexContent, '<span class="announcement-text">.*?</span>', { param($m) $NewAnnouncement })
-    # 更新日時の更新
-    $NewTime = "<time datetime=`"$NowIsoStr`" class=`"update-time`">$NowTimestampStr</time>"
-    $IndexContent = [regex]::Replace($IndexContent, '<time datetime=".*?" class="update-time">.*?</time>', { param($m) $NewTime })
-    # 全N弾の表記更新
+    $IndexContent = [System.IO.File]::ReadAllText($IndexPath, [System.Text.Encoding]::UTF8)
+
+    # 4a. Announcement bar direct link
+    $IndexContent = [regex]::Replace($IndexContent, '<a href="[^"]*" class="announcement-bar-link">', "<a href=`"article-$ArticleNumber.html`" class=`"announcement-bar-link`">")
+
+    # 4b. Announcement text
+    $AnnFormatFile = "$WorkspaceRoot\config\templates\announcement-format.txt"
+    $AnnFormat = if (Test-Path $AnnFormatFile) { [System.IO.File]::ReadAllText($AnnFormatFile, [System.Text.Encoding]::UTF8) } else { "Latest Vol.{0}: {1}" }
+    $AnnText = [string]::Format($AnnFormat, $ArticleNumber, $ArticleTitle)
+    $NewAnnouncementHtml = "<span class=`"announcement-text`">$AnnText</span>"
+    $IndexContent = [regex]::Replace($IndexContent, '<span class="announcement-text">.*?</span>', { param($m) $NewAnnouncementHtml })
+
+    # 4c. Update timestamp
+    $NewTimeHtml = "<time datetime=`"$NowIsoStr`" class=`"update-time`">$NowTimestampStr</time>"
+    $IndexContent = [regex]::Replace($IndexContent, '<time datetime=".*?" class="update-time">.*?</time>', { param($m) $NewTimeHtml })
+
+    # 4d. Total articles count in nav/tabs
     $PrevNumber = $ArticleNumber - 1
-    $IndexContent = $IndexContent -replace "全${PrevNumber}弾", "全${ArticleNumber}弾"
-    # 特集グリッドに未掲載ならカードを追加
-    if ($IndexContent -notmatch "<h3>\s*<a href=`"article-${ArticleNumber}\.html`">" -and $IndexContent -notmatch "<h3 class=`"card-title`">\s*<a href=`"article-${ArticleNumber}\.html`">") {
-        $TodayDotStr = $Today.ToString("yyyy.MM.dd")
-        $NewCardHtml = @"
+    $ZenBytes = [byte[]]@(0xE5, 0x85, 0xA8)
+    $DanBytes = [byte[]]@(0xE5, 0xBC, 0xBE)
+    $PrevCountPattern = [System.Text.Encoding]::UTF8.GetString($ZenBytes) + $PrevNumber + [System.Text.Encoding]::UTF8.GetString($DanBytes)
+    $NewCountPattern = [System.Text.Encoding]::UTF8.GetString($ZenBytes) + $ArticleNumber + [System.Text.Encoding]::UTF8.GetString($DanBytes)
+    $IndexContent = $IndexContent.Replace($PrevCountPattern, $NewCountPattern)
 
-        <!-- 記事（第${ArticleNumber}弾 自動追加） -->
-        <article class="article-card" data-category="routine">
-          <div class="card-thumb" style="background: linear-gradient(135deg, #047857, #10b981);">
-            <div class="thumb-pattern"></div>
-            <div class="thumb-glow"></div>
-            <div class="thumb-header">
-              <div class="thumb-header-left">
-                <span class="series-badge">第${ArticleNumber}弾</span>
-                <span class="category-tag cat-biz">現場実務・AI自動化</span>
-              </div>
-              <span class="thumb-tag-right">NEW・コピペOK</span>
-            </div>
-            <div class="thumb-visual">
-              <div class="thumb-main-title">第${ArticleNumber}弾 実践AI時短術</div>
-            </div>
-            <div class="thumb-footer">
-              <span class="thumb-date">公開日：$TodayDotStr</span>
-            </div>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">
-              <a href="article-${ArticleNumber}.html">$ArticleTitle</a>
-            </h3>
-            <p class="card-excerpt">
-              $ArticleDesc
-            </p>
-            <div class="card-meta">
-              <div class="author-chip">
-                <div class="author-avatar" style="border-color:#10b981;"><img src="images/author-mizuno.jpg?v=20261016d" alt="BizHack AI 執筆陣" width="26" height="26" loading="lazy"></div>
-                <span>BizHack AI 編集部</span>
-              </div>
-              <span>読了目安 6分</span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
+    # 4e. Add card to featured grid if not already present
+    if ($IndexContent -notmatch "article-$ArticleNumber\.html") {
+        $MetaConfigFile = "$WorkspaceRoot\config\articles-metadata.json"
+        $MetaJson = if (Test-Path $MetaConfigFile) { [System.IO.File]::ReadAllText($MetaConfigFile, [System.Text.Encoding]::UTF8) | ConvertFrom-Json } else { $null }
+        $ArtMeta = if ($MetaJson -and $MetaJson.PSObject.Properties["$ArticleNumber"]) { $MetaJson."$ArticleNumber" } else { $null }
 
-    <!-- 執筆陣
-"@
-        $IndexContent = [regex]::Replace($IndexContent, '\s*</div>\s*</section>\s*<!-- 執筆陣', { param($m) $NewCardHtml })
+        $CardTplFile = "$WorkspaceRoot\config\templates\article-card.html"
+        if (Test-Path $CardTplFile) {
+            $CardTpl = [System.IO.File]::ReadAllText($CardTplFile, [System.Text.Encoding]::UTF8)
+            $CardTpl = $CardTpl.Replace("{ARTICLE_NUMBER}", "$ArticleNumber")
+            $CardTpl = $CardTpl.Replace("{ARTICLE_TITLE}", $ArticleTitle)
+            $CardTpl = $CardTpl.Replace("{ARTICLE_DESC}", $ArticleDesc)
+            $CardTpl = $CardTpl.Replace("{TODAY_DOT}", $TodayDotStr)
+
+            if ($ArtMeta) {
+                $CardTpl = $CardTpl.Replace("{CATEGORY_KEY}", $ArtMeta.categoryKey)
+                $CardTpl = $CardTpl.Replace("{CATEGORY_CLASS}", $ArtMeta.categoryClass)
+                $CardTpl = $CardTpl.Replace("{CATEGORY_LABEL}", $ArtMeta.categoryLabel)
+                $CardTpl = $CardTpl.Replace("{GRADIENT_FROM}", $ArtMeta.gradientFrom)
+                $CardTpl = $CardTpl.Replace("{GRADIENT_TO}", $ArtMeta.gradientTo)
+                $CardTpl = $CardTpl.Replace("{THUMB_TITLE}", $ArtMeta.thumbTitle)
+                $CardTpl = $CardTpl.Replace("{AUTHOR_NAME}", $ArtMeta.authorName)
+                $CardTpl = $CardTpl.Replace("{AUTHOR_AVATAR}", $ArtMeta.authorAvatar)
+                $CardTpl = $CardTpl.Replace("{AUTHOR_COLOR}", $ArtMeta.authorColor)
+            } else {
+                $CardTpl = $CardTpl.Replace("{CATEGORY_KEY}", "routine")
+                $CardTpl = $CardTpl.Replace("{CATEGORY_CLASS}", "cat-biz")
+                $CardTpl = $CardTpl.Replace("{CATEGORY_LABEL}", "AI DX")
+                $CardTpl = $CardTpl.Replace("{GRADIENT_FROM}", "#047857")
+                $CardTpl = $CardTpl.Replace("{GRADIENT_TO}", "#10b981")
+                $CardTpl = $CardTpl.Replace("{THUMB_TITLE}", $ArticleTitle)
+                $CardTpl = $CardTpl.Replace("{AUTHOR_NAME}", "BizHack AI")
+                $CardTpl = $CardTpl.Replace("{AUTHOR_AVATAR}", "images/author-mizuno.jpg")
+                $CardTpl = $CardTpl.Replace("{AUTHOR_COLOR}", "#10b981")
+            }
+
+            # Insert card before the closing of #featured articles grid
+            $FeaturedPattern = '(?s)(<section id="featured"[^>]*>.*?)(</div>\s*</section>)'
+            if ($IndexContent -match $FeaturedPattern) {
+                $IndexContent = [regex]::Replace($IndexContent, $FeaturedPattern, { param($m) $m.Groups[1].Value + "`n" + $CardTpl + "`n      " + $m.Groups[2].Value })
+            }
+        }
     }
-    Set-Content -Path $IndexPath -Value $IndexContent -Encoding utf8 -NoNewline
-    Write-Host "[STEP 3] index.html のお知らせバー・記事カード・更新日時を更新完了" -ForegroundColor Green
+
+    [System.IO.File]::WriteAllText($IndexPath, $IndexContent, [System.Text.Encoding]::UTF8)
+    Write-Host "[STEP 3] Updated index.html successfully" -ForegroundColor Green
 }
 
-# 5. 品質検品スクリプト (verify-site.ps1) の実行
-Write-Host "[STEP 4] サイト品質自動検品を実行中..." -ForegroundColor Yellow
+# 5. Site quality check
+Write-Host "[STEP 4] Running site quality check..." -ForegroundColor Yellow
 $VerifyResult = powershell -ExecutionPolicy Bypass -File "$WorkspaceRoot\scripts\verify-site.ps1"
 Write-Host $VerifyResult
 
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "[FATAL] 品質検品に失敗しました。プッシュを中止します。" -ForegroundColor Red
+    Write-Host "[FATAL] Site quality verification failed. Aborting push." -ForegroundColor Red
     exit 1
 }
 
-# 6. Git コミット ＆ プッシュ
-Write-Host "[STEP 5] GitHubへのコミット・プッシュを実行中..." -ForegroundColor Yellow
+# 6. Git commit and push
+Write-Host "[STEP 5] Committing and pushing to GitHub..." -ForegroundColor Yellow
 git add .
-$CommitMsg = "feat: publish article-$ArticleNumber.html (BizHack AI 第${ArticleNumber}弾 自動公開)"
+$CommitMsg = "feat: publish article-$ArticleNumber.html (BizHack AI Vol.$ArticleNumber automated publish)"
 git commit -m $CommitMsg
 git push origin main
 
 $LatestCommitSha = (git rev-parse --short HEAD).Trim()
+Write-Host "[SUCCESS] Successfully published and pushed Article $ArticleNumber (commit $LatestCommitSha)" -ForegroundColor Green
 
-Write-Host "==========================================================" -ForegroundColor Green
-Write-Host "  第${ArticleNumber}弾 の公開とGitHubプッシュが完了しました！" -ForegroundColor Green
-Write-Host "==========================================================" -ForegroundColor Green
-
-# 7. 完了報告メールの送信
+# 7. Notification email
 $EmailConfigFile = "$WorkspaceRoot\config\email-config.json"
 if (Test-Path $EmailConfigFile) {
     try {
-        Write-Host "[STEP 6] 完了通知メールを送信中..." -ForegroundColor Yellow
+        Write-Host "[STEP 6] Sending completion report email..." -ForegroundColor Yellow
         $mailConfig = Get-Content -Raw $EmailConfigFile | ConvertFrom-Json
 
         $smtp = New-Object System.Net.Mail.SmtpClient($mailConfig.smtpServer, $mailConfig.smtpPort)
@@ -197,40 +196,39 @@ if (Test-Path $EmailConfigFile) {
         $smtp.Credentials = New-Object System.Net.NetworkCredential($mailConfig.senderEmail, $mailConfig.appPassword)
 
         $mail = New-Object System.Net.Mail.MailMessage
-        $mail.From = New-Object System.Net.Mail.MailAddress($mailConfig.senderEmail, "BizHack AI 運営事務局")
+        $senderDisplayNameBytes = [byte[]]@(0x42, 0x69, 0x7A, 0x48, 0x61, 0x63, 0x6B, 0x20, 0x41, 0x49, 0x20, 0xE9, 0x81, 0x8B, 0xE5, 0x96, 0xB6, 0xE4, 0xBA, 0x8B, 0xE5, 0x8B, 0x99, 0xE5, 0xB1, 0x80)
+        $senderDisplayName = [System.Text.Encoding]::UTF8.GetString($senderDisplayNameBytes)
+        $mail.From = New-Object System.Net.Mail.MailAddress($mailConfig.senderEmail, $senderDisplayName)
         $mail.To.Add($mailConfig.recipientEmail)
-        $mail.Subject = "【BizHack AI】第${ArticleNumber}弾の記事公開＆GitHubプッシュが完了しました"
-        $mail.Body = @"
-阿部 圭二 様
 
-BizHack AI 日次記事自動公開システムよりご報告いたします。
+        # Subject
+        $SubFormatFile = "$WorkspaceRoot\config\templates\mail-subject-format.txt"
+        $SubFormat = if (Test-Path $SubFormatFile) { ([System.IO.File]::ReadAllText($SubFormatFile, [System.Text.Encoding]::UTF8)).Trim() } else { "[BizHack AI] Article {0} Published" }
+        $mail.Subject = [string]::Format($SubFormat, $ArticleNumber)
 
-本日（$NowTimestampStr）のスケジュール記事が正常に公開され、品質検品をクリアしてGitHubへ自動プッシュされました。
+        # Body
+        $BodyTemplateFile = "$WorkspaceRoot\config\templates\mail-body.txt"
+        if (Test-Path $BodyTemplateFile) {
+            $BodyContent = [System.IO.File]::ReadAllText($BodyTemplateFile, [System.Text.Encoding]::UTF8)
+            $BodyContent = $BodyContent.Replace("{TIMESTAMP}", $NowTimestampStr)
+            $BodyContent = $BodyContent.Replace("{ARTICLE_NUMBER}", "$ArticleNumber")
+            $BodyContent = $BodyContent.Replace("{ARTICLE_TITLE}", $ArticleTitle)
+            $BodyContent = $BodyContent.Replace("{ARTICLE_URL}", "https://www.bizhack-ai.com/article-$ArticleNumber.html")
+            $BodyContent = $BodyContent.Replace("{COMMIT_SHA}", $LatestCommitSha)
+            $BodyContent = $BodyContent.Replace("{COMMIT_MSG}", $CommitMsg)
+            $mail.Body = $BodyContent
+        } else {
+            $mail.Body = "Article $ArticleNumber published successfully.`nCommit: $LatestCommitSha"
+        }
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-■ 公開完了レポート
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-・記事番号: 第${ArticleNumber}弾
-・記事タイトル: $ArticleTitle
-・公開URL: https://www.bizhack-ai.com/article-$ArticleNumber.html
-・GitHubコミット: $LatestCommitSha
-・コミットメッセージ: $CommitMsg
-・自動検品ステータス: PASS（エラー0件）
-
-数分以内にGitHub Pages（https://chrono-9.github.io/BizHackAI/）および公式サイトへ自動反映されます。
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-※本メールはBizHack AI自動運用システムより送信されています。
-"@
         $mail.BodyEncoding = [System.Text.Encoding]::UTF8
         $mail.SubjectEncoding = [System.Text.Encoding]::UTF8
 
         $smtp.Send($mail)
         $mail.Dispose()
         $smtp.Dispose()
-        Write-Host "[SUCCESS] 完了通知メールを $($mailConfig.recipientEmail) へ送信しました！" -ForegroundColor Green
+        Write-Host "[SUCCESS] Report email sent to $($mailConfig.recipientEmail)!" -ForegroundColor Green
     } catch {
-        Write-Host "[WARN] メール送信に失敗しました: $($_.Exception.Message)" -ForegroundColor Yellow
+        Write-Host "[WARN] Email notification failed: $($_.Exception.Message)" -ForegroundColor Yellow
     }
 }
-

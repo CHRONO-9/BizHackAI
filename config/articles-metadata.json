@@ -1,0 +1,79 @@
+{
+  "12": {
+    "categoryKey": "routine",
+    "categoryClass": "cat-biz",
+    "categoryLabel": "日常実務・メール自動化",
+    "gradientFrom": "#047857",
+    "gradientTo": "#10b981",
+    "thumbTitle": "メール下書き自動生成",
+    "authorName": "水野 結衣",
+    "authorAvatar": "images/author-mizuno.jpg",
+    "authorColor": "#10b981"
+  },
+  "13": {
+    "categoryKey": "routine",
+    "categoryClass": "cat-biz",
+    "categoryLabel": "現場実務・Web自作DX",
+    "gradientFrom": "#1e3a8a",
+    "gradientTo": "#3b82f6",
+    "thumbTitle": "Claude社内ツール爆速自作",
+    "authorName": "神崎 聡",
+    "authorAvatar": "images/author-kanzaki.jpg",
+    "authorColor": "#2563eb"
+  },
+  "14": {
+    "categoryKey": "creative",
+    "categoryClass": "cat-design",
+    "categoryLabel": "企画・リサーチDX",
+    "gradientFrom": "#0c4a6e",
+    "gradientTo": "#0284c7",
+    "thumbTitle": "業界・競合リサーチ自動化",
+    "authorName": "白石 陽介",
+    "authorAvatar": "images/author-shiraishi.jpg",
+    "authorColor": "#0284c7"
+  },
+  "15": {
+    "categoryKey": "office",
+    "categoryClass": "cat-office",
+    "categoryLabel": "Office・文書作成DX",
+    "gradientFrom": "#78350f",
+    "gradientTo": "#d97706",
+    "thumbTitle": "Office×Copilot実務術",
+    "authorName": "桐生 大輔",
+    "authorAvatar": "images/author-kiryu.jpg",
+    "authorColor": "#d97706"
+  },
+  "16": {
+    "categoryKey": "career",
+    "categoryClass": "cat-biz",
+    "categoryLabel": "キャリア・転職DX",
+    "gradientFrom": "#4c1d95",
+    "gradientTo": "#7c3aed",
+    "thumbTitle": "職務経歴書・面接対策AI",
+    "authorName": "白石 陽介",
+    "authorAvatar": "images/author-shiraishi.jpg",
+    "authorColor": "#7c3aed"
+  },
+  "17": {
+    "categoryKey": "routine",
+    "categoryClass": "cat-biz",
+    "categoryLabel": "個人DX・タスク管理",
+    "gradientFrom": "#831843",
+    "gradientTo": "#ec4899",
+    "thumbTitle": "音声AI×Notionタスク自動化",
+    "authorName": "橘 玲奈",
+    "authorAvatar": "images/author-tachibana.jpg",
+    "authorColor": "#ec4899"
+  },
+  "18": {
+    "categoryKey": "business",
+    "categoryClass": "cat-biz",
+    "categoryLabel": "起業・副業・完全自動化",
+    "gradientFrom": "#064e3b",
+    "gradientTo": "#059669",
+    "thumbTitle": "ひとり起業・完全自動化フロー",
+    "authorName": "神崎 聡 ＆ 橘 玲奈",
+    "authorAvatar": "images/author-kanzaki.jpg",
+    "authorColor": "#059669"
+  }
+}
