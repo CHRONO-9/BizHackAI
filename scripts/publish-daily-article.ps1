@@ -269,6 +269,20 @@ if (Test-Path $EmailConfigFile) {
             $BodyContent = $BodyContent.Replace("{ARTICLE_URL}", "https://www.bizhack-ai.com/article-$ArticleNumber.html")
             $BodyContent = $BodyContent.Replace("{COMMIT_SHA}", $LatestCommitSha)
             $BodyContent = $BodyContent.Replace("{COMMIT_MSG}", $CommitMsg)
+
+            # Query GA4 metrics if configured
+            $GA4Script = "$WorkspaceRoot\scripts\get-ga4-summary.ps1"
+            if (Test-Path $GA4Script) {
+                try {
+                    $ga4Block = & powershell -ExecutionPolicy Bypass -File $GA4Script
+                    if ($ga4Block -and $ga4Block.Trim().Length -gt 0) {
+                        $BodyContent = $BodyContent + "`n" + $ga4Block.Trim() + "`n"
+                    }
+                } catch {
+                    Write-Host "[WARN] GA4 query skipped: $($_.Exception.Message)" -ForegroundColor Yellow
+                }
+            }
+
             $mail.Body = $BodyContent
         } else {
             $mail.Body = "Article $ArticleNumber published successfully.`nCommit: $LatestCommitSha"

@@ -7,8 +7,10 @@ Thumbs.db
 
 # 秘密設定・認証情報ファイル（Git除外）
 config/email-config.json
+config/ga4-credentials.json
 config/*.secret.json
 *.secret.json
+ga4-credentials.json
 email-config.json
 .env
 

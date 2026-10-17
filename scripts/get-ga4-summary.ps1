@@ -1,0 +1,169 @@
+# ==============================================================================
+# BizHack AI - GA4 Data API Summary Fetcher (get-ga4-summary.ps1)
+# 100% ASCII-only code to prevent Windows PowerShell 5.1 CP932 encoding issues.
+# Reads credentials from config/ga4-credentials.json
+# Property ID: 558928664
+# ==============================================================================
+
+param(
+    [string]$PropertyId = "558928664",
+    [string]$CredentialsPath = "config\ga4-credentials.json"
+)
+
+function Base64UrlEncode([byte[]]$bytes) {
+    [Convert]::ToBase64String($bytes).Replace('+', '-').Replace('/', '_').Replace('=', '')
+}
+
+function Get-GA4AccessToken([string]$jsonPath) {
+    if (-not (Test-Path $jsonPath)) { return $null }
+    $cred = Get-Content -Raw $jsonPath | ConvertFrom-Json
+    if (-not $cred.private_key -or -not $cred.client_email) { return $null }
+
+    # Clean PEM private key
+    $privKeyPem = $cred.private_key
+    $privKeyBase64 = $privKeyPem -replace '-----BEGIN [A-Z ]+-----', '' -replace '-----END [A-Z ]+-----', '' -replace '\s+', ''
+    $keyBytes = [Convert]::FromBase64String($privKeyBase64)
+
+    # Import PKCS#8 key into RSACng
+    $cngKey = [System.Security.Cryptography.CngKey]::Import($keyBytes, [System.Security.Cryptography.CngKeyBlobFormat]::Pkcs8PrivateBlob)
+    $rsa = New-Object System.Security.Cryptography.RSACng($cngKey)
+
+    # Create JWT Header and Claims
+    $nowEpoch = [int64](Get-Date -UFormat %s)
+    $headerJson = '{"alg":"RS256","typ":"JWT"}'
+    $headerB64 = Base64UrlEncode([System.Text.Encoding]::UTF8.GetBytes($headerJson))
+
+    $claims = @{
+        iss = $cred.client_email
+        scope = "https://www.googleapis.com/auth/analytics.readonly"
+        aud = "https://oauth2.googleapis.com/token"
+        exp = $nowEpoch + 3600
+        iat = $nowEpoch
+    }
+    $claimsJson = $claims | ConvertTo-Json -Compress
+    $claimsB64 = Base64UrlEncode([System.Text.Encoding]::UTF8.GetBytes($claimsJson))
+
+    # Sign JWT
+    $unsignedToken = "$headerB64.$claimsB64"
+    $signatureBytes = $rsa.SignData([System.Text.Encoding]::UTF8.GetBytes($unsignedToken), [System.Security.Cryptography.HashAlgorithmName]::SHA256, [System.Security.Cryptography.RSASignaturePadding]::Pkcs1)
+    $sigB64 = Base64UrlEncode($signatureBytes)
+    $jwt = "$unsignedToken.$sigB64"
+
+    # Exchange JWT for Access Token
+    $body = @{
+        grant_type = "urn:ietf:params:oauth:grant-type:jwt-bearer"
+        assertion = $jwt
+    }
+    $tokenRes = Invoke-RestMethod -Uri "https://oauth2.googleapis.com/token" -Method Post -Body $body -ContentType "application/x-www-form-urlencoded"
+    return $tokenRes.access_token
+}
+
+function Get-GA4Metrics([string]$accessToken, [string]$propId) {
+    if (-not $accessToken) { return $null }
+    $headers = @{
+        Authorization = "Bearer $accessToken"
+        "Content-Type" = "application/json"
+    }
+
+    $reportUrl = "https://analyticsdata.googleapis.com/v1beta/properties/$propId`:runReport"
+
+    # Query 1: Yesterday overall summary
+    $summaryBody = @{
+        dateRanges = @(@{ startDate = "yesterday"; endDate = "yesterday" })
+        metrics = @(
+            @{ name = "screenPageViews" },
+            @{ name = "activeUsers" },
+            @{ name = "userEngagementDuration" }
+        )
+    } | ConvertTo-Json -Depth 5
+
+    $summaryRes = Invoke-RestMethod -Uri $reportUrl -Method Post -Headers $headers -Body $summaryBody
+
+    $views = if ($summaryRes.rows -and $summaryRes.rows[0].metricValues) { $summaryRes.rows[0].metricValues[0].value } else { "0" }
+    $users = if ($summaryRes.rows -and $summaryRes.rows[0].metricValues) { $summaryRes.rows[0].metricValues[1].value } else { "0" }
+    $totalEngSec = if ($summaryRes.rows -and $summaryRes.rows[0].metricValues) { [int]$summaryRes.rows[0].metricValues[2].value } else { 0 }
+    $avgEngSec = if ([int]$users -gt 0) { [math]::Round($totalEngSec / [int]$users) } else { 0 }
+    $minPart = [math]::Floor($avgEngSec / 60)
+    $secPart = $avgEngSec % 60
+    $avgEngTime = "$minPart min $secPart sec"
+
+    # Query 2: Top 3 articles
+    $topPagesBody = @{
+        dateRanges = @(@{ startDate = "yesterday"; endDate = "yesterday" })
+        dimensions = @(@{ name = "pageTitle" })
+        metrics = @(@{ name = "screenPageViews" })
+        limit = 3
+        orderBys = @(@{ metric = @{ metricName = "screenPageViews" }; desc = $true })
+    } | ConvertTo-Json -Depth 5
+
+    $topPagesRes = Invoke-RestMethod -Uri $reportUrl -Method Post -Headers $headers -Body $topPagesBody
+    $topPagesList = @()
+    if ($topPagesRes.rows) {
+        foreach ($row in $topPagesRes.rows) {
+            $rawTitle = $row.dimensionValues[0].value
+            $cleanTitle = ($rawTitle -split '\|')[0].Trim()
+            $cnt = $row.metricValues[0].value
+            $topPagesList += "  - $cleanTitle ($cnt PV)"
+        }
+    }
+    $topPagesText = if ($topPagesList.Count -gt 0) { $topPagesList -join "`n" } else { "  - None" }
+
+    # Query 3: prompt_copy events
+    $eventBody = @{
+        dateRanges = @(@{ startDate = "yesterday"; endDate = "yesterday" })
+        dimensions = @(@{ name = "eventName" })
+        metrics = @(@{ name = "eventCount" })
+        dimensionFilter = @{
+            filter = @{
+                fieldName = "eventName"
+                stringFilter = @{ value = "prompt_copy" }
+            }
+        }
+    } | ConvertTo-Json -Depth 5
+
+    $eventRes = Invoke-RestMethod -Uri $reportUrl -Method Post -Headers $headers -Body $eventBody
+    $copyCount = if ($eventRes.rows -and $eventRes.rows[0].metricValues) { $eventRes.rows[0].metricValues[0].value } else { "0" }
+
+    return @{
+        Views = $views
+        Users = $users
+        AvgEngTime = $avgEngTime
+        TopPages = $topPagesText
+        PromptCopies = $copyCount
+    }
+}
+
+# --- Main execution ---
+$WorkspaceRoot = "C:\Users\k_mil\Desktop\BzhackAI"
+$FullCredPath = Join-Path $WorkspaceRoot $CredentialsPath
+
+if (-not (Test-Path $FullCredPath)) {
+    Write-Host "[INFO] GA4 credentials ($CredentialsPath) not configured yet." -ForegroundColor Yellow
+    return ""
+}
+
+try {
+    $token = Get-GA4AccessToken -jsonPath $FullCredPath
+    if (-not $token) {
+        Write-Host "[WARN] Could not retrieve GA4 access token." -ForegroundColor Yellow
+        return ""
+    }
+
+    $metrics = Get-GA4Metrics -accessToken $token -propId $PropertyId
+    if (-not $metrics) { return "" }
+
+    $tplPath = Join-Path $WorkspaceRoot "config\templates\ga4-mail-block.txt"
+    if (Test-Path $tplPath) {
+        $block = [System.IO.File]::ReadAllText($tplPath, [System.Text.Encoding]::UTF8)
+        $block = $block.Replace("{GA4_VIEWS}", "$($metrics.Views)")
+        $block = $block.Replace("{GA4_USERS}", "$($metrics.Users)")
+        $block = $block.Replace("{GA4_AVG_TIME}", "$($metrics.AvgEngTime)")
+        $block = $block.Replace("{GA4_COPIES}", "$($metrics.PromptCopies)")
+        $block = $block.Replace("{GA4_TOP_ARTICLES}", "$($metrics.TopPages)")
+        return $block
+    }
+    return ""
+} catch {
+    Write-Host "[WARN] Error querying GA4: $($_.Exception.Message)" -ForegroundColor Yellow
+    return ""
+}
