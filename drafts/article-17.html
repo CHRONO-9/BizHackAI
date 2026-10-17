@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -114,50 +114,49 @@
 
   <div class="main-wrapper">
     <div class="article-layout">
-      <!-- メイン記事コンテンツ -->
+      <!-- 記事メインコンテンツ -->
       <main class="article-main">
-        <article>
-          <!-- 記事ヘッダー -->
-          <header class="article-header">
-            <div class="article-meta">
-              <span class="article-tag">第17弾｜タスク管理・音声DX</span>
-              <span class="article-date">公開日：2026年10月22日</span>
-              <span class="article-author">執筆：橘 涼介（フリーランス・個人事業担当）</span>
-            </div>
-            <h1 class="article-title">【音声AI×Notion】歩きながら話すだけでタスク化完了！スマホ手ぶらToDo管理術</h1>
-            <p class="article-lead">
-              移動中や散歩中に「あ、〇〇さんに連絡しなきゃ」「来週までにあの企画書を書かなきゃ」と思い浮かんだのに、オフィスに着いた頃にはすっかり忘れていた経験はありませんか？スマホを取り出して文字を入力するのは面倒ですし、歩きスマホは危険です。本記事では、スマホに話しかけるだけで、OpenAIの音声認識モデル（Whisper）とChatGPTが<strong>「雑なひとり言」から期日・担当・優先度を自動判別し、Notionのタスクボードに自動整頓する手ぶら仕事術</strong>を完全公開します。
-            </p>
-          </header>
+        <!-- ステマ規制対応 PR表記 -->
+        <div class="pr-disclosure-bar">
+          <span class="pr-badge">PR</span>
+          <span>本記事は客観的な実務検証データに基づき中立に執筆されています。一部に提携ツールの紹介リンクを含みます。</span>
+        </div>
 
-          <!-- ステマ規制対応 PR表記 -->
-          <div class="pr-disclosure-bar">
-            <span class="pr-badge">PR / 広告開示</span>
-            <span>当サイトの記事は一部アフィリエイト広告を含みますが、実務検証データに基づき客観的・中立な情報提供を行っています。</span>
+        <header class="article-header">
+          <span class="category-tag cat-biz">個人DX・タスク管理</span>
+          <h1 class="article-title">【音声AI×Notion】歩きながら話すだけでタスク化完了！スマホ手ぶらToDo管理術</h1>
+          <div class="article-meta-bar">
+            <span>公開日：2026年10月22日</span>
+            <span>読了目安：約6分</span>
+          </div>
+        </header>
+
+        <!-- 即離脱防止：ファーストビュー即効バリューカード -->
+        <section class="fv-summary-card" aria-label="記事の要点と即効プロンプト">
+          <div class="fv-author-lead">
+            <div class="fv-author-avatar" style="border-color:#d97706; box-shadow:0 2px 8px rgba(0,0,0,0.15);">
+              <img src="images/author-tachibana.jpg?v=20261016d" alt="橘 玲奈（たちばな れいな・38歳）" width="58" height="58" loading="lazy">
+            </div>
+            <div class="fv-author-speech">
+              <div class="fv-author-name-tag">
+                <span class="fv-author-name">橘 玲奈（たちばな れいな・38歳）</span>
+                <span class="fv-author-badge" style="background:#fef3c7; color:#92400e;">個人DX・タスク管理担当</span>
+              </div>
+              <p class="fv-author-comment">
+                
+              「デスクに座ってからToDoリストを書くのはもう古い習慣です。私のタスク管理は、駅までの徒歩5分間にスマホのボイスメモへ頭の中をぶちまけるだけで完了します。AIが綺麗に分解して期日を入れてくれるので、抜け漏れが本当にゼロになりました！」
+            
+              </p>
+            </div>
           </div>
 
-          <!-- ファーストビュー即効バリューカード -->
-          <div class="first-view-action-card fv-theme-orange">
-            <div class="fv-card-header">
-              <div class="fv-writer-badge">
-                <span class="fv-badge-dot"></span>
-                <span>担当ライター 橘涼介（38歳・一人起業DX担当）より</span>
-              </div>
-              <span class="fv-read-time">読了目安：5分（即効音声テンプレ付き）</span>
+          <!-- 10秒お試しプロンプト（コピペボタン付き） -->
+          <div class="fv-try-box">
+            <div class="fv-try-header">
+              <span class="fv-try-title">⚡ 10秒お試し：まずはこのままコピペ！</span>
+              <button class="copy-btn fv-copy-btn" data-target="p-fv-instant-17">プロンプトをコピー</button>
             </div>
-            
-            <p class="fv-writer-message">
-              「デスクに座ってからToDoリストを書くのはもう古い習慣です。私のタスク管理は、駅までの徒歩5分間にスマホのボイスメモへ頭の中をぶちまけるだけで完了します。AIが綺麗に分解して期日を入れてくれるので、抜け漏れが本当にゼロになりました！」
-            </p>
-
-            <div class="fv-instant-tool">
-              <div class="fv-tool-label">
-                <span>⚡ 10秒で試せる！音声文字起こし➔ToDo構造化プロンプト</span>
-                <button type="button" class="fv-copy-btn" data-copy-target="#fv-prompt-text-17" aria-label="プロンプトをコピー">
-                  <span class="copy-icon">📋</span> コピーする
-                </button>
-              </div>
-              <pre class="fv-prompt-preview" id="fv-prompt-text-17"><code>以下の【音声メモの文字起こし】を読み、実行可能なToDoタスク一覧に構造化してください。
+            <pre id="p-fv-instant-17" class="fv-try-code">以下の【音声メモの文字起こし】を読み、実行可能なToDoタスク一覧に構造化してください。
 
 # 出力フォーマット（Markdownテーブル）:
 | タスク名 | 推定所要時間 | 期日目安 | 優先度（高/中/低） | 最初のアクション |
@@ -167,38 +166,59 @@
 - 期日の指定がないものは内容の緊急度から推測して記載する
 
 # 音声メモ:
-[スマホの音声入力で喋ったテキストをそのまま貼り付け]</code></pre>
-            </div>
-
-            <div class="fv-checklist-box">
-              <div class="fv-checklist-title">🎯 この記事で持ち帰れる3大成果</div>
-              <ul class="fv-checklist-items">
-                <li><span class="fv-check-icon">✓</span> <strong>完全手ぶらタスク化</strong>：移動時間のスキマ5分で1日のタスク整理が完了</li>
-                <li><span class="fv-check-icon">✓</span> <strong>Notion自動連携</strong>：話した内容が自動でカンバンボードにカード化</li>
-                <li><span class="fv-check-icon">✓</span> <strong>アイデアの即時ストック</strong>：閃いた企画や打ち合わせメモを即時資産化</li>
-              </ul>
-            </div>
-
-            <div class="fv-jump-nav">
-              <a href="#sec-1" class="fv-jump-link">1. 音声タスク化の強み ↓</a>
-              <a href="#sec-2" class="fv-jump-link">2. 構造化プロンプト ↓</a>
-              <a href="#sec-3" class="fv-jump-link">3. Notion連携手順 ↓</a>
-              <a href="#sec-5" class="fv-jump-link">4. 継続運用のコツ ↓</a>
-            </div>
+[スマホの音声入力で喋ったテキストをそのまま貼り付け]</pre>
+            <p class="fv-try-hint">💡 スマホ・PCのAIツールにそのまま貼って送信するだけで、即座に実務ツールや成果物が完成します。</p>
           </div>
 
-          <!-- 目次 -->
-          <div class="article-toc">
-            <div class="toc-title">目次</div>
-            <ul class="toc-list">
+          <!-- 本記事で持ち帰れる3大成果 -->
+          <div class="fv-takeaways-title">📌 この記事で持ち帰れる3大成果</div>
+          <ul class="fv-takeaways-list">
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon" style="color:#d97706;">✓</span>
+              <div><strong>完全手ぶらタスク化</strong><br>移動時間のスキマ5分で1日のタスク整理が完了</div>
+            </li>
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon" style="color:#d97706;">✓</span>
+              <div><strong>Notion自動連携</strong><br>話した内容が自動でカンバンボードにカード化</div>
+            </li>
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon" style="color:#d97706;">✓</span>
+              <div><strong>アイデアの即時ストック</strong><br>閃いた企画や打ち合わせメモを即時資産化</div>
+            </li>
+
+          </ul>
+
+          <!-- クイックジャンプ -->
+          <div class="fv-quick-links">
+            <a href="#sec-1" class="fv-quick-btn primary" style="background:#d97706;">📋 1. 音声タスク化の強み ↓</a>
+            <a href="#sec-2" class="fv-quick-btn secondary">2. 構造化プロンプト ↓</a>
+            <a href="#sec-3" class="fv-quick-btn secondary">3. Notion連携手順 ↓</a>
+            <a href="#sec-5" class="fv-quick-btn secondary">4. 継続運用のコツ ↓</a>
+
+          </div>
+        </section>
+
+        <!-- 目次 -->
+        <nav class="toc-box">
+          <div class="toc-title">目次</div>
+          <ul class="toc-list">
+
               <li><a href="#sec-1">1. なぜ「タイピング入力」はタスク管理の敵なのか？</a></li>
               <li><a href="#sec-2">2. 【プロンプト公開】雑なひとり言をToDoタスクに一撃変換</a></li>
               <li><a href="#sec-3">3. スマホショートカットとNotionを繋ぐ超シンプル連携</a></li>
               <li><a href="#sec-4">4. 読者モニター小林さん（40代フリーランス）の実務検証レポート</a></li>
               <li><a href="#sec-5">5. 頭の中のノイズをゼロにする「夕方5分の音声棚卸し」習慣</a></li>
               <li><a href="#sec-6">6. まとめ ＆ 自動化で自分の時間を取り戻す</a></li>
-            </ul>
-          </div>
+            
+          </ul>
+        </nav>
+
+        <div class="article-content">
+          <p class="article-lead">
+            
+              移動中や散歩中に「あ、〇〇さんに連絡しなきゃ」「来週までにあの企画書を書かなきゃ」と思い浮かんだのに、オフィスに着いた頃にはすっかり忘れていた経験はありませんか？スマホを取り出して文字を入力するのは面倒ですし、歩きスマホは危険です。本記事では、スマホに話しかけるだけで、OpenAIの音声認識モデル（Whisper）とChatGPTが<strong>「雑なひとり言」から期日・担当・優先度を自動判別し、Notionのタスクボードに自動整頓する手ぶら仕事術</strong>を完全公開します。
+            
+          </p>
 
           <!-- 本文セクション -->
           <h2 id="sec-1">1. なぜ「タイピング入力」はタスク管理の敵なのか？</h2>
@@ -308,7 +328,9 @@
               <p class="bio-desc">複数企業のプロジェクトマネジメントを1人で回すため、Notionと生成AIを徹底統合した「手ぶら業務自動化」を構築。ひとり起業家や副業ワーカーの自由時間を最大化する仕組みを発信中。</p>
             </div>
           </div>
-        </article>
+            </div>
+          </div>
+        </div>
       </main>
 
       <!-- サイドバー -->

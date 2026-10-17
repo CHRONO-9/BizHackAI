@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -114,50 +114,49 @@
 
   <div class="main-wrapper">
     <div class="article-layout">
-      <!-- メイン記事コンテンツ -->
+      <!-- 記事メインコンテンツ -->
       <main class="article-main">
-        <article>
-          <!-- 記事ヘッダー -->
-          <header class="article-header">
-            <div class="article-meta">
-              <span class="article-tag">第15弾｜Office×AI活用術</span>
-              <span class="article-date">公開日：2026年10月20日</span>
-              <span class="article-author">執筆：白石 麻衣（日常実務担当）</span>
-            </div>
-            <h1 class="article-title">【Microsoft Copilot】Word・Excel・パワポが激変！Officeで使うAI実践テクニック</h1>
-            <p class="article-lead">
-              会社で「Microsoft 365 Copilot」が導入されたものの、「画面の右端にボタンはあるけれど、結局何ができるのか分からない」「普通のChatGPTと何が違うの？」と放置していませんか？Copilotの真価は、<strong>あなたが普段使っているWord、Excel、PowerPoint、Teamsと直結して、社内ファイルをもとに動く点</strong>にあります。本記事では、日常の事務・企画業務で明日からすぐ使える「アプリ別・最強Copilotプロンプト」を徹底解説します。
-            </p>
-          </header>
+        <!-- ステマ規制対応 PR表記 -->
+        <div class="pr-disclosure-bar">
+          <span class="pr-badge">PR</span>
+          <span>本記事は客観的な実務検証データに基づき中立に執筆されています。一部に提携ツールの紹介リンクを含みます。</span>
+        </div>
 
-          <!-- ステマ規制対応 PR表記 -->
-          <div class="pr-disclosure-bar">
-            <span class="pr-badge">PR / 広告開示</span>
-            <span>当サイトの記事は一部アフィリエイト広告を含みますが、実務検証データに基づき客観的・中立な情報提供を行っています。</span>
+        <header class="article-header">
+          <span class="category-tag cat-office">Office・文書作成DX</span>
+          <h1 class="article-title">【Microsoft Copilot】Word・Excel・パワポが激変！Officeで使うAI実践テクニック</h1>
+          <div class="article-meta-bar">
+            <span>公開日：2026年10月20日</span>
+            <span>読了目安：約6分</span>
+          </div>
+        </header>
+
+        <!-- 即離脱防止：ファーストビュー即効バリューカード -->
+        <section class="fv-summary-card" aria-label="記事の要点と即効プロンプト">
+          <div class="fv-author-lead">
+            <div class="fv-author-avatar" style="border-color:#2563eb; box-shadow:0 2px 8px rgba(0,0,0,0.15);">
+              <img src="images/author-kiryu.jpg?v=20261016d" alt="桐生 大輔（きりゅう だいすけ・42歳）" width="58" height="58" loading="lazy">
+            </div>
+            <div class="fv-author-speech">
+              <div class="fv-author-name-tag">
+                <span class="fv-author-name">桐生 大輔（きりゅう だいすけ・42歳）</span>
+                <span class="fv-author-badge" style="background:#dbeafe; color:#1e40af;">Office・現場実務DX担当</span>
+              </div>
+              <p class="fv-author-comment">
+                
+              「ChatGPTに社内データをコピペするのはセキュリティ上禁止されている会社でも、Microsoft 365の社内テナント内で動くCopilotなら安心して使えます！特にWordの報告書からパワポスライドを全自動生成するワザは、一度覚えると手放せなくなりますよ！」
+            
+              </p>
+            </div>
           </div>
 
-          <!-- ファーストビュー即効バリューカード -->
-          <div class="first-view-action-card fv-theme-blue">
-            <div class="fv-card-header">
-              <div class="fv-writer-badge">
-                <span class="fv-badge-dot"></span>
-                <span>担当ライター 白石麻衣（29歳・日常実務担当）より</span>
-              </div>
-              <span class="fv-read-time">読了目安：5分（即効Officeプロンプト付き）</span>
+          <!-- 10秒お試しプロンプト（コピペボタン付き） -->
+          <div class="fv-try-box">
+            <div class="fv-try-header">
+              <span class="fv-try-title">⚡ 10秒お試し：まずはこのままコピペ！</span>
+              <button class="copy-btn fv-copy-btn" data-target="p-fv-instant-15">プロンプトをコピー</button>
             </div>
-            
-            <p class="fv-writer-message">
-              「ChatGPTに社内データをコピペするのはセキュリティ上禁止されている会社でも、Microsoft 365の社内テナント内で動くCopilotなら安心して使えます！特にWordの報告書からパワポスライドを全自動生成するワザは、一度覚えると手放せなくなりますよ！」
-            </p>
-
-            <div class="fv-instant-tool">
-              <div class="fv-tool-label">
-                <span>⚡ 10秒で試せる！Word➔パワポ変換プロンプト</span>
-                <button type="button" class="fv-copy-btn" data-copy-target="#fv-prompt-text-15" aria-label="プロンプトをコピー">
-                  <span class="copy-icon">📋</span> コピーする
-                </button>
-              </div>
-              <pre class="fv-prompt-preview" id="fv-prompt-text-15"><code>（PowerPointのCopilotチャットに入力）
+            <pre id="p-fv-instant-15" class="fv-try-code">（PowerPointのCopilotチャットに入力）
 社内ファイル【/業務改善報告書.docx】をもとに、役員向けの提案プレゼンスライドを新規作成してください。
 
 # スライド構成要件:
@@ -166,38 +165,59 @@
 - 2〜3枚目: 現状の課題と定量的データ
 - 4〜5枚目: AI導入による解決策と工数削減効果（グラフ推奨）
 - 最終枚: 今後のロードマップと次のアクション
-- 各スライドは箇条書き3点以内に抑え、図解しやすいレイアウトにする</code></pre>
-            </div>
-
-            <div class="fv-checklist-box">
-              <div class="fv-checklist-title">🎯 この記事で持ち帰れる3大成果</div>
-              <ul class="fv-checklist-items">
-                <li><span class="fv-check-icon">✓</span> <strong>Wordの長文3分要約</strong>：何十ページの社内規程・報告書を一瞬で骨子化</li>
-                <li><span class="fv-check-icon">✓</span> <strong>Excelの自然言語分析</strong>：「売上トップ3を出して」と話しかけるだけ</li>
-                <li><span class="fv-check-icon">✓</span> <strong>PowerPoint自動生成</strong>：Word文書からスライドとスピーカーノートを同時出力</li>
-              </ul>
-            </div>
-
-            <div class="fv-jump-nav">
-              <a href="#sec-1" class="fv-jump-link">1. Copilotの強み ↓</a>
-              <a href="#sec-2" class="fv-jump-link">2. Word活用術 ↓</a>
-              <a href="#sec-3" class="fv-jump-link">3. Excel＆パワポ術 ↓</a>
-              <a href="#sec-5" class="fv-jump-link">4. セキュリティ対策 ↓</a>
-            </div>
+- 各スライドは箇条書き3点以内に抑え、図解しやすいレイアウトにする</pre>
+            <p class="fv-try-hint">💡 スマホ・PCのAIツールにそのまま貼って送信するだけで、即座に実務ツールや成果物が完成します。</p>
           </div>
 
-          <!-- 目次 -->
-          <div class="article-toc">
-            <div class="toc-title">目次</div>
-            <ul class="toc-list">
+          <!-- 本記事で持ち帰れる3大成果 -->
+          <div class="fv-takeaways-title">📌 この記事で持ち帰れる3大成果</div>
+          <ul class="fv-takeaways-list">
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon" style="color:#2563eb;">✓</span>
+              <div><strong>Wordの長文3分要約</strong><br>何十ページの社内規程・報告書を一瞬で骨子化</div>
+            </li>
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon" style="color:#2563eb;">✓</span>
+              <div><strong>Excelの自然言語分析</strong><br>「売上トップ3を出して」と話しかけるだけ</div>
+            </li>
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon" style="color:#2563eb;">✓</span>
+              <div><strong>PowerPoint自動生成</strong><br>Word文書からスライドとスピーカーノートを同時出力</div>
+            </li>
+
+          </ul>
+
+          <!-- クイックジャンプ -->
+          <div class="fv-quick-links">
+            <a href="#sec-1" class="fv-quick-btn primary" style="background:#2563eb;">📋 1. Copilotの強み ↓</a>
+            <a href="#sec-2" class="fv-quick-btn secondary">2. Word活用術 ↓</a>
+            <a href="#sec-3" class="fv-quick-btn secondary">3. Excel＆パワポ術 ↓</a>
+            <a href="#sec-5" class="fv-quick-btn secondary">4. セキュリティ対策 ↓</a>
+
+          </div>
+        </section>
+
+        <!-- 目次 -->
+        <nav class="toc-box">
+          <div class="toc-title">目次</div>
+          <ul class="toc-list">
+
               <li><a href="#sec-1">1. ChatGPTと何が違う？Microsoft Copilot最大の強み</a></li>
               <li><a href="#sec-2">2. 【Word編】30ページの議事録・報告書を3分で骨子化する技</a></li>
               <li><a href="#sec-3">3. 【Excel＆PowerPoint編】言葉で集計してスライドに一撃変換</a></li>
               <li><a href="#sec-4">4. 読者モニター山田さん（40代事務職）の実務検証レポート</a></li>
               <li><a href="#sec-5">5. 情シスも安心！安全にOffice AIを動かす環境づくり</a></li>
               <li><a href="#sec-6">6. まとめ ＆ 明日からのOffice業務ハック</a></li>
-            </ul>
-          </div>
+            
+          </ul>
+        </nav>
+
+        <div class="article-content">
+          <p class="article-lead">
+            
+              会社で「Microsoft 365 Copilot」が導入されたものの、「画面の右端にボタンはあるけれど、結局何ができるのか分からない」「普通のChatGPTと何が違うの？」と放置していませんか？Copilotの真価は、<strong>あなたが普段使っているWord、Excel、PowerPoint、Teamsと直結して、社内ファイルをもとに動く点</strong>にあります。本記事では、日常の事務・企画業務で明日からすぐ使える「アプリ別・最強Copilotプロンプト」を徹底解説します。
+            
+          </p>
 
           <!-- 本文セクション -->
           <h2 id="sec-1">1. ChatGPTと何が違う？Microsoft Copilot最大の強み</h2>
@@ -308,7 +328,9 @@
               <p class="bio-desc">金融機関の厳格なコンプライアンス環境下で、マクロやOffice AIを活用した定型業務のゼロ化を推進。初心者でも10秒で使えるOffice×AI活用術を発信中。</p>
             </div>
           </div>
-        </article>
+            </div>
+          </div>
+        </div>
       </main>
 
       <!-- サイドバー -->

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -114,88 +114,108 @@
 
   <div class="main-wrapper">
     <div class="article-layout">
-      <!-- メイン記事コンテンツ -->
+      <!-- 記事メインコンテンツ -->
       <main class="article-main">
-        <article>
-          <!-- 記事ヘッダー -->
-          <header class="article-header">
-            <div class="article-meta">
-              <span class="article-tag">第13弾｜業務アプリ・社内DX</span>
-              <span class="article-date">公開日：2026年10月18日</span>
-              <span class="article-author">執筆：神崎 聡（データ実務・バックオフィス担当）</span>
-            </div>
-            <h1 class="article-title">【Claude 3.5×Artifacts】プログラミング不要！社内ツール＆簡易Webアプリを10分で作る実務術</h1>
-            <p class="article-lead">
-              「社内向けの見積もり計算ツールが欲しい」「毎月の工数シミュレーションを画面でポチポチ操作したい」。そう思っても、情シスや開発チームに依頼すると『数ヶ月待ち』と言われて諦めていませんか？Anthropic社の最新AI「Claude 3.5 Sonnet」に搭載された革命的機能<strong>「Artifacts（アーティファクト）」</strong>を使えば、プログラミング言語を1行も書かずに、日本語で要望を伝えるだけでブラウザ上で即動くWebアプリが10分で完成します。現場の自力DXを加速させる、まったく新しい仕事術をご紹介します。
-            </p>
-          </header>
+        <!-- ステマ規制対応 PR表記 -->
+        <div class="pr-disclosure-bar">
+          <span class="pr-badge">PR</span>
+          <span>本記事は客観的な実務検証データに基づき中立に執筆されています。一部に提携ツールの紹介リンクを含みます。</span>
+        </div>
 
-          <!-- ステマ規制対応 PR表記 -->
-          <div class="pr-disclosure-bar">
-            <span class="pr-badge">PR / 広告開示</span>
-            <span>当サイトの記事は一部アフィリエイト広告を含みますが、実務検証データに基づき客観的・中立な情報提供を行っています。</span>
+        <header class="article-header">
+          <span class="category-tag cat-biz">現場実務・Web自作DX</span>
+          <h1 class="article-title">【Claude 3.5×Artifacts】プログラミング不要！社内ツール＆簡易Webアプリを10分で作る実務術</h1>
+          <div class="article-meta-bar">
+            <span>公開日：2026年10月18日</span>
+            <span>読了目安：約6分</span>
+          </div>
+        </header>
+
+        <!-- 即離脱防止：ファーストビュー即効バリューカード -->
+        <section class="fv-summary-card" aria-label="記事の要点と即効プロンプト">
+          <div class="fv-author-lead">
+            <div class="fv-author-avatar" style="border-color:#0284c7; box-shadow:0 2px 8px rgba(0,0,0,0.15);">
+              <img src="images/author-kanzaki.jpg?v=20261016d" alt="神崎 聡（かんざき さとし・51歳）" width="58" height="58" loading="lazy">
+            </div>
+            <div class="fv-author-speech">
+              <div class="fv-author-name-tag">
+                <span class="fv-author-name">神崎 聡（かんざき さとし・51歳）</span>
+                <span class="fv-author-badge" style="background:#e0f2fe; color:#0369a1;">データ実務・バックオフィスDX担当</span>
+              </div>
+              <p class="fv-author-comment">
+                
+              「これまでエクセルマクロで作っていた計算ツールやシミュレーターは、誰かが計算式を壊してトラブルになりがちでした。Claude 3.5のArtifactsなら、HTML/CSS/JSで構成された壊れない独立ツールが一瞬で出力されます。チーム全員にURLを渡すだけで即日共有できる、現場DXの最高峰ツールです！」
+            
+              </p>
+            </div>
           </div>
 
-          <!-- ファーストビュー即効バリューカード -->
-          <div class="first-view-action-card fv-theme-blue">
-            <div class="fv-card-header">
-              <div class="fv-writer-badge">
-                <span class="fv-badge-dot"></span>
-                <span>担当ライター 神崎聡（51歳・データ実務DX担当）より</span>
-              </div>
-              <span class="fv-read-time">読了目安：6分（実践テンプレ付き）</span>
+          <!-- 10秒お試しプロンプト（コピペボタン付き） -->
+          <div class="fv-try-box">
+            <div class="fv-try-header">
+              <span class="fv-try-title">⚡ 10秒お試し：まずはこのままコピペ！</span>
+              <button class="copy-btn fv-copy-btn" data-target="p-fv-instant-13">プロンプトをコピー</button>
             </div>
-            
-            <p class="fv-writer-message">
-              「これまでエクセルマクロで作っていた計算ツールやシミュレーターは、誰かが計算式を壊してトラブルになりがちでした。Claude 3.5のArtifactsなら、HTML/CSS/JSで構成された壊れない独立ツールが一瞬で出力されます。チーム全員にURLを渡すだけで即日共有できる、現場DXの最高峰ツールです！」
-            </p>
-
-            <div class="fv-instant-tool">
-              <div class="fv-tool-label">
-                <span>⚡ 10秒で試せる！見積計算ツール自動生成プロンプト</span>
-                <button type="button" class="fv-copy-btn" data-copy-target="#fv-prompt-text-13" aria-label="プロンプトをコピー">
-                  <span class="copy-icon">📋</span> コピーする
-                </button>
-              </div>
-              <pre class="fv-prompt-preview" id="fv-prompt-text-13"><code>以下の要件を満たす、ブラウザ上で直感的に動く「社内見積もり計算Webツール」をHTML/Tailwind CSS/JavaScriptで作成してください。
+            <pre id="p-fv-instant-13" class="fv-try-code">以下の要件を満たす、ブラウザ上で直感的に動く「社内見積もり計算Webツール」をHTML/Tailwind CSS/JavaScriptで作成してください。
 
 # ツール要件:
 1. 商品プラン（基本プラン: 月額1万円、Proプラン: 月額3万円）をラジオボタンで選択
 2. 追加アカウント数（1人あたり月額1,000円）をスライダーで直感入力
 3. オプション項目（24時間サポート: +5,000円）をチェックボックスで選択
 4. 月額合計金額と年間合計金額（年払い10%割引）を画面右側に大きくリアルタイム表示
-5. 「見積書テキストを出力」ボタンを押すと、クリップボードにコピーされる機能</code></pre>
-            </div>
-
-            <div class="fv-checklist-box">
-              <div class="fv-checklist-title">🎯 この記事で持ち帰れる3大成果</div>
-              <ul class="fv-checklist-items">
-                <li><span class="fv-check-icon">✓</span> <strong>Artifactsの基本操作</strong>：Claudeの画面右側でプレビューしながら動かす手法</li>
-                <li><span class="fv-check-icon">✓</span> <strong>壊れない社内ツールの自作</strong>：エクセルのマクロ崩れから永久に脱却</li>
-                <li><span class="fv-check-icon">✓</span> <strong>チーム即時共有テクニック</strong>：生成されたHTMLをワンクリックで配布する方法</li>
-              </ul>
-            </div>
-
-            <div class="fv-jump-nav">
-              <a href="#sec-1" class="fv-jump-link">1. Artifactsとは ↓</a>
-              <a href="#sec-2" class="fv-jump-link">2. ツール作成手順 ↓</a>
-              <a href="#sec-3" class="fv-jump-link">3. 実務プロンプト集 ↓</a>
-              <a href="#sec-5" class="fv-jump-link">4. チーム配布方法 ↓</a>
-            </div>
+5. 「見積書テキストを出力」ボタンを押すと、クリップボードにコピーされる機能</pre>
+            <p class="fv-try-hint">💡 スマホ・PCのAIツールにそのまま貼って送信するだけで、即座に実務ツールや成果物が完成します。</p>
           </div>
 
-          <!-- 目次 -->
-          <div class="article-toc">
-            <div class="toc-title">目次</div>
-            <ul class="toc-list">
+          <!-- 本記事で持ち帰れる3大成果 -->
+          <div class="fv-takeaways-title">📌 この記事で持ち帰れる3大成果</div>
+          <ul class="fv-takeaways-list">
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon" style="color:#0284c7;">✓</span>
+              <div><strong>Artifactsの基本操作</strong><br>Claudeの画面右側でプレビューしながら動かす手法</div>
+            </li>
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon" style="color:#0284c7;">✓</span>
+              <div><strong>壊れない社内ツールの自作</strong><br>エクセルのマクロ崩れから永久に脱却</div>
+            </li>
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon" style="color:#0284c7;">✓</span>
+              <div><strong>チーム即時共有テクニック</strong><br>生成されたHTMLをワンクリックで配布する方法</div>
+            </li>
+
+          </ul>
+
+          <!-- クイックジャンプ -->
+          <div class="fv-quick-links">
+            <a href="#sec-1" class="fv-quick-btn primary" style="background:#0284c7;">📋 1. Artifactsとは ↓</a>
+            <a href="#sec-2" class="fv-quick-btn secondary">2. ツール作成手順 ↓</a>
+            <a href="#sec-3" class="fv-quick-btn secondary">3. 実務プロンプト集 ↓</a>
+            <a href="#sec-5" class="fv-quick-btn secondary">4. チーム配布方法 ↓</a>
+
+          </div>
+        </section>
+
+        <!-- 目次 -->
+        <nav class="toc-box">
+          <div class="toc-title">目次</div>
+          <ul class="toc-list">
+
               <li><a href="#sec-1">1. 生成AIの歴史を変えた「Claude 3.5 Artifacts」とは？</a></li>
               <li><a href="#sec-2">2. たった3ステップ！社内ツールを10分で作る黄金フロー</a></li>
               <li><a href="#sec-3">3. 【実務で即役立つ】社内Webツール生成プロンプト3選</a></li>
               <li><a href="#sec-4">4. 読者モニター高橋さん（30代チームリーダー）の実証レビュー</a></li>
               <li><a href="#sec-5">5. 完成したツールをチームに安全に共有・配布する方法</a></li>
               <li><a href="#sec-6">6. まとめ ＆ 自前DX人材へのステップアップ</a></li>
-            </ul>
-          </div>
+            
+          </ul>
+        </nav>
+
+        <div class="article-content">
+          <p class="article-lead">
+            
+              「社内向けの見積もり計算ツールが欲しい」「毎月の工数シミュレーションを画面でポチポチ操作したい」。そう思っても、情シスや開発チームに依頼すると『数ヶ月待ち』と言われて諦めていませんか？Anthropic社の最新AI「Claude 3.5 Sonnet」に搭載された革命的機能<strong>「Artifacts（アーティファクト）」</strong>を使えば、プログラミング言語を1行も書かずに、日本語で要望を伝えるだけでブラウザ上で即動くWebアプリが10分で完成します。現場の自力DXを加速させる、まったく新しい仕事術をご紹介します。
+            
+          </p>
 
           <!-- 本文セクション -->
           <h2 id="sec-1">1. 生成AIの歴史を変えた「Claude 3.5 Artifacts」とは？</h2>
@@ -318,7 +338,9 @@
               <p class="bio-desc">中堅・中小企業を中心に25年以上にわたり累計50社以上の総務・経理部門のペーパーレス化と表計算自動化を牽引。関数不要のエクセル・スプレッドシート集計、インボイス対応の請求書PDF自動仕訳、契約書・規程のAI要約で月末工数を平均80%削減。</p>
             </div>
           </div>
-        </article>
+            </div>
+          </div>
+        </div>
       </main>
 
       <!-- サイドバー -->
