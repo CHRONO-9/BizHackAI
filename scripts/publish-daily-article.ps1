@@ -270,11 +270,12 @@ if (Test-Path $EmailConfigFile) {
             $BodyContent = $BodyContent.Replace("{COMMIT_SHA}", $LatestCommitSha)
             $BodyContent = $BodyContent.Replace("{COMMIT_MSG}", $CommitMsg)
 
-            # Query GA4 metrics if configured
+            # Query GA4 metrics in-process (avoids stdout CP932 encoding conversion)
             $GA4Script = "$WorkspaceRoot\scripts\get-ga4-summary.ps1"
             if (Test-Path $GA4Script) {
                 try {
-                    $ga4Block = & powershell -ExecutionPolicy Bypass -File $GA4Script
+                    . $GA4Script
+                    $ga4Block = Get-GA4MetricsBlock -WorkspaceRoot $WorkspaceRoot
                     if ($ga4Block -and $ga4Block.Trim().Length -gt 0) {
                         $BodyContent = $BodyContent + "`n" + $ga4Block.Trim() + "`n"
                     }
@@ -290,6 +291,7 @@ if (Test-Path $EmailConfigFile) {
 
         $mail.BodyEncoding = [System.Text.Encoding]::UTF8
         $mail.SubjectEncoding = [System.Text.Encoding]::UTF8
+        $mail.Headers.Add("Content-Transfer-Encoding", "base64")
 
         $smtp.Send($mail)
         $mail.Dispose()

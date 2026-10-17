@@ -138,47 +138,52 @@ function Get-GA4Metrics([string]$accessToken, [string]$propId) {
     }
 }
 
-# --- Main execution ---
-$WorkspaceRoot = "C:\Users\k_mil\Desktop\BzhackAI"
-$FullCredPath = Join-Path $WorkspaceRoot $CredentialsPath
+function Get-GA4MetricsBlock([string]$WorkspaceRoot = "C:\Users\k_mil\Desktop\BzhackAI", [string]$CredentialsPath = "config\ga4-credentials.json", [string]$PropertyId = "558928664") {
+    $FullCredPath = Join-Path $WorkspaceRoot $CredentialsPath
 
-if (-not (Test-Path $FullCredPath)) {
-    Write-Host "[INFO] GA4 credentials ($CredentialsPath) not configured yet." -ForegroundColor Yellow
-    return ""
-}
-
-try {
-    $token = Get-GA4AccessToken -jsonPath $FullCredPath
-    if (-not $token) {
-        Write-Host "[WARN] Could not retrieve GA4 access token." -ForegroundColor Yellow
+    if (-not (Test-Path $FullCredPath)) {
+        Write-Host "[INFO] GA4 credentials ($CredentialsPath) not configured yet." -ForegroundColor Yellow
         return ""
     }
 
-    $metrics = Get-GA4Metrics -accessToken $token -propId $PropertyId
-    if (-not $metrics) { return "" }
-
-    $tplPath = Join-Path $WorkspaceRoot "config\templates\ga4-mail-block.txt"
-    if (Test-Path $tplPath) {
-        $block = [System.IO.File]::ReadAllText($tplPath, [System.Text.Encoding]::UTF8)
-        $block = $block.Replace("{GA4_VIEWS}", "$($metrics.Views)")
-        $block = $block.Replace("{GA4_USERS}", "$($metrics.Users)")
-        $block = $block.Replace("{GA4_AVG_MIN}", "$($metrics.MinPart)")
-        $block = $block.Replace("{GA4_AVG_SEC}", "$($metrics.SecPart)")
-        $block = $block.Replace("{GA4_COPIES}", "$($metrics.PromptCopies)")
-        $block = $block.Replace("{GA4_TOP_ARTICLES}", "$($metrics.TopPages)")
-        return $block
-    }
-    return ""
-} catch {
-    Write-Host "[WARN] GA4 query failed: $($_.Exception.Message)" -ForegroundColor Yellow
-    if ($_.Exception.Response) {
-        $reader = New-Object System.IO.StreamReader($_.Exception.Response.GetResponseStream())
-        $errBody = $reader.ReadToEnd()
-        if ($errBody -match "PERMISSION_DENIED") {
-            Write-Host "[INFO] Please add service account to GA4 Property (558928664) Access Management as Viewer." -ForegroundColor Yellow
-        } else {
-            Write-Host "[DEBUG] $errBody" -ForegroundColor Red
+    try {
+        $token = Get-GA4AccessToken -jsonPath $FullCredPath
+        if (-not $token) {
+            Write-Host "[WARN] Could not retrieve GA4 access token." -ForegroundColor Yellow
+            return ""
         }
+
+        $metrics = Get-GA4Metrics -accessToken $token -propId $PropertyId
+        if (-not $metrics) { return "" }
+
+        $tplPath = Join-Path $WorkspaceRoot "config\templates\ga4-mail-block.txt"
+        if (Test-Path $tplPath) {
+            $block = [System.IO.File]::ReadAllText($tplPath, [System.Text.Encoding]::UTF8)
+            $block = $block.Replace("{GA4_VIEWS}", "$($metrics.Views)")
+            $block = $block.Replace("{GA4_USERS}", "$($metrics.Users)")
+            $block = $block.Replace("{GA4_AVG_MIN}", "$($metrics.MinPart)")
+            $block = $block.Replace("{GA4_AVG_SEC}", "$($metrics.SecPart)")
+            $block = $block.Replace("{GA4_COPIES}", "$($metrics.PromptCopies)")
+            $block = $block.Replace("{GA4_TOP_ARTICLES}", "$($metrics.TopPages)")
+            return $block
+        }
+        return ""
+    } catch {
+        Write-Host "[WARN] GA4 query failed: $($_.Exception.Message)" -ForegroundColor Yellow
+        if ($_.Exception.Response) {
+            $reader = New-Object System.IO.StreamReader($_.Exception.Response.GetResponseStream())
+            $errBody = $reader.ReadToEnd()
+            if ($errBody -match "PERMISSION_DENIED") {
+                Write-Host "[INFO] Please add service account to GA4 Property (558928664) Access Management as Viewer." -ForegroundColor Yellow
+            } else {
+                Write-Host "[DEBUG] $errBody" -ForegroundColor Red
+            }
+        }
+        return ""
     }
-    return ""
+}
+
+# Run when executed directly
+if ($MyInvocation.InvocationName -ne '.') {
+    Get-GA4MetricsBlock
 }

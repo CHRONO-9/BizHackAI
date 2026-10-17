@@ -1,0 +1,10 @@
+阿部 圭二 様
+
+BizHack AI 運営事務局より、Google Analytics 4（GA4 Data API連携）による最新アクセス速報をお届けいたします。
+
+集計日時: {TIMESTAMP}
+
+{GA4_BLOCK}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+※本メールはBizHack AI自動運用システムより送信されています。
