@@ -164,59 +164,44 @@ if (Test-Path $IndexPath) {
     Write-Host "[STEP 3] Updated index.html successfully" -ForegroundColor Green
 }
 
-# 4b. Update sidebars and footers across all existing articles
-$PrevNumber = $ArticleNumber - 1
-$AllExistingArticles = Get-ChildItem -Path $WorkspaceRoot -Filter "article-*.html" | Where-Object { $_.Name -ne "article-$ArticleNumber.html" }
+# 4b. Update js/articles-data.js (Single source of truth master)
+$ArticlesDataPath = "$WorkspaceRoot\js\articles-data.js"
+if (Test-Path $ArticlesDataPath) {
+    $DataContent = [System.IO.File]::ReadAllText($ArticlesDataPath, [System.Text.Encoding]::UTF8)
+    if ($DataContent -notmatch "id:\s*$ArticleNumber\b") {
+        # Remove previous isNew: true flags
+        $DataContent = [regex]::Replace($DataContent, '\s*isNew:\s*true,?', '')
 
-$MetaConfigFile = "$WorkspaceRoot\config\articles-metadata.json"
-$MetaJson = if (Test-Path $MetaConfigFile) { [System.IO.File]::ReadAllText($MetaConfigFile, [System.Text.Encoding]::UTF8) | ConvertFrom-Json } else { $null }
-$ArtMeta = if ($MetaJson -and $MetaJson.PSObject.Properties["$ArticleNumber"]) { $MetaJson."$ArticleNumber" } else { $null }
-$ShortTitle = if ($ArtMeta) { $ArtMeta.thumbTitle } else { $ArticleTitle }
-$CatLabel = if ($ArtMeta) { $ArtMeta.categoryLabel } else { "AI" }
+        $MetaConfigFile = "$WorkspaceRoot\config\articles-metadata.json"
+        $MetaJson = if (Test-Path $MetaConfigFile) { [System.IO.File]::ReadAllText($MetaConfigFile, [System.Text.Encoding]::UTF8) | ConvertFrom-Json } else { $null }
+        $ArtMeta = if ($MetaJson -and $MetaJson.PSObject.Properties["$ArticleNumber"]) { $MetaJson."$ArticleNumber" } else { $null }
+        $ShortTitle = if ($ArtMeta) { $ArtMeta.thumbTitle } else { $ArticleTitle }
+        $CatLabel = if ($ArtMeta) { $ArtMeta.categoryLabel } else { "AI DX" }
+        $CatKey = if ($ArtMeta) { $ArtMeta.categoryKey } else { "routine" }
+        $Author = if ($ArtMeta) { $ArtMeta.authorName } else { "BizHack AI" }
 
-$ZenBytes = [byte[]]@(0xE5, 0x85, 0xA8)
-$DanBytes = [byte[]]@(0xE5, 0xBC, 0xBE)
-$DaiBytes = [byte[]]@(0xE7, 0xAC, 0xAC)
-$JissenBytes = [byte[]]@(0x20, 0xE5, 0xAE, 0x9F, 0xE8, 0xB7, 0xB5, 0xE8, 0xA8, 0x98, 0xE4, 0xBA, 0x8B, 0xE4, 0xB8, 0x80, 0xE8, 0xA6, 0xA7)
+        # Prepare entry
+        $NewEntry = "  {`n" +
+                    "    id: $ArticleNumber,`n" +
+                    "    url: `"article-$ArticleNumber.html`",`n" +
+                    "    title: `"$ShortTitle`",`n" +
+                    "    fullTitle: `"$ArticleTitle`",`n" +
+                    "    category: `"$CatLabel`",`n" +
+                    "    categoryKey: `"$CatKey`",`n" +
+                    "    author: `"$Author`",`n" +
+                    "    date: `"$TodayDotStr`",`n" +
+                    "    isNew: true`n" +
+                    "  },"
 
-foreach ($artFile in $AllExistingArticles) {
-    $artContent = [System.IO.File]::ReadAllText($artFile.FullName, [System.Text.Encoding]::UTF8)
-    $modified = $false
-
-    # Update sidebar title
-    $OldSidebarTitle = [System.Text.Encoding]::UTF8.GetString($ZenBytes) + $PrevNumber + [System.Text.Encoding]::UTF8.GetString($DanBytes) + [System.Text.Encoding]::UTF8.GetString($JissenBytes)
-    $NewSidebarTitle = [System.Text.Encoding]::UTF8.GetString($ZenBytes) + $ArticleNumber + [System.Text.Encoding]::UTF8.GetString($DanBytes) + [System.Text.Encoding]::UTF8.GetString($JissenBytes)
-    if ($artContent.Contains($OldSidebarTitle)) {
-        $artContent = $artContent.Replace($OldSidebarTitle, $NewSidebarTitle)
-        $modified = $true
-    }
-
-    # Add new article to sidebar if not present
-    if ($artContent -notmatch "article-$ArticleNumber\.html") {
-        $PrevSidebarPattern = '(?s)(<div class="recent-article-item"[^>]*><span[^>]*>' + [System.Text.Encoding]::UTF8.GetString($DaiBytes) + $PrevNumber + [System.Text.Encoding]::UTF8.GetString($DanBytes) + '.*?</div>)'
-        if ($artContent -match $PrevSidebarPattern) {
-            $NewSidebarItem = "`n          <div class=`"recent-article-item`"><span style=`"font-size:0.75rem; color:var(--text-muted);`">" + [System.Text.Encoding]::UTF8.GetString($DaiBytes) + $ArticleNumber + [System.Text.Encoding]::UTF8.GetString($DanBytes) + "</span><a href=`"article-$ArticleNumber.html`">$ShortTitle</a></div>"
-            $artContent = [regex]::Replace($artContent, $PrevSidebarPattern, { param($m) $m.Groups[1].Value + $NewSidebarItem })
-            $modified = $true
+        $InsertMarker = "window.BIZHACK_ARTICLES = ["
+        if ($DataContent.Contains($InsertMarker)) {
+            $DataContent = $DataContent.Replace($InsertMarker, "$InsertMarker`n$NewEntry")
+            [System.IO.File]::WriteAllText($ArticlesDataPath, $DataContent, [System.Text.Encoding]::UTF8)
+            Write-Host "[STEP 3b] Added Article $ArticleNumber to js/articles-data.js (Master data updated!)" -ForegroundColor Green
         }
-    }
-
-    # Add new article to footer if not present
-    $FooterArticleUrl = "<li><a href=`"article-$ArticleNumber.html`">"
-    if (-not $artContent.Contains($FooterArticleUrl)) {
-        $PrevFooterPattern = '(?s)(<li><a href="article-' + $PrevNumber + '\.html">.*?</a></li>)'
-        if ($artContent -match $PrevFooterPattern) {
-            $NewFooterItem = "`n          <li><a href=`"article-$ArticleNumber.html`">$CatLabel</a></li>"
-            $artContent = [regex]::Replace($artContent, $PrevFooterPattern, { param($m) $m.Groups[1].Value + $NewFooterItem })
-            $modified = $true
-        }
-    }
-
-    if ($modified) {
-        [System.IO.File]::WriteAllText($artFile.FullName, $artContent, [System.Text.Encoding]::UTF8)
     }
 }
-Write-Host "[STEP 3b] Updated sidebars and footers across all existing articles" -ForegroundColor Green
+
 
 
 # 5. Site quality check

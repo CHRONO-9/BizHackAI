@@ -50,6 +50,12 @@ foreach ($file in $htmlFiles) {
         if ($content.IndexOf('class="article-sidebar"') -lt 0) {
             $fileErrors.Add(".article-sidebar container missing")
         }
+        if ($content.IndexOf('id="sidebar-latest-articles"') -lt 0 -and $content.IndexOf('data-dynamic="articles"') -lt 0) {
+            $fileErrors.Add("Dynamic sidebar container (#sidebar-latest-articles) missing")
+        }
+        if ($content.IndexOf('articles-data.js') -lt 0) {
+            $fileErrors.Add("js/articles-data.js script missing")
+        }
 
         # Check PR disclosure bar
         if ($content.IndexOf('pr-disclosure-bar') -lt 0 -and $content.IndexOf('ad-disclosure-bar') -lt 0) {

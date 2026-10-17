@@ -1044,21 +1044,122 @@ a:hover {
   gap: 1.75rem;
 }
 
+.sidebar-card,
 .sidebar-widget {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  background: var(--bg-card, #ffffff);
+  border: 1px solid var(--border, #e2e8f0);
+  border-radius: var(--radius-md, 12px);
   padding: 1.25rem;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
 }
 
+.sidebar-title,
 .widget-title {
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 800;
   color: #0f172a;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid var(--primary-light);
-  padding-bottom: 0.4rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary, #2563eb);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.recent-article-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.45rem 0.5rem;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.recent-article-item:hover {
+  background-color: #f8fafc;
+}
+
+.recent-article-item .item-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  color: var(--text-muted, #64748b);
+  font-weight: 600;
+}
+
+.recent-article-item a {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.45;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.recent-article-item a:hover {
+  color: var(--primary, #2563eb);
+  text-decoration: underline;
+}
+
+/* 現在閲覧中の記事ハイライト */
+.recent-article-item.is-current {
+  background: rgba(16, 185, 129, 0.08);
+  border-left: 3px solid #10b981;
+  padding-left: 0.65rem;
+}
+
+.recent-article-item.is-current .item-meta {
+  color: #059669;
+  font-weight: 700;
+}
+
+.recent-article-item.is-current a {
+  color: #065f46;
+  font-weight: 700;
+}
+
+/* NEW バッジ */
+.sidebar-badge-new {
+  display: inline-block;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+/* 全記事一覧へのジャンプボタン */
+.sidebar-all-articles-btn {
+  display: block;
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  background: #f1f5f9;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+}
+
+.sidebar-all-articles-btn:hover {
+  background: #2563eb;
+  color: #ffffff !important;
+  border-color: #2563eb;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+  transform: translateY(-1px);
 }
 
 .popular-item {

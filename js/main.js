@@ -177,5 +177,78 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // 6. 動的サイドバー生成（案A × 案B ハイブリッド方式）
+  // window.BIZHACK_ARTICLES マスターから「最新5選 ＋ 現在閲覧中ハイライト ＋ 全記事一覧導線」を自動描画
+  const sidebarContainer = document.getElementById('sidebar-latest-articles') || document.querySelector('.sidebar-card[data-dynamic="articles"]');
+  if (sidebarContainer && Array.isArray(window.BIZHACK_ARTICLES) && window.BIZHACK_ARTICLES.length > 0) {
+    const articles = window.BIZHACK_ARTICLES;
+    const currentPath = window.location.pathname;
+    const currentFileMatch = currentPath.match(/article-(\d+)\.html/);
+    const currentId = currentFileMatch ? parseInt(currentFileMatch[1], 10) : null;
+
+    const totalCount = articles.length;
+    const top5 = articles.slice(0, 5);
+    const isInTop5 = currentId ? top5.some(a => a.id === currentId) : false;
+
+    let itemsHtml = '';
+    top5.forEach(art => {
+      const isCurrent = (art.id === currentId);
+      if (isCurrent) {
+        itemsHtml += `
+          <div class="recent-article-item is-current">
+            <div class="item-meta">
+              <span>第${art.id}弾（閲覧中）</span>
+              ${art.isNew ? '<span class="sidebar-badge-new">NEW</span>' : ''}
+            </div>
+            <a href="${art.url}">${art.title}</a>
+          </div>`;
+      } else {
+        itemsHtml += `
+          <div class="recent-article-item">
+            <div class="item-meta">
+              <span>第${art.id}弾</span>
+              ${art.isNew ? '<span class="sidebar-badge-new">NEW</span>' : ''}
+              <span>${art.date ? '・' + art.date : ''}</span>
+            </div>
+            <a href="${art.url}">${art.title}</a>
+          </div>`;
+      }
+    });
+
+    // もし現在閲覧中の記事がトップ5圏外（過去記事）の場合、セパレーターを挟んで現在記事を表示
+    if (currentId && !isInTop5) {
+      const currentArt = articles.find(a => a.id === currentId);
+      if (currentArt) {
+        itemsHtml += `
+          <div class="sidebar-divider" style="display:flex; align-items:center; gap:0.5rem; margin:0.6rem 0; font-size:0.72rem; color:var(--text-muted, #94a3b8);">
+            <span style="flex:1; border-top:1px dashed var(--border-color, #cbd5e1);"></span>
+            <span>現在閲覧中の記事</span>
+            <span style="flex:1; border-top:1px dashed var(--border-color, #cbd5e1);"></span>
+          </div>
+          <div class="recent-article-item is-current">
+            <div class="item-meta">
+              <span>第${currentArt.id}弾（閲覧中）</span>
+            </div>
+            <a href="${currentArt.url}">${currentArt.title}</a>
+          </div>`;
+      }
+    }
+
+    sidebarContainer.innerHTML = `
+      <div class="sidebar-title">
+        <span>最新おすすめ記事</span>
+        <span style="font-size:0.75rem; color:var(--text-muted, #64748b); font-weight:normal;">全${totalCount}弾</span>
+      </div>
+      <div class="sidebar-articles-list">
+        ${itemsHtml}
+      </div>
+      <div class="sidebar-cta-wrap" style="margin-top:0.85rem; padding-top:0.75rem; border-top:1px dashed var(--border-color, #e2e8f0);">
+        <a href="index.html#featured" class="sidebar-all-articles-btn">
+          全${totalCount}弾の実践特集一覧を見る →
+        </a>
+      </div>
+    `;
+  }
 });
 
