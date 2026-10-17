@@ -29,7 +29,7 @@ function Get-GA4AccessToken([string]$jsonPath) {
     $rsa = New-Object System.Security.Cryptography.RSACng($cngKey)
 
     # Create JWT Header and Claims
-    $nowEpoch = [int64](Get-Date -UFormat %s)
+    $nowEpoch = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
     $headerJson = '{"alg":"RS256","typ":"JWT"}'
     $headerB64 = Base64UrlEncode([System.Text.Encoding]::UTF8.GetBytes($headerJson))
 
@@ -164,6 +164,15 @@ try {
     }
     return ""
 } catch {
-    Write-Host "[WARN] Error querying GA4: $($_.Exception.Message)" -ForegroundColor Yellow
+    Write-Host "[WARN] GA4 query failed: $($_.Exception.Message)" -ForegroundColor Yellow
+    if ($_.Exception.Response) {
+        $reader = New-Object System.IO.StreamReader($_.Exception.Response.GetResponseStream())
+        $errBody = $reader.ReadToEnd()
+        if ($errBody -match "PERMISSION_DENIED") {
+            Write-Host "[INFO] Please add service account to GA4 Property (558928664) Access Management as Viewer." -ForegroundColor Yellow
+        } else {
+            Write-Host "[DEBUG] $errBody" -ForegroundColor Red
+        }
+    }
     return ""
 }
