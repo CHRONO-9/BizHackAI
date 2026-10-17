@@ -3,7 +3,7 @@
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ・前日PV数: {GA4_VIEWS} PV
 ・アクティブユーザー: {GA4_USERS} 名
-・平均エンゲージメント時間: {GA4_AVG_TIME}
+・平均滞在時間: {GA4_AVG_MIN}分{GA4_AVG_SEC}秒
 ・プロンプトコピペ実行数: {GA4_COPIES} 回
 ・閲覧上位記事:
 {GA4_TOP_ARTICLES}

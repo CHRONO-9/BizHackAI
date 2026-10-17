@@ -85,7 +85,6 @@ function Get-GA4Metrics([string]$accessToken, [string]$propId) {
     $avgEngSec = if ([int]$users -gt 0) { [math]::Round($totalEngSec / [int]$users) } else { 0 }
     $minPart = [math]::Floor($avgEngSec / 60)
     $secPart = $avgEngSec % 60
-    $avgEngTime = "$minPart min $secPart sec"
 
     # Query 2: Top 3 articles
     $topPagesBody = @{
@@ -99,9 +98,14 @@ function Get-GA4Metrics([string]$accessToken, [string]$propId) {
     $topPagesRes = Invoke-RestMethod -Uri $reportUrl -Method Post -Headers $headers -Body $topPagesBody
     $topPagesList = @()
     if ($topPagesRes.rows) {
+        $zenBar = [System.Text.Encoding]::UTF8.GetString([byte[]]@(0xEF, 0xBD, 0x9C))
         foreach ($row in $topPagesRes.rows) {
             $rawTitle = $row.dimensionValues[0].value
-            $cleanTitle = ($rawTitle -split '\|')[0].Trim()
+            $cleanTitle = $rawTitle.Split('|')[0]
+            if ($cleanTitle.Contains($zenBar)) {
+                $cleanTitle = $cleanTitle.Substring(0, $cleanTitle.IndexOf($zenBar))
+            }
+            $cleanTitle = $cleanTitle.Trim()
             $cnt = $row.metricValues[0].value
             $topPagesList += "  - $cleanTitle ($cnt PV)"
         }
@@ -127,7 +131,8 @@ function Get-GA4Metrics([string]$accessToken, [string]$propId) {
     return @{
         Views = $views
         Users = $users
-        AvgEngTime = $avgEngTime
+        MinPart = $minPart
+        SecPart = $secPart
         TopPages = $topPagesText
         PromptCopies = $copyCount
     }
@@ -157,7 +162,8 @@ try {
         $block = [System.IO.File]::ReadAllText($tplPath, [System.Text.Encoding]::UTF8)
         $block = $block.Replace("{GA4_VIEWS}", "$($metrics.Views)")
         $block = $block.Replace("{GA4_USERS}", "$($metrics.Users)")
-        $block = $block.Replace("{GA4_AVG_TIME}", "$($metrics.AvgEngTime)")
+        $block = $block.Replace("{GA4_AVG_MIN}", "$($metrics.MinPart)")
+        $block = $block.Replace("{GA4_AVG_SEC}", "$($metrics.SecPart)")
         $block = $block.Replace("{GA4_COPIES}", "$($metrics.PromptCopies)")
         $block = $block.Replace("{GA4_TOP_ARTICLES}", "$($metrics.TopPages)")
         return $block
