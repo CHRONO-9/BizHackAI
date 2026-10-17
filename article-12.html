@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -114,50 +114,48 @@
 
   <div class="main-wrapper">
     <div class="article-layout">
-      <!-- メイン記事コンテンツ -->
+      <!-- 記事メインコンテンツ -->
       <main class="article-main">
-        <article>
-          <!-- 記事ヘッダー -->
-          <header class="article-header">
-            <div class="article-meta">
-              <span class="article-tag">第12弾｜日常実務・メール自動化</span>
-              <span class="article-date">公開日：2026年10月17日</span>
-              <span class="article-author">執筆：水野 結衣（現場実務担当）</span>
-            </div>
-            <h1 class="article-title">【Gmail×GAS】定型返信・一次受けを一発自動化！ChatGPTで作る「メール下書き生成ボット」</h1>
-            <p class="article-lead">
-              毎朝のメールボックスを開いた瞬間、ため息をついていませんか？「日程調整」「資料送付の御礼」「問い合わせの一次受け」など、頭を使わない定型返信に毎日30分〜1時間を奪われるのは今日で終わりにしましょう。本記事では、ChatGPTと無料のGAS（Google Apps Script）を組み合わせ、<strong>受信したメールの適切な返信文を「下書きフォルダ」へ全自動で生成する仕組み</strong>を完全解説します。自動送信ではなく「下書き」だから誤送信リスクは完全ゼロ！今日からあなたの受信トレイ専属秘書が動き出します。
-            </p>
-          </header>
+        <!-- ステマ規制対応 PR表記 -->
+        <div class="pr-disclosure-bar">
+          <span class="pr-badge">PR</span>
+          <span>本記事は客観的な実務検証データに基づき中立に執筆されています。一部に提携ツールの紹介リンクを含みます。</span>
+        </div>
 
-          <!-- ステマ規制対応 PR表記 -->
-          <div class="pr-disclosure-bar">
-            <span class="pr-badge">PR / 広告開示</span>
-            <span>当サイトの記事は一部アフィリエイト広告を含みますが、実務検証データに基づき客観的・中立な情報提供を行っています。</span>
+        <header class="article-header">
+          <span class="category-tag cat-biz">日常実務・メール自動化</span>
+          <h1 class="article-title">【Gmail×GAS】定型返信・一次受けを一発自動化！ChatGPTで作る「メール下書き生成ボット」</h1>
+          <div class="article-meta-bar">
+            <span>執筆：水野 結衣</span>
+            <span>公開日：2026年10月17日</span>
+            <span>読了目安：約6分</span>
+          </div>
+        </header>
+
+        <!-- 即離脱防止：ファーストビュー即効バリューカード -->
+        <section class="fv-summary-card" aria-label="記事の要点と即効プロンプト">
+          <div class="fv-author-lead">
+            <div class="fv-author-avatar" style="border-color:#10b981; box-shadow:0 2px 8px rgba(16,185,129,0.2);">
+              <img src="images/author-mizuno.jpg?v=20261016d" alt="水野 結衣" width="58" height="58" loading="lazy">
+            </div>
+            <div class="fv-author-speech">
+              <div class="fv-author-name-tag">
+                <span class="fv-author-name">水野 結衣（みずの ゆい・34歳）</span>
+                <span class="fv-author-badge" style="background:#dcfce7; color:#047857; border-color:#bbf7d0;">初心者サポート・日常実務担当</span>
+              </div>
+              <p class="fv-author-comment">
+                「メール返信を完全に自動送信するのはちょっと怖いですよね。私も最初は誤送信が不安でした。そこで現場で編み出したのが<strong>『下書きだけをAIに自動作成させ、自分は確認して送信ボタンを押すだけ』</strong>という運用です。これだけで返信にかかる時間が80%削減され、文面をゼロから悩む精神的疲労がゼロになります！」
+              </p>
+            </div>
           </div>
 
-          <!-- ファーストビュー即効バリューカード -->
-          <div class="first-view-action-card fv-theme-emerald">
-            <div class="fv-card-header">
-              <div class="fv-writer-badge">
-                <span class="fv-badge-dot"></span>
-                <span>担当ライター 水野結衣（34歳・現場実務担当）より</span>
-              </div>
-              <span class="fv-read-time">読了目安：5分（即効プロンプト付き）</span>
+          <!-- 10秒お試しプロンプト（コピペボタン付き） -->
+          <div class="fv-try-box">
+            <div class="fv-try-header">
+              <span class="fv-try-title">⚡ 10秒お試し：まずはこのままコピペ！</span>
+              <button class="copy-btn fv-copy-btn" data-target="p-fv-instant-12">プロンプトをコピー</button>
             </div>
-            
-            <p class="fv-writer-message">
-              「メール返信を完全に自動送信するのはちょっと怖いですよね。私も最初は誤送信が不安でした。そこで現場で編み出したのが<strong>『下書きだけをAIに自動作成させ、自分は確認して送信ボタンを押すだけ』</strong>という運用です。これだけで返信にかかる時間が80%削減され、文面をゼロから悩む精神的疲労がゼロになります！」
-            </p>
-
-            <div class="fv-instant-tool">
-              <div class="fv-tool-label">
-                <span>⚡ 10秒で試せる！一次受け返信プロンプト（コピペ用）</span>
-                <button type="button" class="fv-copy-btn" data-copy-target="#fv-prompt-text-12" aria-label="プロンプトをコピー">
-                  <span class="copy-icon">📋</span> コピーする
-                </button>
-              </div>
-              <pre class="fv-prompt-preview" id="fv-prompt-text-12"><code>以下の【受信メール】に対する丁寧なビジネス返信メールの下書きを作成してください。
+            <pre id="p-fv-instant-12" class="fv-try-code">以下の【受信メール】に対する丁寧なビジネス返信メールの下書きを作成してください。
 
 # 返信方針:
 - まず丁寧な御礼を述べる
@@ -165,38 +163,52 @@
 - 相手に安心感を与える柔らかく誠実な敬語トーンにする
 
 # 受信メール:
-[相手からのメール本文を貼り付け]</code></pre>
-            </div>
-
-            <div class="fv-checklist-box">
-              <div class="fv-checklist-title">🎯 この記事で持ち帰れる3大成果</div>
-              <ul class="fv-checklist-items">
-                <li><span class="fv-check-icon">✓</span> <strong>Gmail下書き自動生成</strong>：メール受信時にAIが返信下書きを自動ストック</li>
-                <li><span class="fv-check-icon">✓</span> <strong>誤送信リスク完全ゼロ</strong>：最後は人間の目視チェックで送信する安全フロー</li>
-                <li><span class="fv-check-icon">✓</span> <strong>コピペで動くGASコード</strong>：コピペと貼り付けだけで即日稼働するスクリプト</li>
-              </ul>
-            </div>
-
-            <div class="fv-jump-nav">
-              <a href="#sec-1" class="fv-jump-link">1. メール時短の基本 ↓</a>
-              <a href="#sec-2" class="fv-jump-link">2. 黄金プロンプト ↓</a>
-              <a href="#sec-3" class="fv-jump-link">3. GAS自動化設定 ↓</a>
-              <a href="#sec-5" class="fv-jump-link">4. 安全運用ルール ↓</a>
-            </div>
+[相手からのメール本文を貼り付け]</pre>
+            <p class="fv-try-hint">💡 スマホ・PCのChatGPT（無料版でOK）に貼って送信するだけで、失礼のない迅速な一次返信が即座に完成します。</p>
           </div>
 
-          <!-- 目次 -->
-          <div class="article-toc">
-            <div class="toc-title">目次</div>
-            <ul class="toc-list">
-              <li><a href="#sec-1">1. メール返信に毎日1時間奪われる現場のリアル</a></li>
-              <li><a href="#sec-2">2. 【コピペで動く】一次受け返信の黄金プロンプト3選</a></li>
-              <li><a href="#sec-3">3. 【超簡単】GASでGmail下書きを自動生成する3ステップ</a></li>
-              <li><a href="#sec-4">4. 読者モニター佐藤さん（20代営業事務）の実務検証レポート</a></li>
-              <li><a href="#sec-5">5. 誤送信を100%防ぐ「下書き自動化」の安全運用ルール</a></li>
-              <li><a href="#sec-6">6. まとめ ＆ 明日からのメール時短術</a></li>
-            </ul>
+          <!-- 本記事で持ち帰れる3大成果 -->
+          <div class="fv-takeaways-title">📌 この記事で持ち帰れる3大成果</div>
+          <ul class="fv-takeaways-list">
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon" style="color:#10b981;">✓</span>
+              <div><strong>Gmail下書き自動生成</strong><br>メール受信時にAIが返信下書きを自動ストック</div>
+            </li>
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon" style="color:#10b981;">✓</span>
+              <div><strong>誤送信リスク完全ゼロ</strong><br>最後は人間の目視チェックで送信する安全フロー</div>
+            </li>
+            <li class="fv-takeaway-item">
+              <span class="fv-takeaway-icon" style="color:#10b981;">✓</span>
+              <div><strong>コピペで動くGASコード</strong><br>コピペと貼り付けだけで即日稼働するスクリプト</div>
+            </li>
+          </ul>
+
+          <!-- クイックジャンプ -->
+          <div class="fv-quick-links">
+            <a href="#sec-2" class="fv-quick-btn primary" style="background:#10b981;">📋 一次受け返信黄金プロンプトへ ↓</a>
+            <a href="#sec-3" class="fv-quick-btn secondary">⚙️ GAS下書き自動生成手順へ ↓</a>
+            <a href="article-2.html" class="fv-quick-btn secondary">✉️ メール術基礎（第2弾）→</a>
           </div>
+        </section>
+
+        <!-- 目次 -->
+        <nav class="toc-box">
+          <div class="toc-title">目次</div>
+          <ul class="toc-list">
+            <li><a href="#sec-1">1. メール返信に毎日1時間奪われる現場のリアル</a></li>
+            <li><a href="#sec-2">2. 【コピペで動く】一次受け返信の黄金プロンプト3選</a></li>
+            <li><a href="#sec-3">3. 【超簡単】GASでGmail下書きを自動生成する3ステップ</a></li>
+            <li><a href="#sec-4">4. 読者モニター佐藤さん（20代営業事務）の実務検証レポート</a></li>
+            <li><a href="#sec-5">5. 誤送信を100%防ぐ「下書き自動化」の安全運用ルール</a></li>
+            <li><a href="#sec-6">6. まとめ ＆ 明日からのメール時短術</a></li>
+          </ul>
+        </nav>
+
+        <div class="article-content">
+          <p class="article-lead">
+            毎朝のメールボックスを開いた瞬間、ため息をついていませんか？「日程調整」「資料送付の御礼」「問い合わせの一次受け」など、頭を使わない定型返信に毎日30分〜1時間を奪われるのは今日で終わりにしましょう。本記事では、ChatGPTと無料のGAS（Google Apps Script）を組み合わせ、<strong>受信したメールの適切な返信文を「下書きフォルダ」へ全自動で生成する仕組み</strong>を完全解説します。自動送信ではなく「下書き」だから誤送信リスクは完全ゼロ！今日からあなたの受信トレイ専属秘書が動き出します。
+          </p>
 
           <!-- 本文セクション -->
           <h2 id="sec-1">1. メール返信に毎日1時間奪われる現場のリアル</h2>
@@ -420,7 +432,7 @@ function createAiDraftReply() {
               <p class="bio-desc">1日80通を超える取引先連絡をさばいてきた経験から、角を立てず好印象を残すメール術とChatGPT連携プロンプトを体系化。「手作業を半減させ、定時退社を実現する」現場主義の時短ノウハウを発信中。</p>
             </div>
           </div>
-        </article>
+        </div>
       </main>
 
       <!-- サイドバー -->
