@@ -19,6 +19,19 @@ Set-Location -Path $WorkspaceRoot
 $env:Path = "C:\Users\k_mil\AppData\Local\Programs\Git\cmd;C:\Users\k_mil\AppData\Local\Programs\Git\ucrt64\bin;C:\Users\k_mil\AppData\Local\Programs\GitCredentialManager;$env:Path"
 $env:GIT_EXEC_PATH = "C:\Users\k_mil\AppData\Local\Programs\Git\ucrt64\bin"
 
+# Pre-midnight wake buffer handling (wakes PC at 23:55, stabilizes network, waits for 00:00:00)
+$PreWakeCheck = Get-Date
+if ($PreWakeCheck.Hour -eq 23 -and $PreWakeCheck.Minute -ge 50) {
+    $TargetMidnight = $PreWakeCheck.Date.AddDays(1)
+    $WaitSeconds = [int]($TargetMidnight - $PreWakeCheck).TotalSeconds
+    if ($WaitSeconds -gt 0) {
+        Write-Host "[WAKE BUFFER] PC woke up in advance at $($PreWakeCheck.ToString('HH:mm:ss'))." -ForegroundColor Cyan
+        Write-Host "[WAKE BUFFER] Stabilizing network connection and keeping active for $WaitSeconds seconds until 00:00:00..." -ForegroundColor Cyan
+        Start-Sleep -Seconds $WaitSeconds
+        Start-Sleep -Seconds 1
+    }
+}
+
 $Today = Get-Date
 $TodayStr = $Today.ToString("yyyy-MM-dd")
 $TodayDotStr = $Today.ToString("yyyy.MM.dd")
