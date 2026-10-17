@@ -128,6 +128,45 @@ function Get-GA4Metrics([string]$accessToken, [string]$propId) {
     $eventRes = Invoke-RestMethod -Uri $reportUrl -Method Post -Headers $headers -Body $eventBody
     $copyCount = if ($eventRes.rows -and $eventRes.rows[0].metricValues) { $eventRes.rows[0].metricValues[0].value } else { "0" }
 
+    # Query 4: Domestic Japan access regions
+    $regionBody = @{
+        dateRanges = @(@{ startDate = "yesterday"; endDate = "yesterday" })
+        dimensions = @(@{ name = "region" }, @{ name = "city" })
+        metrics = @(@{ name = "activeUsers" }, @{ name = "screenPageViews" })
+        dimensionFilter = @{
+            filter = @{
+                fieldName = "country"
+                stringFilter = @{ value = "Japan" }
+            }
+        }
+        limit = 5
+        orderBys = @(@{ metric = @{ metricName = "screenPageViews" }; desc = $true })
+    } | ConvertTo-Json -Depth 5
+
+    $regionRes = Invoke-RestMethod -Uri $reportUrl -Method Post -Headers $headers -Body $regionBody
+    $regionList = @()
+
+    $prefJsonPath = Join-Path "C:\Users\k_mil\Desktop\BzhackAI" "config\prefectures.json"
+    $prefMap = if (Test-Path $prefJsonPath) { [System.IO.File]::ReadAllText($prefJsonPath, [System.Text.Encoding]::UTF8) | ConvertFrom-Json } else { $null }
+    $meiStr = [System.Text.Encoding]::UTF8.GetString([byte[]]@(0x20, 0xE5, 0x90, 0x8D))
+
+    if ($regionRes.rows) {
+        foreach ($row in $regionRes.rows) {
+            $rawRegion = $row.dimensionValues[0].value
+            $rawCity = $row.dimensionValues[1].value
+            $u = $row.metricValues[0].value
+            $v = $row.metricValues[1].value
+
+            if ($rawRegion -eq "(not set)") { continue }
+
+            $prefName = if ($prefMap -and $prefMap.PSObject.Properties[$rawRegion]) { $prefMap."$rawRegion" } else { $rawRegion }
+            $locStr = if ($rawCity -and $rawCity -ne "(not set)") { "$prefName ($rawCity)" } else { $prefName }
+            $regionList += "  - $locStr ($v PV / $u$meiStr)"
+        }
+    }
+    $noneRegion = [System.Text.Encoding]::UTF8.GetString([byte[]]@(0x20, 0x20, 0x2D, 0x20, 0xE5, 0x9B, 0xBD, 0xE5, 0x86, 0x85, 0xE3, 0x82, 0xA2, 0xE3, 0x82, 0xAF, 0xE3, 0x82, 0xBB, 0xE3, 0x82, 0xB9, 0xE9, 0x9B, 0x86, 0xE8, 0xA8, 0x88, 0xE4, 0xB8, 0xAD))
+    $regionText = if ($regionList.Count -gt 0) { $regionList -join "`n" } else { $noneRegion }
+
     return @{
         Views = $views
         Users = $users
@@ -135,6 +174,7 @@ function Get-GA4Metrics([string]$accessToken, [string]$propId) {
         SecPart = $secPart
         TopPages = $topPagesText
         PromptCopies = $copyCount
+        Regions = $regionText
     }
 }
 
@@ -164,6 +204,7 @@ function Get-GA4MetricsBlock([string]$WorkspaceRoot = "C:\Users\k_mil\Desktop\Bz
             $block = $block.Replace("{GA4_AVG_MIN}", "$($metrics.MinPart)")
             $block = $block.Replace("{GA4_AVG_SEC}", "$($metrics.SecPart)")
             $block = $block.Replace("{GA4_COPIES}", "$($metrics.PromptCopies)")
+            $block = $block.Replace("{GA4_REGIONS}", "$($metrics.Regions)")
             $block = $block.Replace("{GA4_TOP_ARTICLES}", "$($metrics.TopPages)")
             return $block
         }
