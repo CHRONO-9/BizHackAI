@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, follow">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PXPDE46RFR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-PXPDE46RFR');
+  </script>
+  <title>ページが見つかりません（404 Not Found）｜BizHack AI</title>
+  <meta name="description" content="指定されたページは見つかりませんでした。URLが変更されたか、現在メンテナンス中の可能性があります。公開中の実践AI記事一覧からすぐにお探しいただけます。">
+  <link rel="stylesheet" href="css/style.css?v=20261128a">
+  <link rel="icon" type="image/jpeg" href="images/bizhack-icon-main.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    .error-hero {
+      text-align: center;
+      padding: 2.5rem 1.5rem 2rem;
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+    .error-code {
+      font-size: 4.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      letter-spacing: -2px;
+    }
+    .error-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.85rem;
+    }
+    .error-desc {
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+    .smart-alt-box {
+      display: none;
+      max-width: 640px;
+      margin: 0 auto 1.5rem;
+      padding: 1rem 1.25rem;
+      background: #eff6ff;
+      border: 1px solid #93c5fd;
+      border-radius: var(--radius-sm);
+      text-align: left;
+    }
+    .smart-alt-box.is-visible {
+      display: block;
+    }
+    .smart-alt-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #1d4ed8;
+      margin-bottom: 0.35rem;
+    }
+    .smart-alt-link {
+      display: inline-block;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      text-decoration: underline;
+    }
+    .error-actions {
+      display: flex;
+      justify-content: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.65rem;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 9999px;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark, #1e40af);
+      color: #fff;
+    }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.65rem;
+      background: #f8fafc;
+      color: var(--text-main);
+      border: 1px solid #cbd5e1;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 9999px;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover {
+      background: #e2e8f0;
+    }
+    .shortcut-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .shortcut-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.85rem;
+    }
+    .shortcut-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.5rem 0.95rem;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+      text-decoration: none;
+      transition: all 0.18s;
+    }
+    .shortcut-pill:hover {
+      background: #eff6ff;
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .search-bar-wrap {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .search-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      background: #fff;
+      color: var(--text-main);
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+    .popular-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .popular-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-sm);
+      padding: 1.15rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .popular-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px -4px rgba(0,0,0,0.08);
+      border-color: var(--primary);
+    }
+    .popular-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.5;
+      margin: 0.25rem 0 0.5rem;
+    }
+    .popular-card p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo-area">
+        <a href="index.html" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;">
+          <div class="logo-mark"><img src="images/bizhack-icon-main.jpg" alt="BizHack AI ロゴ" width="46" height="46"></div>
+          <div>
+            <span class="logo-title">BizHack AI</span>
+            <span class="logo-tagline">現場の仕事を3時間短縮する実践マガジン</span>
+          </div>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">ホーム</a>
+        <a href="about.html" class="nav-link">当サイトについて</a>
+        <a href="index.html#featured" class="nav-link">特集記事</a>
+        <a href="contact.html" class="nav-link">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 最新記事お知らせバー -->
+  <aside class="announcement-bar" aria-label="最新記事のお知らせ">
+    <div class="announcement-container">
+      <a href="article-27.html" class="announcement-bar-link">
+        <span class="announcement-badge">NEW</span>
+        <span class="announcement-text">最新第27弾「自律型AI競合ニュース部隊」＆ 第24弾「契約書・法務AIレビュー」を公開中！</span>
+        <span class="announcement-cta">特集を見る →</span>
+      </a>
+    </div>
+  </aside>
+
+  <main class="main-wrapper" style="max-width:960px; padding-top:2rem;">
+    <!-- 404 Hero -->
+    <div class="error-hero">
+      <div class="error-code">404</div>
+      <h1 class="error-title">お探しのページが見つかりませんでした</h1>
+      <p class="error-desc">
+        申し訳ありません。アクセスいただいたページはURLが変更されたか、現在品質向上のためのリニューアル調整（一時非公開）を行っている可能性がございます。<br>
+        下の「目的別ショートカット」や「記事検索」から、今すぐ使える実践記事をご覧いただけます。
+      </p>
+
+      <!-- アクセスURLに応じた自動代替記事ガイド -->
+      <div id="smart-alt-box" class="smart-alt-box" role="status">
+        <div class="smart-alt-label">💡 もしかしてこちらのテーマをお探しですか？</div>
+        <a id="smart-alt-link" href="index.html" class="smart-alt-link"></a>
+      </div>
+
+      <div class="error-actions">
+        <a href="index.html" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          トップページへ戻る
+        </a>
+        <a href="index.html#featured" class="btn-outline">
+          公開中の特集記事一覧を見る →
+        </a>
+      </div>
+    </div>
+
+    <!-- 目的別ショートカット -->
+    <section class="shortcut-box" aria-label="目的別ショートカット">
+      <h2 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin:0 0 0.25rem;">
+        🧭 やりたい仕事から探す（目的別ショートカット）
+      </h2>
+      <p style="font-size:0.84rem; color:var(--text-muted); margin:0;">
+        よく探されている実務テーマごとに、今すぐコピペで使える公開記事へご案内します。
+      </p>
+      <div class="shortcut-pills">
+        <a href="article-1.html" class="shortcut-pill quick-start-link">🔰 ChatGPT超入門・基本の型</a>
+        <a href="article-2.html" class="shortcut-pill quick-start-link">✉️ 謝罪・催促・日程調整メール</a>
+        <a href="article-21.html" class="shortcut-pill quick-start-link">📝 会議の議事録・ToDo自動化</a>
+        <a href="article-11.html" class="shortcut-pill quick-start-link">📊 表計算・スプレッドシート自動化</a>
+        <a href="article-24.html" class="shortcut-pill quick-start-link">⚖️ 契約書チェック・不利条項検知</a>
+        <a href="article-9.html" class="shortcut-pill quick-start-link">📄 難解な規程・PDFを3分要約</a>
+        <a href="article-22.html" class="shortcut-pill quick-start-link">🤖 Difyで社内マニュアルAI自作</a>
+        <a href="article-27.html" class="shortcut-pill quick-start-link">🔍 競合・業界ニュースの毎朝自動収集</a>
+        <a href="article-7.html" class="shortcut-pill quick-start-link">🗂️ 個人事業・Notionタスク管理</a>
+        <a href="article-23.html" class="shortcut-pill quick-start-link">💬 LINE公式×AIの24時間予約対応</a>
+        <a href="article-8.html" class="shortcut-pill quick-start-link">🛡️ 職場のAIセキュリティ・社内ルール</a>
+        <a href="article-16.html" class="shortcut-pill quick-start-link">💼 職務経歴書・自己PRの自動作成</a>
+      </div>
+    </section>
+
+    <!-- 公開中記事の即時検索＆一覧 -->
+    <section style="margin-bottom:3rem;">
+      <h2 style="font-size:1.2rem; font-weight:700; color:var(--text-main); margin-bottom:0.5rem; border-left:4px solid var(--primary); padding-left:0.75rem;">
+        現在公開中の実践記事をキーワード検索（全18本）
+      </h2>
+      <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:0.85rem;">
+        例：「議事録」「メール」「契約書」「スプレッドシート」「Dify」「LINE」などを入力すると絞り込めます。
+      </p>
+      <div class="search-bar-wrap">
+        <input type="search" id="article-search-input" class="search-input" placeholder="キーワードで公開中の記事をさがす..." aria-label="公開中の記事を検索">
+      </div>
+      <div id="live-articles-grid" class="popular-grid">
+        <a href="article-1.html" class="popular-card related-article-card">
+          <span style="font-size:0.75rem; font-weight:700; color:var(--primary);">第1弾・AI超入門</span>
+          <h3>【初心者向け】コピペで動くChatGPT神プロンプト7選！始め方・指示のコツ</h3>
+          <p>「思った通りの答えが出ない」を1発解消する基本プロンプト集。</p>
+        </a>
+        <a href="article-2.html" class="popular-card related-article-card">
+          <span style="font-size:0.75rem; font-weight:700; color:var(--primary);">第2弾・日常実務・メール術</span>
+          <h3>【角が立たない】催促・お詫び・お断りメールが一瞬で書けるChatGPTプロンプト集</h3>
+          <p>気を使う社内外のメール作成時間をゼロにする即戦力テンプレート。</p>
+        </a>
+        <a href="article-21.html" class="popular-card related-article-card">
+          <span style="font-size:0.75rem; font-weight:700; color:var(--primary);">第21弾・現場実務・議事録DX</span>
+          <h3>【会議終了即ToDo配信】Notta×ChatGPTで議事録残業をゼロにする自動化術</h3>
+          <p>会議の録音聞き直しを卒業し、決定事項とToDoを自動配信。</p>
+        </a>
+        <a href="article-27.html" class="popular-card related-article-card">
+          <span style="font-size:0.75rem; font-weight:700; color:var(--primary);">第27弾・企画・リサーチDX</span>
+          <h3>【自律型AIエージェント入門】毎朝の競合・業界ニュース収集を完全自動化するAI部隊</h3>
+          <p>情報収集の時間を大幅削減し、意思決定のスピードを加速させる実践術。</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- フッター -->
+  <footer class="site-footer" style="margin-top:3rem; border-top:1px solid #e2e8f0; padding:2.5rem 0; background:#f8fafc;">
+    <div class="main-wrapper" style="text-align:center;">
+      <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1rem;">
+        BizHack AI - 現場の仕事を3時間短縮する実践マガジン
+      </p>
+      <div style="display:flex; justify-content:center; gap:1.5rem; font-size:0.85rem; margin-bottom:1rem; flex-wrap:wrap;">
+        <a href="index.html" style="color:var(--text-muted); text-decoration:none;">ホーム</a>
+        <a href="about.html" style="color:var(--text-muted); text-decoration:none;">当サイトについて</a>
+        <a href="privacy.html" style="color:var(--text-muted); text-decoration:none;">プライバシーポリシー・免責事項</a>
+        <a href="contact.html" style="color:var(--text-muted); text-decoration:none;">お問い合わせ</a>
+      </div>
+      <p style="font-size:0.8rem; color:#94a3b8; margin:0;">
+        &copy; 2026 BizHack AI Editorial Committee. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/articles-data.js?v=20261103c"></script>
+  <script>
+    (function () {
+      // 1. お休み中（非公開）URLからの着地時に関連する公開記事を自動案内
+      const altMap = {
+        'article-3.html': { url: 'article-21.html', label: '第21弾：【会議終了即ToDo配信】Notta×ChatGPTで議事録残業をゼロにする自動化術 →' },
+        'article-4.html': { url: 'article-11.html', label: '第11弾：【関数一切不要】スプレッドシートの集計・コピペをChatGPTで自動化する超実務術 →' },
+        'article-5.html': { url: 'article-1.html', label: '第1弾：【初心者向け】コピペで動くChatGPT神プロンプト7選！始め方・指示のコツ →' },
+        'article-6.html': { url: 'article-7.html', label: '第7弾：【Notion AI実務術】散らかるタスク・顧客メモを一括管理する実践仕事術 →' },
+        'article-10.html': { url: 'article-11.html', label: '第11弾：【関数一切不要】スプレッドシートの集計・コピペをChatGPTで自動化する超実務術 →' },
+        'article-12.html': { url: 'article-2.html', label: '第2弾：【角が立たない】催促・お詫び・お断りメールが一瞬で書けるChatGPTプロンプト集 →' },
+        'article-13.html': { url: 'article-22.html', label: '第22弾：【Dify超入門】社内マニュアルを投げるだけ！嘘をつかない専用AIボット自作手順 →' },
+        'article-14.html': { url: 'article-27.html', label: '第27弾：【自律型AIエージェント入門】毎朝の競合・業界ニュース収集を完全自動化するAI部隊 →' },
+        'article-15.html': { url: 'article-11.html', label: '第11弾：【関数一切不要】スプレッドシートの集計・コピペをChatGPTで自動化する超実務術 →' },
+        'article-17.html': { url: 'article-7.html', label: '第7弾：【Notion AI実務術】散らかるタスク・顧客メモを一括管理する実践仕事術 →' },
+        'article-18.html': { url: 'article-7.html', label: '第7弾：【Notion AI実務術】ひとり起業・個人事業の業務DX仕事術 →' },
+        'article-19.html': { url: 'article-11.html', label: '第11弾：【関数一切不要】スプレッドシートの集計・コピペをChatGPTで自動化する超実務術 →' },
+        'article-20.html': { url: 'article-11.html', label: '第11弾：【関数一切不要】スプレッドシートの集計・コピペをChatGPTで自動化する超実務術 →' },
+        'article-25.html': { url: 'article-22.html', label: '第22弾：【Dify超入門】社内マニュアルを投げるだけ！嘘をつかない専用AIボット自作手順 →' },
+        'article-26.html': { url: 'article-23.html', label: '第23弾：【LINE公式×ChatGPT】個人事業・店舗のための24時間問い合わせ・予約自動化術 →' },
+        'article-28.html': { url: 'article-2.html', label: '第2弾：【角が立たない】催促・お詫び・お断りメールが一瞬で書けるChatGPTプロンプト集 →' },
+        'article-29.html': { url: 'article-8.html', label: '第8弾：【会社で安全に使う】ChatGPTのセキュリティ対策＆情報漏洩を防ぐ社内ルール策定法 →' },
+        'article-30.html': { url: 'article-9.html', label: '第9弾：【難解書類を3分要約】契約書・公的文書・社内規程を噛み砕くChatGPT添削プロンプト →' },
+        'article-31.html': { url: 'article-27.html', label: '第27弾：【自律型AIエージェント入門】毎朝の競合・業界ニュース収集を完全自動化するAI部隊 →' },
+        'article-32.html': { url: 'article-1.html', label: '第1弾：【初心者向け】コピペで動くChatGPT神プロンプト7選！始め方・指示のコツ →' },
+        'article-33.html': { url: 'article-22.html', label: '第22弾：【Dify超入門】社内マニュアルを投げるだけ！嘘をつかない専用AIボット自作手順 →' },
+        'article-34.html': { url: 'article-11.html', label: '第11弾：【関数一切不要】スプレッドシートの集計・コピペをChatGPTで自動化する超実務術 →' }
+      };
+      const fileName = (window.location.pathname.split('/').pop() || '').toLowerCase();
+      if (altMap[fileName]) {
+        const box = document.getElementById('smart-alt-box');
+        const link = document.getElementById('smart-alt-link');
+        if (box && link) {
+          link.href = altMap[fileName].url;
+          link.textContent = altMap[fileName].label;
+          box.classList.add('is-visible');
+        }
+      }
+
+      // 2. 公開中の全12記事を即時検索・表示
+      const grid = document.getElementById('live-articles-grid');
+      const input = document.getElementById('article-search-input');
+      if (grid && Array.isArray(window.BIZHACK_ARTICLES) && window.BIZHACK_ARTICLES.length > 0) {
+        function renderList(keyword) {
+          const q = (keyword || '').trim().toLowerCase();
+          const filtered = window.BIZHACK_ARTICLES.filter(a => {
+            if (!q) return true;
+            return (a.fullTitle + ' ' + a.title + ' ' + a.category + ' 第' + a.id + '弾').toLowerCase().includes(q);
+          });
+          if (filtered.length === 0) {
+            grid.innerHTML = '<p style="grid-column:1/-1; color:#64748b; font-size:0.9rem;">一致する記事が見つかりませんでした。別のキーワードをお試しください。</p>';
+            return;
+          }
+          grid.innerHTML = filtered.map(a => `
+            <a href="${a.url}" class="popular-card related-article-card">
+              <div>
+                <span style="font-size:0.75rem; font-weight:700; color:var(--primary);">第${a.id}弾・${a.category}</span>
+                <h3>${a.fullTitle}</h3>
+              </div>
+              <p style="color:var(--primary); font-weight:600; margin-top:0.5rem;">この記事を読む →</p>
+            </a>
+          `).join('');
+        }
+        renderList('');
+        if (input) {
+          input.addEventListener('input', (e) => renderList(e.target.value));
+        }
+      }
+
+      // 3. 404ページからの救済遷移をGA4計測
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('a.popular-card, a.shortcut-pill, a#smart-alt-link');
+        if (a && typeof gtag === 'function') {
+          gtag('event', 'internal_circulation_click', {
+            from_path: window.location.pathname,
+            to_url: a.getAttribute('href') || '',
+            component: '404_rescue_nav'
+          });
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
